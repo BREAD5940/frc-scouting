@@ -1,0 +1,24 @@
+{
+  "name": "frc-scouting",
+  "version": "0.0.1",
+  "description": "A TypeScript library for handling FRC scouting data from robotics tournaments.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheAnnalyst/frc-scouting.git"
+  },
+  "keywords": [
+    "frc",
+    "robotics",
+    "scouting"
+  ],
+  "author": "Annika",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/TheAnnalyst/frc-scouting/issues"
+  },
+  "homepage": "https://github.com/TheAnnalyst/frc-scouting#readme"
+}
