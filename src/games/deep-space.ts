@@ -65,7 +65,7 @@ class HatchPanelTracker extends DeepSpaceTracker {
 }
 
 /** Represents a Deep Space match */
-class DeepSpaceMatch extends Match {
+export class DeepSpaceMatch extends Match {
     pieceTrackers: [CargoTracker, HatchPanelTracker];
 
     helpsOthersHABClimb: boolean;
@@ -76,12 +76,14 @@ class DeepSpaceMatch extends Match {
     /** rocket:isAssembled */
     rocketsAssembled: Record<Rocket, boolean>;
     /** point:isGained */
-    rankingPoints: Record<RankingPoints, boolean>;
+    rankingPointRecord: Record<RankingPoints, boolean>;
 
     /** Creates a new DeepSpaceMatch */
     constructor(
         teamNumber: number, type: string, number: number, alliance: Alliance,
-        initalHABLevel: HABLevel, finalHABLevel: HABLevel, crossesStartLine = false, helpsOthersHABClimb = false,
+        initalHABLevel: HABLevel, finalHABLevel: HABLevel,
+        rocketsAssembled: Record<Rocket, boolean>, rankingPoints: Record<RankingPoints, boolean>,
+        crossesStartLine = false, helpsOthersHABClimb = false, bonusPoints = 0,
     ) {
         super(teamNumber, type, number, alliance, []);
         this.pieceTrackers = [new CargoTracker(), new HatchPanelTracker()];
@@ -90,5 +92,27 @@ class DeepSpaceMatch extends Match {
         this.initialHABLevel = initalHABLevel;
         this.finalHABLevel = finalHABLevel;
         this.crossesStartLine = crossesStartLine;
+
+        this.rankingPointRecord = rankingPoints;
+        this.rocketsAssembled = rocketsAssembled;
+
+        // sanity checks
+        if (rankingPoints.ROCKET) {
+            if (!rocketsAssembled.LEFT && !rocketsAssembled.RIGHT) {
+                throw new Error(
+                    'Inconsistent data: the rocket ranking point has been obtained, but neither rocket is complete.',
+                );
+            }
+            this.rankingPoints++;
+        }
+
+        if (rankingPoints.HAB) {
+            if (this.bonusPoints < 15) {
+                throw new Error(
+                    'Inconsistent data: the HAB ranking point has been obtained, but there are not 15 bonus points.',
+                );
+            }
+            this.rankingPoints++;
+        }
     }
 }

@@ -41,6 +41,7 @@ export abstract class Match {
 
     rankingPoints = 0;
     pointsFromFouls = 0;
+    bonusPoints = 0;
 
     /** Creates a new Match */
     constructor(teamNumber: number, type: string, number: number, alliance: Alliance, trackers: GamePieceTracker[]) {
@@ -53,9 +54,20 @@ export abstract class Match {
 
     /** Gets the total number of points scored in a match */
     get points(): number {
-        return this.pointsFromFouls + this.pieceTrackers.reduce(
+        return this.pointsFromFouls + this.bonusPoints + this.pieceTrackers.reduce(
             (accumulator, tracker) => accumulator + tracker.totalPoints,
             0,
         );
+    }
+
+    /** Scores bonus points */
+    scoreBonusPoints(points: number) {
+        this.bonusPoints += points;
+    }
+
+    /** Adds a foul */
+    addFoul(type: keyof Fouls, points?: number) {
+        this.fouls[type]++;
+        if (points) this.pointsFromFouls += points;
     }
 }
