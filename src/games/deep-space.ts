@@ -22,17 +22,18 @@ abstract class DeepSpaceTracker extends GamePieceTracker {
     /** doubled in autonomous */
     baseValue: number;
 
-    /** Constructs a new GamePieceTracker. Should be extended not called directly. */
-    constructor(type: GamePiece, baseValue: number) {
+    /**
+     * Constructs a new GamePieceTracker. Should be extended not called directly.
+     * @param results status:number of pieces record
+     */
+    constructor(
+        type: GamePiece, baseValue: number, results: Record<GamePieceStatus, {autonomous: number, teleop: number}>,
+    ) {
         super();
 
         this.type = type;
         this.baseValue = baseValue;
-        this.results = {
-            DROPPED: {autonomous: 0, teleop: 0},
-            SHIP: {autonomous: 0, teleop: 0},
-            ROCKET: {autonomous: 0, teleop: 0},
-        };
+        this.results = results;
     }
 
     /** Returns the total number of points scored */
@@ -49,18 +50,18 @@ abstract class DeepSpaceTracker extends GamePieceTracker {
 }
 
 /** Tracks cargo pieces */
-class CargoTracker extends DeepSpaceTracker {
+export class CargoTracker extends DeepSpaceTracker {
     /** Creates a new CargoTracker */
-    constructor() {
-        super('CARGO', 3);
+    constructor(results: Record<GamePieceStatus, {autonomous: number, teleop: number}>) {
+        super('CARGO', 3, results);
     }
 }
 
 /** Tracks hatch panels */
-class HatchPanelTracker extends DeepSpaceTracker {
+export class HatchPanelTracker extends DeepSpaceTracker {
     /** Creates a new HatchPieceTracker */
-    constructor() {
-        super('HATCH_PANEL', 3);
+    constructor(results: Record<GamePieceStatus, {autonomous: number, teleop: number}>) {
+        super('HATCH_PANEL', 2, results);
     }
 }
 
@@ -69,6 +70,9 @@ interface DeepSpaceMatchData extends MatchData {
     initialHABLevel: HABLevel;
     finalHABLevel: HABLevel;
     crossesStartLine: boolean;
+
+    cargo: CargoTracker;
+    hatches: HatchPanelTracker;
 
     /** rocket:isAssembled */
     rocketsAssembled: Record<Rocket, boolean>;
@@ -97,7 +101,17 @@ export class DeepSpaceMatch extends Match {
         data: Partial<DeepSpaceMatchData> & {initialHABLevel: HABLevel},
     ) {
         super(teamNumber, type, number, alliance, [], data);
-        this.pieceTrackers = [new CargoTracker(), new HatchPanelTracker()];
+
+        const defaultTrackerState = {
+            DROPPED: {autonomous: 0, teleop: 0},
+            ROCKET: {autonomous: 0, teleop: 0},
+            SHIP: {autonomous: 0, teleop: 0},
+        };
+
+        this.pieceTrackers = [
+            data.cargo || new CargoTracker(defaultTrackerState),
+            data.hatches || new HatchPanelTracker(defaultTrackerState),
+        ];
 
         this.helpsOthersHABClimb = data.helpsOthersHABClimb || false;
         this.initialHABLevel = data.initialHABLevel;
