@@ -2,7 +2,7 @@
  * Code specific to the 2019 FRC game: Deep Space
  */
 
-import type {Alliance} from '../match';
+import type {Alliance, MatchData} from '../match';
 import {GamePieceTracker, Match} from '../match';
 
 type GamePieceStatus = 'DROPPED' | 'SHIP' | 'ROCKET';
@@ -64,6 +64,18 @@ class HatchPanelTracker extends DeepSpaceTracker {
     }
 }
 
+interface DeepSpaceMatchData extends MatchData {
+    helpsOthersHABClimb: boolean;
+    initialHABLevel: HABLevel;
+    finalHABLevel: HABLevel;
+    crossesStartLine: boolean;
+
+    /** rocket:isAssembled */
+    rocketsAssembled: Record<Rocket, boolean>;
+    /** point:isGained */
+    rankingPointRecord: Record<RankingPoints, boolean>;
+}
+
 /** Represents a Deep Space match */
 export class DeepSpaceMatch extends Match {
     pieceTrackers: [CargoTracker, HatchPanelTracker];
@@ -78,41 +90,43 @@ export class DeepSpaceMatch extends Match {
     /** point:isGained */
     rankingPointRecord: Record<RankingPoints, boolean>;
 
+    readonly rankingPoints: number;
     /** Creates a new DeepSpaceMatch */
     constructor(
         teamNumber: number, type: string, number: number, alliance: Alliance,
-        initalHABLevel: HABLevel, finalHABLevel: HABLevel,
-        rocketsAssembled: Record<Rocket, boolean>, rankingPoints: Record<RankingPoints, boolean>,
-        crossesStartLine = false, helpsOthersHABClimb = false, bonusPoints = 0,
+        data: Partial<DeepSpaceMatchData> & {initialHABLevel: HABLevel},
     ) {
-        super(teamNumber, type, number, alliance, []);
+        super(teamNumber, type, number, alliance, [], data);
         this.pieceTrackers = [new CargoTracker(), new HatchPanelTracker()];
 
-        this.helpsOthersHABClimb = helpsOthersHABClimb;
-        this.initialHABLevel = initalHABLevel;
-        this.finalHABLevel = finalHABLevel;
-        this.crossesStartLine = crossesStartLine;
+        this.helpsOthersHABClimb = data.helpsOthersHABClimb || false;
+        this.initialHABLevel = data.initialHABLevel;
+        this.finalHABLevel = data.finalHABLevel || 0;
+        this.crossesStartLine = data.crossesStartLine || false;
 
-        this.rankingPointRecord = rankingPoints;
-        this.rocketsAssembled = rocketsAssembled;
+        this.rankingPointRecord = data.rankingPointRecord || {ROCKET: false, HAB: false};
+        this.rocketsAssembled = data.rocketsAssembled || {RIGHT: false, LEFT: false};
 
+        let rankingPoints = 0;
         // sanity checks
-        if (rankingPoints.ROCKET) {
-            if (!rocketsAssembled.LEFT && !rocketsAssembled.RIGHT) {
+        if (this.rankingPointRecord.ROCKET) {
+            if (!this.rocketsAssembled.LEFT && !this.rocketsAssembled.RIGHT) {
                 throw new Error(
                     'Inconsistent data: the rocket ranking point has been obtained, but neither rocket is complete.',
                 );
             }
-            this.rankingPoints++;
+            rankingPoints++;
         }
 
-        if (rankingPoints.HAB) {
+        if (this.rankingPointRecord.HAB) {
             if (this.bonusPoints < 15) {
                 throw new Error(
                     'Inconsistent data: the HAB ranking point has been obtained, but there are not 15 bonus points.',
                 );
             }
-            this.rankingPoints++;
+            rankingPoints++;
         }
+
+        this.rankingPoints = rankingPoints;
     }
 }

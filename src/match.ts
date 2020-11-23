@@ -22,34 +22,57 @@ export abstract class GamePieceTracker {
     abstract get totalPoints(): number;
 }
 
+export interface MatchData {
+    fouls: Fouls;
+    cards: Cards;
+    emergencyStopped: boolean;
+    borked: boolean;
+
+    rankingPoints: number;
+    pointsFromFouls: number;
+    bonusPoints: number;
+}
+
 /**
  * Represents an FRC match. Is extended by each FRC game.
  */
 export abstract class Match {
-    teamNumber: number;
+    readonly teamNumber: number;
     /* TODO: add more expressive type (I have no clue wtf a match type can be) */
-    type: string;
-    number: number;
-    alliance: Alliance;
+    readonly type: string;
+    readonly number: number;
+    readonly alliance: Alliance;
 
-    pieceTrackers: GamePieceTracker[];
+    readonly pieceTrackers: GamePieceTracker[];
 
-    fouls: Fouls = {regular: 0, technical: 0};
-    cards: Cards = {yellow: false, red: false};
-    emergencyStopped = false;
-    borked = false;
+    readonly fouls: Fouls;
+    readonly cards: Cards;
+    readonly emergencyStopped: boolean;
+    readonly borked: boolean;
 
-    rankingPoints = 0;
-    pointsFromFouls = 0;
-    bonusPoints = 0;
+    readonly rankingPoints: number;
+    readonly pointsFromFouls: number;
+    readonly bonusPoints: number;
 
     /** Creates a new Match */
-    constructor(teamNumber: number, type: string, number: number, alliance: Alliance, trackers: GamePieceTracker[]) {
+    constructor(
+        teamNumber: number, type: string, number: number, alliance: Alliance, trackers: GamePieceTracker[],
+        data: Partial<MatchData>,
+    ) {
         this.teamNumber = teamNumber;
         this.type = type;
         this.number = number;
         this.alliance = alliance;
         this.pieceTrackers = trackers;
+
+        this.fouls = data.fouls || {regular: 0, technical: 0};
+        this.cards = data.cards || {yellow: false, red: false};
+        this.emergencyStopped = data.emergencyStopped || false;
+        this.borked = data.borked || false;
+
+        this.rankingPoints = data.rankingPoints || 0;
+        this.pointsFromFouls = data.pointsFromFouls || 0;
+        this.bonusPoints = data.bonusPoints || 0;
     }
 
     /** Gets the total number of points scored in a match */
@@ -58,16 +81,5 @@ export abstract class Match {
             (accumulator, tracker) => accumulator + tracker.totalPoints,
             0,
         );
-    }
-
-    /** Scores bonus points */
-    scoreBonusPoints(points: number) {
-        this.bonusPoints += points;
-    }
-
-    /** Adds a foul */
-    addFoul(type: keyof Fouls, points?: number) {
-        this.fouls[type]++;
-        if (points) this.pointsFromFouls += points;
     }
 }

@@ -5,8 +5,7 @@ let curMatchNum = 0;
 
 /** generates a match for testing */
 function makeMatch(points: number) {
-    const match = new TestMatch(5940, 'test', curMatchNum++, 'BLUE', []);
-    match.bonusPoints = points;
+    const match = new TestMatch(5940, 'test', curMatchNum++, 'BLUE', [], {bonusPoints: points});
     return match;
 }
 
@@ -25,13 +24,13 @@ test('Team#getMode should return the mode', () => {
 
 test('Team#getMedian should return the median', () => {
     expect(testTeam.getMedian('points')).toEqual(5.5);
+
     testTeam.matches = testTeam.matches.filter((match) => match.bonusPoints !== 10);
-    console.log(testTeam.matches.map((match) => match.points));
     expect(testTeam.getMedian('points')).toEqual(5);
 });
 
 test('statistical functions should throw errors when used on non-numerical properties', () => {
-    expect(() => testTeam.getMean('addFoul')).toThrowError(/non-number property/);
-    expect(() => testTeam.getMode('addFoul')).toThrowError(/non-number property/);
-    expect(() => testTeam.getMedian('addFoul')).toThrowError(/non-number property/);
+    expect(() => testTeam.getMean('borked')).toThrowError(/non-number property/);
+    expect(() => testTeam.getMode('borked')).toThrowError(/non-number property/);
+    expect(() => testTeam.getMedian('borked')).toThrowError(/non-number property/);
 });
