@@ -4,8 +4,8 @@ import {TestMatch} from './match.test';
 let curMatchNum = 0;
 
 /** generates a match for testing */
-function makeMatch(points: number) {
-    const match = new TestMatch(5940, 'test', curMatchNum++, 'BLUE', [], {bonusPoints: points});
+export function makeMatch(points: number, number?: number) {
+    const match = new TestMatch(5940, 'test', number || curMatchNum++, 'BLUE', [], {bonusPoints: points});
     return match;
 }
 

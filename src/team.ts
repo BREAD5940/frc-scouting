@@ -1,8 +1,11 @@
 /**
- * Model of a team
+ * Models FRC teams
+ *
+ * @author Annika
  */
 
 import {Match} from './match';
+import {StorageBackend} from './storage/backend';
 
 /** Represents a FRC team */
 export class Team {
@@ -65,5 +68,18 @@ export class Team {
         } else {
             return sortedValues[Math.floor(middle)];
         }
+    }
+
+    /** Adds a match to the team */
+    addMatch(match: Match) {
+        if (match.teamNumber !== this.number) {
+            throw new Error(`Cannot add match from team ${match.teamNumber} to team ${this.number}`);
+        }
+        this.matches.push(match);
+    }
+
+    /** Adds all matches for the team */
+    addAllMatches(storage: StorageBackend) {
+        this.matches.push(...storage.getMatchesByTeam(this));
     }
 }

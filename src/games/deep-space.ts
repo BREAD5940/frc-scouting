@@ -1,5 +1,7 @@
 /**
  * Code specific to the 2019 FRC game: Deep Space
+ *
+ * @author Annika
  */
 
 import type {Alliance, MatchData} from '../match';
