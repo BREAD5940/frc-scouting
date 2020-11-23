@@ -18,5 +18,6 @@
         "max-len": ["warn", {"code": 120}],
         "indent": ["error", 4],
         "valid-jsdoc": "off"
-    }
+    },
+    "ignorePatterns": "built/"
 }
