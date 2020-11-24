@@ -5,35 +5,34 @@
  */
 
 import {Match} from './match';
-import {StorageBackend} from './storage/backend';
 
 /** Represents a FRC team */
-export class Team {
+export class Team<T extends Match> {
     number: number;
     /** the matches that the team played in */
-    matches: Match[];
+    matches: T[];
 
     /**
      * Instantiates a new team.
      * TODO: support passing in match numbers and looking them up from the DB
      */
-    constructor(number: number, ...matches: Match[]) {
+    constructor(number: number, ...matches: T[]) {
         this.number = number;
         this.matches = matches;
     }
 
     /** Gets the mean of any match property */
-    getMean(property: keyof Match) {
+    getMean(property: keyof T) {
         if (typeof this.matches[0][property] !== 'number') {
             throw new Error(`Attempted to get the mean of a non-number property of a Match ('${property}')`);
         }
 
         // `as` is safe because we check the type of the first match above
-        return this.matches.reduce((acc, match) => acc + (match[property] as number), 0) / this.matches.length;
+        return this.matches.reduce((acc, match) => acc + (match[property] as any as number), 0) / this.matches.length;
     }
 
     /** Gets the mode of any match property */
-    getMode(property: keyof Match) {
+    getMode(property: keyof T) {
         /** value:occurences */
         const occurences = new Map<number, number>();
         for (const match of this.matches) {
@@ -71,15 +70,10 @@ export class Team {
     }
 
     /** Adds a match to the team */
-    addMatch(match: Match) {
-        if (match.teamNumber !== this.number) {
-            throw new Error(`Cannot add match from team ${match.teamNumber} to team ${this.number}`);
+    addMatches(...matches: T[]) {
+        if (matches.some((match) => match.teamNumber !== this.number)) {
+            throw new Error(`Matches to be added to team ${this.number} must all be of that team.`);
         }
-        this.matches.push(match);
-    }
-
-    /** Adds all matches for the team */
-    addAllMatches(storage: StorageBackend) {
-        this.matches.push(...storage.getMatchesByTeam(this));
+        this.matches.push(...matches);
     }
 }

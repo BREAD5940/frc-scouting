@@ -2,7 +2,7 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS teams (
-    PRIMARY KEY id INTEGER NOT NULL,
+    id INTEGER NOT NULL PRIMARY KEY,
     number INTEGER NOT NULL,
     CONSTRAINT unique_number UNIQUE (number)
 );
@@ -13,8 +13,11 @@ CREATE TABLE IF NOT EXISTS matches (
     match_number INTEGER NOT NULL,
     -- 0 = blue, 1 = red
     alliance TINYINT(1) NOT NULL,
-    FOREIGN KEY (cargo_tracker_id) REFERENCES cargo_trackers (id),
-    FOREIGN KEY (hatch_tracker_id) REFERENCES hatch_trackers (id),
+    cargo_tracker_id INTEGER NOT NULL,
+    hatch_tracker_id INTEGER NOT NULL,
+    -- OK to be null since some matches won't have a team
+    associated_team INTEGER,
+
     tech_fouls INTEGER NOT NULL,
     fouls INTEGER NOT NULL,
     yellow_card TINYINT(1) NOT NULL,
@@ -24,8 +27,6 @@ CREATE TABLE IF NOT EXISTS matches (
     ranking_points INTEGER NOT NULL,
     foul_points INTEGER NOT NULL,
     bonus_points INTEGER NOT NULL,
-
-    FOREIGN KEY (associated_team) REFERENCES teams (id),
 
     -- Deep Space specific
     helps_hab_climb TINYINT(1) NOT NULL,
@@ -38,11 +39,16 @@ CREATE TABLE IF NOT EXISTS matches (
 
     hab_ranking_point TINYINT(1) NOT NULL,
     rocket_ranking_point TINYINT(1) NOT NULL,
-    CONSTRAINT unique_number UNIQUE (match_number),
+
+    FOREIGN KEY (cargo_tracker_id) REFERENCES cargo_trackers (id),
+    FOREIGN KEY (hatch_tracker_id) REFERENCES hatch_trackers (id),
+    FOREIGN KEY (associated_team) REFERENCES teams (id) ON DELETE SET NULL,
+
+    CONSTRAINT unique_number UNIQUE (match_number)
 );
 
 CREATE TABLE IF NOT EXISTS cargo_trackers (
-    PRIMARY KEY id INTEGER NOT NULL,
+    id INTEGER NOT NULL PRIMARY KEY,
 
     dropped_auto INTEGER NOT NULL,
     dropped_teleop INTEGER NOT NULL,
@@ -55,7 +61,7 @@ CREATE TABLE IF NOT EXISTS cargo_trackers (
 );
 
 CREATE TABLE IF NOT EXISTS hatch_trackers (
-    PRIMARY KEY id INTEGER NOT NULL,
+    id INTEGER NOT NULL PRIMARY KEY,
 
     dropped_auto INTEGER NOT NULL,
     dropped_teleop INTEGER NOT NULL,
@@ -67,4 +73,4 @@ CREATE TABLE IF NOT EXISTS hatch_trackers (
     rocket_teleop INTEGER NOT NULL
 );
 
--- TOOD: indexing
+-- TOOD: indexing for performance

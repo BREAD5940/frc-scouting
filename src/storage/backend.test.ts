@@ -8,17 +8,30 @@
  * @author Annika
  */
 
-import {makeMatch} from '../team.test';
-import {Team} from '../team';
 import type {StorageBackend} from './backend';
+import {Team} from '../team';
+import {SQLBackend} from './sqlite';
+import {DeepSpaceMatch, DeepSpaceSQL} from '../games/deep-space';
 
-const backends: StorageBackend[] = [];
+let curMatchNum = 0;
 
-test.skip.each(backends)('team storage', (backend) => {
+/** generates a match for testing */
+function makeDSMatch(points: number, number?: number) {
+    const match = new DeepSpaceMatch(
+        5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points, initialHABLevel: 1},
+    );
+    return match;
+}
+
+const backends: StorageBackend[] = [
+    new SQLBackend(new DeepSpaceSQL(':memory:')),
+];
+
+test.each(backends)('team storage', (backend) => {
     expect(backend.getTeam(5940)).toEqual(null);
 
-    const matchA = makeMatch(0);
-    const matchB = makeMatch(42);
+    const matchA = makeDSMatch(0);
+    const matchB = makeDSMatch(42);
 
     const bread = new Team(5940, matchA, matchB);
     backend.saveTeam(bread);
@@ -37,12 +50,12 @@ test.skip.each(backends)('team storage', (backend) => {
     expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
 });
 
-test.skip.each(backends)('match storage', (backend) => {
+test.each(backends)('match storage', (backend) => {
     expect(backend.getMatchByNumber(10)).toEqual(null);
     expect(backend.getMatchByNumber(11)).toEqual(null);
 
-    const matchA = makeMatch(0, 10);
-    const matchB = makeMatch(10, 11);
+    const matchA = makeDSMatch(0, 10);
+    const matchB = makeDSMatch(10, 11);
 
     backend.saveMatch(matchA);
     backend.saveMatch(matchB);

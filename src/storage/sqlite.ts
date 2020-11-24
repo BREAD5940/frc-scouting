@@ -14,9 +14,9 @@ import Database from 'better-sqlite3';
  * An interface that describes how to store data in SQL.
  * Each game (Deep Space, Infinite Recharge, etc.) should implement this.
  */
-export abstract class SQLStoragePlan {
+export abstract class SQLStoragePlan<T extends Match> {
     database: Database.Database;
-    statementCache: Map<string, Database.Statement<(string | number)[]>> = new Map();
+    statementCache: Map<string, Database.Statement> = new Map();
 
     /** Creates a new storage plan */
     constructor(absolutePath: string) {
@@ -44,14 +44,14 @@ export abstract class SQLStoragePlan {
         return statement;
     }
 
-    abstract dbDataToMatch(data: any): Match;
-    abstract dbDataToTeam(data: any): Team;
+    abstract dbDataToMatch(data: any): T;
+    abstract dbDataToTeam(data: any): Team<T>;
 
     /** Returns true if the match can be stored with this interface and false otherwise. */
     abstract applies(match: Match): boolean;
 
     /** Inserts match  */
-    abstract insertMatch(match: Match): boolean;
+    abstract insertMatch(match: T): void;
     /** gets matches */
     getMatches(conditions: {column: string, value: string | number}[]) {
         const [args, where] = this.generateWhere(conditions);
@@ -68,7 +68,7 @@ export abstract class SQLStoragePlan {
     }
 
     /** Inserts team */
-    abstract insertTeam(team: Team): boolean;
+    abstract insertTeam(team: Team<T>): void;
     /** gets teams */
     getTeams(conditions: {column: string, value: string | number}[]) {
         const [args, where] = this.generateWhere(conditions);
@@ -79,7 +79,7 @@ export abstract class SQLStoragePlan {
     /** deletes teams */
     deleteTeams(conditions: {column: string, value: string | number}[]) {
         const [args, where] = this.generateWhere(conditions);
-        const statement = this.getStatement(`DELETe FROM teams ${where}`);
+        const statement = this.getStatement(`DELETE FROM teams ${where}`);
 
         statement.run(...args);
     }
@@ -87,20 +87,20 @@ export abstract class SQLStoragePlan {
 
 /** Stores teams and matches from various games in SQL. */
 export class SQLBackend implements StorageBackend {
-    plans: SQLStoragePlan[];
+    plans: SQLStoragePlan<Match>[];
 
     /** Creates a new SQL backend */
-    constructor(...plans: SQLStoragePlan[]) {
+    constructor(...plans: SQLStoragePlan<Match>[]) {
         this.plans = plans;
     }
 
     /** Registers a new storage plan */
-    registerPlan(plan: SQLStoragePlan) {
+    registerPlan(plan: SQLStoragePlan<Match>) {
         this.plans.push(plan);
     }
 
     /** Saves a team */
-    saveTeam(team: Team) {
+    saveTeam(team: Team<Match>) {
         if (!team.matches.length) {
             throw new Error(`This team has no matches, so we don't know where to save it.`);
         }
@@ -130,7 +130,7 @@ export class SQLBackend implements StorageBackend {
     }
 
     /** deletes a team */
-    deleteTeam(team: Team | number, deleteMatches?: boolean) {
+    deleteTeam(team: Team<Match> | number, deleteMatches?: boolean) {
         const value = typeof team === 'number' ? team : team.number;
         for (const plan of this.plans) {
             plan.deleteTeams([{column: 'number', value}]);
@@ -164,7 +164,7 @@ export class SQLBackend implements StorageBackend {
     }
 
     /** gets matches */
-    getMatchesByTeam(team: Team | number) {
+    getMatchesByTeam(team: Team<Match> | number) {
         const value = typeof team === 'number' ? team : team.number;
         const results = [];
         for (const plan of this.plans) {
@@ -181,7 +181,7 @@ export class SQLBackend implements StorageBackend {
     }
 
     /** deletes matches */
-    deleteMatchesByTeam(team: Team | number) {
+    deleteMatchesByTeam(team: Team<Match> | number) {
         const value = typeof team === 'number' ? team : team.number;
         for (const plan of this.plans) {
             plan.deleteMatches([{column: 'team_number', value}]);

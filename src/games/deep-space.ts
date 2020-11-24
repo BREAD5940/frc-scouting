@@ -5,9 +5,11 @@
  */
 
 import type {Alliance, MatchData} from '../match';
+import type {Transaction} from 'better-sqlite3';
 import {GamePieceTracker, Match} from '../match';
 import {SQLStoragePlan} from '../storage/sqlite';
 import {readFileSync} from 'fs';
+import {Team} from '../team';
 
 type GamePieceStatus = 'DROPPED' | 'SHIP' | 'ROCKET';
 type HABLevel = 0 | 1 | 2 | 3;
@@ -150,12 +152,51 @@ export class DeepSpaceMatch extends Match {
 }
 
 /** Stores Deep Space teams/matches in SQLite */
-export class DeepSpaceSQL extends SQLStoragePlan {
+export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
+    matchInsertionTransaction: Transaction;
     /** constructor */
     constructor(absolutePath: string) {
         super(absolutePath);
         const schema = readFileSync(`${__dirname}/deep-space.sql`).toString();
         this.database.exec(schema);
+
+        this.matchInsertionTransaction = this.database.transaction((m: DeepSpaceMatch, associatedTeamID?: number) => {
+            const cargoTrackerID = this.insertTracker(m.pieceTrackers[0], true);
+            const hatchTrackerID = this.insertTracker(m.pieceTrackers[1], false);
+
+            const statement = this.getStatement(
+                `INSERT OR REPLACE INTO matches ` +
+                `(team_number, type, match_number, alliance, cargo_tracker_id, hatch_tracker_id,` +
+                ` tech_fouls, fouls, yellow_card, red_card,` +
+                ` estopped, borked, ranking_points, foul_points,` +
+                ` bonus_points, associated_team,` +
+                ` helps_hab_climb, start_hab_level, end_hab_level,` +
+                ` crosses_start_line, left_rocket_assembled, right_rocket_assembled,` +
+                ` hab_ranking_point, rocket_ranking_point) VALUES ` +
+                `(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            );
+            statement.run(
+                m.teamNumber, m.type, m.number, (m.alliance === 'BLUE' ? 0 : 1), cargoTrackerID, hatchTrackerID,
+                m.fouls.technical, m.fouls.regular, Number(m.cards.yellow), Number(m.cards.red),
+                Number(m.emergencyStopped), Number(m.borked), m.rankingPoints, m.pointsFromFouls,
+                m.bonusPoints, (associatedTeamID || null),
+                Number(m.helpsOthersHABClimb), m.initialHABLevel, m.finalHABLevel,
+                Number(m.crossesStartLine), Number(m.rocketsAssembled.LEFT), Number(m.rocketsAssembled.RIGHT),
+                Number(m.rankingPointRecord.HAB), Number(m.rankingPointRecord.ROCKET),
+            );
+        });
+    }
+
+    /** Inserts a tracker. Can't be a transaction because it returns the rowid */
+    private insertTracker(tracker: DeepSpaceTracker, isCargo: boolean) {
+        return this.getStatement(
+            `INSERT INTO ${isCargo ? `cargo` : `hatch`}_trackers ` +
+            `(dropped_auto, dropped_teleop, ship_auto, ship_teleop, rocket_auto, rocket_teleop) ` +
+            `VALUES (?, ?, ?, ?, ?, ?)`,
+        ).run(
+            tracker.results.DROPPED.autonomous, tracker.results.DROPPED.teleop, tracker.results.SHIP.autonomous,
+            tracker.results.SHIP.teleop, tracker.results.ROCKET.autonomous, tracker.results.ROCKET.teleop,
+        ).lastInsertRowid;
     }
 
     /** Determines whether a match can be stored by this storage plan. */
@@ -212,5 +253,29 @@ export class DeepSpaceSQL extends SQLStoragePlan {
                 },
             },
         );
+    }
+
+    /** Converts data from the database into a team  */
+    dbDataToTeam(data: any) {
+        const matches = this.getStatement(`SELECT * FROM matches WHERE associated_team = ?`)
+            .all(data.id)
+            .map((matchData) => this.dbDataToMatch(matchData));
+
+        return new Team(data.number, ...matches);
+    }
+
+    /** Inserts a match */
+    insertMatch(match: DeepSpaceMatch) {
+        this.matchInsertionTransaction(match);
+    }
+
+    /** Inserts a team */
+    insertTeam(team: Team<DeepSpaceMatch>) {
+        const id = this.getStatement(`INSERT OR REPLACE INTO teams (number) VALUES (?)`)
+            .run(team.number)
+            .lastInsertRowid;
+        for (const match of team.matches) {
+            this.matchInsertionTransaction(match, id);
+        }
     }
 }
