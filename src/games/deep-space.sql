@@ -1,13 +1,13 @@
 -- Schema for storing Deep Space teams and matches
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE teams (
+CREATE TABLE IF NOT EXISTS teams (
     PRIMARY KEY id INTEGER NOT NULL,
     number INTEGER NOT NULL,
     CONSTRAINT unique_number UNIQUE (number)
 );
 
-CREATE TABLE matches (
+CREATE TABLE IF NOT EXISTS matches (
     team_number INTEGER NOT NULL,
     type TEXT NOT NULL,
     match_number INTEGER NOT NULL,
@@ -16,6 +16,7 @@ CREATE TABLE matches (
     FOREIGN KEY (cargo_tracker_id) REFERENCES cargo_trackers (id),
     FOREIGN KEY (hatch_tracker_id) REFERENCES hatch_trackers (id),
     tech_fouls INTEGER NOT NULL,
+    fouls INTEGER NOT NULL,
     yellow_card TINYINT(1) NOT NULL,
     red_card TINYINT(1) NOT NULL,
     estopped TINYINT(1) NOT NULL,
@@ -40,7 +41,7 @@ CREATE TABLE matches (
     CONSTRAINT unique_number UNIQUE (match_number),
 );
 
-CREATE TABLE cargo_trackers (
+CREATE TABLE IF NOT EXISTS cargo_trackers (
     PRIMARY KEY id INTEGER NOT NULL,
 
     dropped_auto INTEGER NOT NULL,
@@ -53,7 +54,7 @@ CREATE TABLE cargo_trackers (
     rocket_teleop INTEGER NOT NULL
 );
 
-CREATE TABLE hatch_trackers (
+CREATE TABLE IF NOT EXISTS hatch_trackers (
     PRIMARY KEY id INTEGER NOT NULL,
 
     dropped_auto INTEGER NOT NULL,
@@ -65,3 +66,5 @@ CREATE TABLE hatch_trackers (
     rocket_auto INTEGER NOT NULL,
     rocket_teleop INTEGER NOT NULL
 );
+
+-- TOOD: indexing

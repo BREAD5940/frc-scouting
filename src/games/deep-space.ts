@@ -6,6 +6,8 @@
 
 import type {Alliance, MatchData} from '../match';
 import {GamePieceTracker, Match} from '../match';
+import {SQLStoragePlan} from '../storage/sqlite';
+import {readFileSync} from 'fs';
 
 type GamePieceStatus = 'DROPPED' | 'SHIP' | 'ROCKET';
 type HABLevel = 0 | 1 | 2 | 3;
@@ -144,5 +146,71 @@ export class DeepSpaceMatch extends Match {
         }
 
         this.rankingPoints = rankingPoints;
+    }
+}
+
+/** Stores Deep Space teams/matches in SQLite */
+export class DeepSpaceSQL extends SQLStoragePlan {
+    /** constructor */
+    constructor(absolutePath: string) {
+        super(absolutePath);
+        const schema = readFileSync(`${__dirname}/deep-space.sql`).toString();
+        this.database.exec(schema);
+    }
+
+    /** Determines whether a match can be stored by this storage plan. */
+    applies(match: Match) {
+        return match instanceof DeepSpaceMatch;
+    }
+
+    /** Converts data from the database to a Match */
+    dbDataToMatch(data: any) {
+        const cargoStatement = this.getStatement(`SELECT * FROM cargo_trackers WHERE id = ?`);
+        const cargoData = cargoStatement.get(data.cargo_tracker_id);
+
+        const hatchStatement = this.getStatement(`SELECT * FROM hatch_trackers WHERE id = ?`);
+        const hatchData = hatchStatement.get(data.cargo_tracker_id);
+
+        const cargo = new CargoTracker({
+            DROPPED: {teleop: cargoData.dropped_teleop, autonomous: cargoData.dropped_auto},
+            ROCKET: {teleop: cargoData.rocket_teleop, autonomous: cargoData.rocket_auto},
+            SHIP: {teleop: cargoData.ship_teleop, autonomous: cargoData.ship_auto},
+        });
+
+        const hatches = new HatchPanelTracker({
+            DROPPED: {teleop: hatchData.dropped_teleop, autonomous: hatchData.dropped_auto},
+            ROCKET: {teleop: hatchData.rocket_teleop, autonomous: hatchData.rocket_auto},
+            SHIP: {teleop: hatchData.ship_teleop, autonomous: hatchData.ship_auto},
+        });
+
+        return new DeepSpaceMatch(
+            data.team_number,
+            data.type,
+            data.match_number,
+            data.alliance === 0 ? 'BLUE' : 'RED',
+            {
+                cargo,
+                hatches,
+                initialHABLevel: data.start_hab_level,
+                fouls: {technical: data.tech_fouls, regular: data.fouls},
+                cards: {yellow: !!data.yellow_card, red: !!data.red_card},
+                emergencyStopped: !!data.estopped,
+                borked: !!data.borked,
+                rankingPoints: data.ranking_points,
+                pointsFromFouls: data.foul_points,
+                bonusPoints: data.bonus_points,
+                helpsOthersHABClimb: data.helps_hab_climb,
+                finalHABLevel: data.end_hab_level,
+                crossesStartLine: data.crossesStartLine,
+                rocketsAssembled: {
+                    RIGHT: !!data.right_rocket_assembled,
+                    LEFT: !!data.left_rocket_assembled,
+                },
+                rankingPointRecord: {
+                    ROCKET: !!data.rocket_ranking_point,
+                    HAB: !!data.hab_ranking_point,
+                },
+            },
+        );
     }
 }
