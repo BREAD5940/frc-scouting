@@ -91,6 +91,29 @@ export class JSONBackend implements StorageBackend {
         return matches;
     }
 
+    /** deletes a team */
+    deleteTeam(team: Team<any> | number) {
+        const number = typeof team === 'number' ? team : team.number;
+        fs.unlinkSync(resolvePath(this.storageDir, `teams`, `team${number}.json`));
+    }
+
+    /** deletes a match by number */
+    deleteMatchByNumber(number: number) {
+        const path = resolvePath(this.storageDir, 'matches');
+        for (const possibleMatch of fs.readdirSync(path)) {
+            if (possibleMatch.startsWith(`match${number}`)) fs.unlinkSync(resolvePath(path, possibleMatch));
+        }
+    }
+
+    /** deletes all matches associated with a given team */
+    deleteMatchesByTeam(team: Team<any> | number) {
+        const number = typeof team === 'number' ? team : team.number;
+        const path = resolvePath(this.storageDir, 'matches');
+        for (const possibleMatch of fs.readdirSync(path)) {
+            if (possibleMatch.endsWith(`-team${number}.json`)) fs.unlinkSync(resolvePath(path, possibleMatch));
+        }
+    }
+
     /** converts a path to a match */
     private pathToMatch(path: string) {
         const data = JSON.parse(fs.readFileSync(path).toString());
