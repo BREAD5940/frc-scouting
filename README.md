@@ -16,7 +16,12 @@ const cargo = new DeepSpace.CargoTracker({
 });
 
 const myScoutedMatch = new DeepSpace.DeepSpaceMatch(
-    5940, 'match', 1, 'RED', {initialHABLevel: 1, cargo, finalHABLevel: 3, bonusPoints: 12}
+    5940, 'match', 1, 'RED', {
+        initialHABLevel: 1,
+        cargo,
+        finalHABLevel: 3,
+        bonusPoints: 12
+    },
 );
 
 console.log(myScoutedMatch.points); // 48
@@ -31,7 +36,7 @@ const storage = new SQLBackend(sqlPlan);
 storage.saveTeam(myTeam);
 
 const myTeamLoaded = storage.getTeam(5940);
-console.log(myTeamLoaded?.getMean('points'));
+console.log(myTeamLoaded?.getMean('points')); // 48
 ```
 
 ## Documentation
