@@ -35,7 +35,7 @@ export abstract class SQLStoragePlan<T extends Match> {
     }
 
     /** Gets the cached prepared statement, or generates it and adds it to the cache. */
-    getStatement(query: string) {
+    getStatement(query: string): Database.Statement {
         let statement = this.statementCache.get(query);
         if (!statement) {
             statement = this.database.prepare(query);
