@@ -1,0 +1,16 @@
+{
+    "toc": [
+        "Alliance",
+        "GamePieceTracker",
+        "MatchData",
+        "Match",
+        "Team",
+        "DeepSpace",
+        "JSONBackend",
+        "SQLBackend"
+    ],
+    "inputFiles": ["./src"],
+    "excludePrivate": true,
+    "exclude": "**/*.test.ts",
+    "plugin": "typedoc-plugin-markdown"
+}
