@@ -92,9 +92,10 @@ export class JSONBackend implements StorageBackend {
     }
 
     /** deletes a team */
-    deleteTeam(team: Team<any> | number) {
+    deleteTeam(team: Team<any> | number, deleteMatches?: boolean) {
         const number = typeof team === 'number' ? team : team.number;
         fs.unlinkSync(resolvePath(this.storageDir, `teams`, `team${number}.json`));
+        if (deleteMatches) this.deleteMatchesByTeam(team);
     }
 
     /** deletes a match by number */
@@ -130,9 +131,18 @@ export class JSONBackend implements StorageBackend {
 
     /** saves a match, with optional associated team number */
     private saveMatchInner(match: Match, associatedTeamNumber?: number) {
+        if (associatedTeamNumber) {
+            // Remove non-associated
+            try {
+                fs.unlinkSync(resolvePath(this.storageDir, 'matches', `match${match.number}.json`));
+            } catch (err) {
+                if (err.code !== 'ENOENT') throw err;
+            }
+        }
         const path = resolvePath(
             this.storageDir,
-            `matches/match${match.number}${associatedTeamNumber ? `-team${associatedTeamNumber}` : ``}`,
+            `matches`,
+            `match${match.number}${associatedTeamNumber ? `-team${associatedTeamNumber}` : ``}.json`,
         );
         fs.writeFileSync(path, JSON.stringify(match));
     }

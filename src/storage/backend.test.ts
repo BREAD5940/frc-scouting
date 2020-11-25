@@ -8,10 +8,14 @@
  * @author Annika
  */
 
+import {platform} from 'os';
+import {rmSync} from 'fs';
+
 import type {StorageBackend} from './backend';
 import {Team} from '../team';
 import {SQLBackend} from './sqlite';
 import {DeepSpaceMatch, DeepSpaceSQL} from '../games/deep-space';
+import {JSONBackend} from './json';
 
 let curMatchNum = 0;
 
@@ -27,6 +31,14 @@ const backends: StorageBackend[] = [
     new SQLBackend(new DeepSpaceSQL(':memory:')),
 ];
 
+if (platform() !== 'win32') {
+    // Recursively removing directories doesn't work correctly on Windows
+    // Ask Annika about her experiences with this! She hates Node's odd behavior.
+    const path = `${__dirname}/test/`;
+    rmSync(path, {recursive: true, force: true});
+    backends.push(new JSONBackend(path));
+}
+
 test.each(backends)('team storage', (backend) => {
     expect(backend.getTeam(5940)).toEqual(null);
 
@@ -39,6 +51,10 @@ test.each(backends)('team storage', (backend) => {
     expect(backend.getTeam(5940)).toEqual(bread);
     // Storing a team should store all its matches
     expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
+    expect(backend.getMatchByNumber(matchB.number)).toEqual(matchB);
+
+    expect(backend.getMatchesByTeam(5940)).toContainEqual(matchA);
+    expect(backend.getMatchesByTeam(5940)).toContainEqual(matchB);
 
     backend.deleteTeam(5940);
     expect(backend.getTeam(5940)).toEqual(null);
@@ -63,11 +79,18 @@ test.each(backends)('match storage', (backend) => {
     expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
     expect(backend.getMatchByNumber(matchB.number)).toEqual(matchB);
 
+    // Matches should only be fetched here if they're associated with a team
+    // This is weird behavior - see src/storage/backend.ts:17
     let matches = backend.getMatchesByTeam(matchA.teamNumber);
-    expect(matches).toContainEqual(matchA);
-    expect(matches).toContainEqual(matchB);
+    expect(matches).not.toContainEqual(matchA);
+    expect(matches).not.toContainEqual(matchB);
 
     // Deletion
+    // Deleting a match only deletes matches associated with a team
+    // not all matches scouted for the team. We can change this if desired
+    // see see src/storage/backend.ts:17
+    const team = new Team(matchA.teamNumber, matchA, matchB);
+    backend.saveTeam(team);
     backend.deleteMatchesByTeam(matchA.teamNumber);
 
     matches = backend.getMatchesByTeam(matchA.teamNumber);

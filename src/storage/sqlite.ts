@@ -168,7 +168,8 @@ export class SQLBackend implements StorageBackend {
         const value = typeof team === 'number' ? team : team.number;
         const results = [];
         for (const plan of this.plans) {
-            results.push(...plan.getMatches([{column: 'team_number', value}]));
+            const teamID = plan.getStatement(`SELECT id FROM teams WHERE number = ?`).get(value)?.id;
+            if (teamID) results.push(...plan.getMatches([{column: 'associated_team', value: teamID}]));
         }
         return results;
     }

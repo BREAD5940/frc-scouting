@@ -106,3 +106,7 @@ dist
 # build output
 built/*
 package-lock.json
+
+# test files
+src/storage/test
+
