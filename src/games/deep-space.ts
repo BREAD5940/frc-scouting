@@ -27,6 +27,7 @@ abstract class DeepSpaceTracker extends GamePieceTracker {
     results: Record<GamePieceStatus, {auto: number, teleop: number}>;
     /** doubled in auto */
     baseValue: number;
+    rankingPoints = 0;
 
     /**
      * Constructs a new GamePieceTracker. Should be extended not called directly.
@@ -100,7 +101,7 @@ export class DeepSpaceMatch extends Match {
     /** point:isGained */
     rankingPointRecord: Record<RankingPoints, boolean>;
 
-    readonly rankingPoints: number;
+    readonly nonPieceTrackerRankingPoints: number;
     /** Creates a new DeepSpaceMatch */
     constructor(
         teamNumber: number, type: string, number: number, alliance: Alliance,
@@ -147,7 +148,7 @@ export class DeepSpaceMatch extends Match {
             rankingPoints++;
         }
 
-        this.rankingPoints = rankingPoints;
+        this.nonPieceTrackerRankingPoints = rankingPoints;
     }
 }
 
@@ -237,7 +238,7 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
                 cards: {yellow: !!data.yellow_card, red: !!data.red_card},
                 emergencyStopped: !!data.estopped,
                 borked: !!data.borked,
-                rankingPoints: data.ranking_points,
+                nonPieceTrackerRankingPoints: data.ranking_points,
                 pointsFromFouls: data.foul_points,
                 bonusPoints: data.bonus_points,
                 helpsOthersHABClimb: data.helps_hab_climb,

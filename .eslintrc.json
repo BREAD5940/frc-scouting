@@ -17,7 +17,8 @@
     "rules": {
         "max-len": ["warn", {"code": 120}],
         "indent": ["error", 4],
-        "valid-jsdoc": "off"
+        "valid-jsdoc": "off",
+        "no-unused-vars": ["warn", {"varsIgnorePattern": "key"}]
     },
     "ignorePatterns": "built/"
 }

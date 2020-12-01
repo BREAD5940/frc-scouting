@@ -20,6 +20,8 @@ interface Cards {
 export abstract class GamePieceTracker {
     /** Returns the total number of points scored */
     abstract get totalPoints(): number;
+    /** Returns the total number of ranking points scored by the game piece */
+    abstract get rankingPoints(): number;
 }
 
 export interface MatchData {
@@ -28,7 +30,7 @@ export interface MatchData {
     emergencyStopped: boolean;
     borked: boolean;
 
-    rankingPoints: number;
+    nonPieceTrackerRankingPoints: number;
     pointsFromFouls: number;
     bonusPoints: number;
 }
@@ -50,7 +52,7 @@ export abstract class Match {
     readonly emergencyStopped: boolean;
     readonly borked: boolean;
 
-    readonly rankingPoints: number;
+    readonly nonPieceTrackerRankingPoints: number;
     readonly pointsFromFouls: number;
     readonly bonusPoints: number;
 
@@ -70,7 +72,7 @@ export abstract class Match {
         this.emergencyStopped = data.emergencyStopped || false;
         this.borked = data.borked || false;
 
-        this.rankingPoints = data.rankingPoints || 0;
+        this.nonPieceTrackerRankingPoints = data.nonPieceTrackerRankingPoints || 0;
         this.pointsFromFouls = data.pointsFromFouls || 0;
         this.bonusPoints = data.bonusPoints || 0;
     }
@@ -80,6 +82,13 @@ export abstract class Match {
         return this.pointsFromFouls + this.bonusPoints + this.pieceTrackers.reduce(
             (accumulator, tracker) => accumulator + tracker.totalPoints,
             0,
+        );
+    }
+
+    /** Gets ranking points */
+    get rankingPoints(): number {
+        return this.nonPieceTrackerRankingPoints + this.pieceTrackers.reduce(
+            (accumulator, tracker) => accumulator + tracker.rankingPoints, 0,
         );
     }
 }

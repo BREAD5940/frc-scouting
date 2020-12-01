@@ -5,6 +5,7 @@ export class TestMatch extends Match {}
 /** A game piece tracker for testing */
 class TestTracker extends GamePieceTracker {
     totalPoints: number;
+    rankingPoints = 0;
 
     /** constructor */
     constructor(points: number) {
