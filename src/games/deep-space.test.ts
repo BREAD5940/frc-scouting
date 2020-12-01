@@ -41,16 +41,16 @@ describe('input data validation', () => {
 describe('points tallying', () => {
     test('proper function', () => {
         const hatches = new HatchPanelTracker({
-            DROPPED: {autonomous: 2, teleop: 1}, // 0 points
-            ROCKET: {autonomous: 1, teleop: 2}, // 8 points
-            SHIP: {autonomous: 2, teleop: 3}, // 14 points
+            DROPPED: {auto: 2, teleop: 1}, // 0 points
+            ROCKET: {auto: 1, teleop: 2}, // 8 points
+            SHIP: {auto: 2, teleop: 3}, // 14 points
         });
         expect(hatches.totalPoints).toEqual(22);
 
         const cargo = new CargoTracker({
-            DROPPED: {autonomous: 0, teleop: 1}, // 0 points
-            ROCKET: {autonomous: 1, teleop: 3}, // 15 points
-            SHIP: {autonomous: 1, teleop: 2}, // 12 points
+            DROPPED: {auto: 0, teleop: 1}, // 0 points
+            ROCKET: {auto: 1, teleop: 3}, // 15 points
+            SHIP: {auto: 1, teleop: 2}, // 12 points
         });
         expect(cargo.totalPoints).toEqual(27);
 

@@ -24,8 +24,8 @@ type GamePiece = 'HATCH_PANEL' | 'CARGO';
 abstract class DeepSpaceTracker extends GamePieceTracker {
     type: GamePiece;
     /** status:number of pieces */
-    results: Record<GamePieceStatus, {autonomous: number, teleop: number}>;
-    /** doubled in autonomous */
+    results: Record<GamePieceStatus, {auto: number, teleop: number}>;
+    /** doubled in auto */
     baseValue: number;
 
     /**
@@ -33,7 +33,7 @@ abstract class DeepSpaceTracker extends GamePieceTracker {
      * @param results status:number of pieces record
      */
     constructor(
-        type: GamePiece, baseValue: number, results: Record<GamePieceStatus, {autonomous: number, teleop: number}>,
+        type: GamePiece, baseValue: number, results: Record<GamePieceStatus, {auto: number, teleop: number}>,
     ) {
         super();
 
@@ -48,7 +48,7 @@ abstract class DeepSpaceTracker extends GamePieceTracker {
         for (const [status, pieces] of Object.entries(this.results)) {
             if (status !== 'DROPPED') {
                 total += pieces.teleop;
-                total += pieces.autonomous * 2;
+                total += pieces.auto * 2;
             }
         }
         return total * this.baseValue;
@@ -58,7 +58,7 @@ abstract class DeepSpaceTracker extends GamePieceTracker {
 /** Tracks cargo pieces */
 export class CargoTracker extends DeepSpaceTracker {
     /** Creates a new CargoTracker */
-    constructor(results: Record<GamePieceStatus, {autonomous: number, teleop: number}>) {
+    constructor(results: Record<GamePieceStatus, {auto: number, teleop: number}>) {
         super('CARGO', 3, results);
     }
 }
@@ -66,7 +66,7 @@ export class CargoTracker extends DeepSpaceTracker {
 /** Tracks hatch panels */
 export class HatchPanelTracker extends DeepSpaceTracker {
     /** Creates a new HatchPieceTracker */
-    constructor(results: Record<GamePieceStatus, {autonomous: number, teleop: number}>) {
+    constructor(results: Record<GamePieceStatus, {auto: number, teleop: number}>) {
         super('HATCH_PANEL', 2, results);
     }
 }
@@ -109,9 +109,9 @@ export class DeepSpaceMatch extends Match {
         super(teamNumber, type, number, alliance, [], data);
 
         const defaultTrackerState = {
-            DROPPED: {autonomous: 0, teleop: 0},
-            ROCKET: {autonomous: 0, teleop: 0},
-            SHIP: {autonomous: 0, teleop: 0},
+            DROPPED: {auto: 0, teleop: 0},
+            ROCKET: {auto: 0, teleop: 0},
+            SHIP: {auto: 0, teleop: 0},
         };
 
         this.pieceTrackers = [
@@ -194,8 +194,8 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
             `(dropped_auto, dropped_teleop, ship_auto, ship_teleop, rocket_auto, rocket_teleop) ` +
             `VALUES (?, ?, ?, ?, ?, ?)`,
         ).run(
-            tracker.results.DROPPED.autonomous, tracker.results.DROPPED.teleop, tracker.results.SHIP.autonomous,
-            tracker.results.SHIP.teleop, tracker.results.ROCKET.autonomous, tracker.results.ROCKET.teleop,
+            tracker.results.DROPPED.auto, tracker.results.DROPPED.teleop, tracker.results.SHIP.auto,
+            tracker.results.SHIP.teleop, tracker.results.ROCKET.auto, tracker.results.ROCKET.teleop,
         ).lastInsertRowid;
     }
 
@@ -213,15 +213,15 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
         const hatchData = hatchStatement.get(data.cargo_tracker_id);
 
         const cargo = new CargoTracker({
-            DROPPED: {teleop: cargoData.dropped_teleop, autonomous: cargoData.dropped_auto},
-            ROCKET: {teleop: cargoData.rocket_teleop, autonomous: cargoData.rocket_auto},
-            SHIP: {teleop: cargoData.ship_teleop, autonomous: cargoData.ship_auto},
+            DROPPED: {teleop: cargoData.dropped_teleop, auto: cargoData.dropped_auto},
+            ROCKET: {teleop: cargoData.rocket_teleop, auto: cargoData.rocket_auto},
+            SHIP: {teleop: cargoData.ship_teleop, auto: cargoData.ship_auto},
         });
 
         const hatches = new HatchPanelTracker({
-            DROPPED: {teleop: hatchData.dropped_teleop, autonomous: hatchData.dropped_auto},
-            ROCKET: {teleop: hatchData.rocket_teleop, autonomous: hatchData.rocket_auto},
-            SHIP: {teleop: hatchData.ship_teleop, autonomous: hatchData.ship_auto},
+            DROPPED: {teleop: hatchData.dropped_teleop, auto: hatchData.dropped_auto},
+            ROCKET: {teleop: hatchData.rocket_teleop, auto: hatchData.rocket_auto},
+            SHIP: {teleop: hatchData.ship_teleop, auto: hatchData.ship_auto},
         });
 
         return new DeepSpaceMatch(
