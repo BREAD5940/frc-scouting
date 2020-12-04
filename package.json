@@ -5,7 +5,7 @@
   "main": "built/index.js",
   "types": "built/index.d.ts",
   "scripts": {
-    "build": "tsc && cp src/games/deep-space.sql built/games/deep-space.sql",
+    "build": "tsc && cp src/games/*.sql built/games/",
     "lint": "eslint",
     "test": "npm run build && npm run lint && jest"
   },

@@ -6,6 +6,8 @@
 
 import type {Transaction} from 'better-sqlite3';
 
+import {readFileSync} from 'fs';
+
 import {Alliance, GamePieceTracker, Match, MatchData} from '../match';
 import {SQLStoragePlan} from '../storage/sqlite';
 import {Team} from '../team';
@@ -166,9 +168,31 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
     /** it's a constructor, you absolutely incompetent dingus of a linter, shut up about JSDoc already */
     constructor(absolutePath: string) {
         super(absolutePath);
+
+        const schema = readFileSync(`${__dirname}/infinite-recharge.sql`).toString();
+        this.database.exec(schema);
+
         // hahaha I am evil
-        this.matchInsertionTransaction = this.database.transaction(() => {
-            throw new Error(`unimplemented`);
+        this.matchInsertionTransaction = this.database.transaction((m: InfiniteRechargeMatch, teamID?: number) => {
+            const powerCells = this.insertPowerCellTracker(m.pieceTrackers[0]);
+            const colorWheel = this.insertColorWheel(m.pieceTrackers[1]);
+            const shieldGenerator = this.insertShieldGenerator(m.pieceTrackers[2]);
+
+            this.getStatement(
+                `INSERT OR REPLACE INTO matches ` +
+                `(team_number, type, match_number, alliance,` +
+                ` power_cell_tracker_id, color_wheel_id, shield_generator_id,` +
+                ` tech_fouls, fouls, yellow_card, red_card,` +
+                ` estopped, borked, ranking_points, foul_points,` +
+                ` bonus_points, associated_team) ` +
+                `VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            ).run(
+                m.teamNumber, m.type, m.number, (m.alliance === 'BLUE' ? 0 : 1),
+                powerCells, colorWheel, shieldGenerator,
+                m.fouls.technical, m.fouls.regular, Number(m.cards.yellow), Number(m.cards.red),
+                Number(m.emergencyStopped), Number(m.borked), m.rankingPoints, m.pointsFromFouls,
+                m.bonusPoints, (teamID || null),
+            );
         });
     }
 
@@ -188,7 +212,56 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
 
     /** Converts match data from the db into a match */
     dbDataToMatch(data: any): InfiniteRechargeMatch {
-        throw new Error(`unimplemented with ${data}`);
+        const colorWheelData = this.getStatement(`SELECT * FROM color_wheels WHERE id = ?`).get(data.color_wheel_id);
+        const powerCellData = this.getStatement(`SELECT * FROM power_cell_trackers WHERE id = ?`)
+            .get(data.power_cell_tracker_id);
+        const shieldGeneratorData = this.getStatement(`SELECT * FROM shield_generators WHERE id = ?`)
+            .get(data.shield_generator_id);
+
+        const powerCells = new PowerCellTracker({
+            LOW: {auto: powerCellData.low_auto, teleop: powerCellData.low_teleop},
+            OUTER: {auto: powerCellData.outer_auto, teleop: powerCellData.outer_teleop},
+            INNER: {auto: powerCellData.inner_auto, teleop: powerCellData.inner_teleop},
+        }, !!powerCellData.color_wheel_spun);
+
+        const shieldGenerator = new ShieldGenerator(
+            shieldGeneratorData.hanging_bots,
+            shieldGeneratorData.floor_bots,
+            !!shieldGeneratorData.is_level,
+        );
+
+        let wheelState: ColorWheelPosition | null;
+        switch (colorWheelData.state) {
+        case 0:
+            wheelState = null;
+            break;
+        case 1:
+            wheelState = 'SPECIFIC_COLOR';
+            break;
+        case 2:
+            wheelState = 'ROTATED_X_TIMES';
+            break;
+        default:
+            throw new Error(`Bad color wheel state: ${colorWheelData.state}`);
+        }
+        const colorWheel = new ColorWheel(wheelState, powerCells);
+
+        return new InfiniteRechargeMatch(
+            data.team_number,
+            data.type,
+            data.match_number,
+            data.alliance === 0 ? 'BLUE' : 'RED',
+            {
+                powerCells, shieldGenerator, colorWheel,
+                fouls: {technical: data.tech_fouls, regular: data.fouls},
+                cards: {yellow: !!data.yellow_card, red: !!data.red_card},
+                emergencyStopped: !!data.estopped,
+                borked: !!data.borked,
+                nonPieceTrackerRankingPoints: data.ranking_points,
+                pointsFromFouls: data.foul_points,
+                bonusPoints: data.bonus_points,
+            },
+        );
     }
 
     /** Inserts a match */
@@ -204,5 +277,46 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
         for (const match of team.matches) {
             this.matchInsertionTransaction(match, id);
         }
+    }
+
+    /** Inserts a power cell tracker */
+    private insertPowerCellTracker(tracker: PowerCellTracker) {
+        return this.getStatement(
+            `INSERT INTO power_cell_trackers ` +
+            `(color_wheel_spun, low_auto, low_teleop, outer_auto, outer_teleop, inner_auto, inner_teleop) ` +
+            `VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        ).run(
+            Number(tracker.colorWheelSpun), // SQLite gib boolean type pls :(((((
+            tracker.results.LOW.auto, tracker.results.LOW.teleop,
+            tracker.results.OUTER.auto, tracker.results.OUTER.teleop,
+            tracker.results.INNER.auto, tracker.results.INNER.teleop,
+        ).lastInsertRowid;
+    }
+
+    /** Inserts a color wheel */
+    private insertColorWheel(wheel: ColorWheel) {
+        let state;
+
+        switch (wheel.state) {
+        case 'SPECIFIC_COLOR':
+            state = 1;
+            break;
+        case 'ROTATED_X_TIMES':
+            state = 2;
+            break;
+        default:
+            state = 0;
+        }
+
+        return this.getStatement(`INSERT INTO color_wheels (state) VALUES (?)`)
+            .run(state)
+            .lastInsertRowid;
+    }
+
+    /** Inserts a shield generator */
+    private insertShieldGenerator(shield: ShieldGenerator) {
+        return this.getStatement(`INSERT INTO shield_generators (hanging_bots, floor_bots, is_level) VALUES (?, ?, ?)`)
+            .run(shield.hangingBots, shield.floorBots, Number(shield.isLevel))
+            .lastInsertRowid;
     }
 }
