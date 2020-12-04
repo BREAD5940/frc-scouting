@@ -4,7 +4,11 @@
  * @author Annika
  */
 
+import type {Transaction} from 'better-sqlite3';
+
 import {Alliance, GamePieceTracker, Match, MatchData} from '../match';
+import {SQLStoragePlan} from '../storage/sqlite';
+import {Team} from '../team';
 
 type PowerCellLocation = 'LOW' | 'OUTER' | 'INNER';
 type ColorWheelPosition = 'SPECIFIC_COLOR' | 'ROTATED_X_TIMES';
@@ -152,5 +156,53 @@ export class InfiniteRechargeMatch extends Match {
         this.pieceTrackers = [
             cells, wheel, data.shieldGenerator || new ShieldGenerator(0, 0, false),
         ];
+    }
+}
+
+/** Stores Infinite Recharge teams/matches in SQL */
+export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
+    matchInsertionTransaction: Transaction;
+
+    /** it's a constructor, you absolutely incompetent dingus of a linter, shut up about JSDoc already */
+    constructor(absolutePath: string) {
+        super(absolutePath);
+        // hahaha I am evil
+        this.matchInsertionTransaction = this.database.transaction(() => {
+            throw new Error(`unimplemented`);
+        });
+    }
+
+    /** Determines whether a match can be stored by this storage plan. */
+    applies(match: Match) {
+        return match instanceof InfiniteRechargeMatch;
+    }
+
+    /** Converts data from the database into a team  */
+    dbDataToTeam(data: any) {
+        const matches = this.getStatement(`SELECT * FROM matches WHERE associated_team = ?`)
+            .all(data.id)
+            .map((matchData) => this.dbDataToMatch(matchData));
+
+        return new Team(data.number, ...matches);
+    }
+
+    /** Converts match data from the db into a match */
+    dbDataToMatch(data: any): InfiniteRechargeMatch {
+        throw new Error(`unimplemented with ${data}`);
+    }
+
+    /** Inserts a match */
+    insertMatch(match: InfiniteRechargeMatch) {
+        this.matchInsertionTransaction(match);
+    }
+
+    /** Inserts a team */
+    insertTeam(team: Team<InfiniteRechargeMatch>) {
+        const id = this.getStatement(`INSERT OR REPLACE INTO teams (number) VALUES (?)`)
+            .run(team.number)
+            .lastInsertRowid;
+        for (const match of team.matches) {
+            this.matchInsertionTransaction(match, id);
+        }
     }
 }

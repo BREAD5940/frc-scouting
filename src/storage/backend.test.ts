@@ -16,6 +16,7 @@ import {Team} from '../team';
 import {SQLBackend} from './sqlite';
 import {DeepSpaceMatch, DeepSpaceSQL} from '../games/deep-space';
 import {JSONBackend} from './json';
+import {InfiniteRechargeMatch, InfiniteRechargeSQL} from '../games/infinite-recharge';
 
 let curMatchNum = 0;
 
@@ -27,11 +28,20 @@ function makeDSMatch(points: number, number?: number) {
     return match;
 }
 
-const matchGenerators = [makeDSMatch];
+/** generates an Infinite Recharge match for testing */
+function makeIRMatch(points: number, number?: number) {
+    const match = new InfiniteRechargeMatch(
+        5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points},
+    );
+    return match;
+}
 
-const backends: StorageBackend[] = [
-    new SQLBackend(new DeepSpaceSQL(':memory:')),
-];
+const matchGenerators = [makeDSMatch, makeIRMatch];
+
+const backends: StorageBackend[] = [new SQLBackend(
+    new DeepSpaceSQL(':memory:'),
+    new InfiniteRechargeSQL(':memory:'),
+)];
 
 if (platform() !== 'win32') {
     // Recursively removing directories doesn't work correctly on Windows
