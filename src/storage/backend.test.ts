@@ -19,13 +19,15 @@ import {JSONBackend} from './json';
 
 let curMatchNum = 0;
 
-/** generates a match for testing */
+/** generates a Deep Space match for testing */
 function makeDSMatch(points: number, number?: number) {
     const match = new DeepSpaceMatch(
         5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points, initialHABLevel: 1},
     );
     return match;
 }
+
+const matchGenerators = [makeDSMatch];
 
 const backends: StorageBackend[] = [
     new SQLBackend(new DeepSpaceSQL(':memory:')),
@@ -39,71 +41,73 @@ if (platform() !== 'win32') {
     backends.push(new JSONBackend(path));
 }
 
-test.each(backends)('team storage', (backend) => {
-    expect(backend.getTeam(5940)).toEqual(null);
+describe.each(backends)('storage', (backend) => {
+    it.each(matchGenerators)('should store teams', (makeMatch) => {
+        expect(backend.getTeam(5940)).toEqual(null);
 
-    const matchA = makeDSMatch(0);
-    const matchB = makeDSMatch(42);
+        const matchA = makeMatch(0);
+        const matchB = makeMatch(42);
 
-    const bread = new Team(5940, matchA, matchB);
-    backend.saveTeam(bread);
+        const bread = new Team(5940, matchA, matchB);
+        backend.saveTeam(bread);
 
-    expect(backend.getTeam(5940)).toEqual(bread);
-    // Storing a team should store all its matches
-    expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
-    expect(backend.getMatchByNumber(matchB.number)).toEqual(matchB);
+        expect(backend.getTeam(5940)).toEqual(bread);
+        // Storing a team should store all its matches
+        expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
+        expect(backend.getMatchByNumber(matchB.number)).toEqual(matchB);
 
-    expect(backend.getMatchesByTeam(5940)).toContainEqual(matchA);
-    expect(backend.getMatchesByTeam(5940)).toContainEqual(matchB);
+        expect(backend.getMatchesByTeam(5940)).toContainEqual(matchA);
+        expect(backend.getMatchesByTeam(5940)).toContainEqual(matchB);
 
-    backend.deleteTeam(5940);
-    expect(backend.getTeam(5940)).toEqual(null);
-    expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
+        backend.deleteTeam(5940);
+        expect(backend.getTeam(5940)).toEqual(null);
+        expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
 
-    backend.saveTeam(bread);
-    backend.deleteTeam(bread, true);
-    expect(backend.getTeam(5940)).toEqual(null);
-    expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
-});
+        backend.saveTeam(bread);
+        backend.deleteTeam(bread, true);
+        expect(backend.getTeam(5940)).toEqual(null);
+        expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
+    });
 
-test.each(backends)('match storage', (backend) => {
-    expect(backend.getMatchByNumber(10)).toEqual(null);
-    expect(backend.getMatchByNumber(11)).toEqual(null);
+    it.each(matchGenerators)('should store matches', (makeMatch) => {
+        expect(backend.getMatchByNumber(10)).toEqual(null);
+        expect(backend.getMatchByNumber(11)).toEqual(null);
 
-    const matchA = makeDSMatch(0, 10);
-    const matchB = makeDSMatch(10, 11);
+        const matchA = makeMatch(0, 10);
+        const matchB = makeMatch(10, 11);
 
-    backend.saveMatch(matchA);
-    backend.saveMatch(matchB);
+        backend.saveMatch(matchA);
+        backend.saveMatch(matchB);
 
-    expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
-    expect(backend.getMatchByNumber(matchB.number)).toEqual(matchB);
+        expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
+        expect(backend.getMatchByNumber(matchB.number)).toEqual(matchB);
 
-    // Matches should only be fetched here if they're associated with a team
-    // This is weird behavior - see src/storage/backend.ts:17
-    let matches = backend.getMatchesByTeam(matchA.teamNumber);
-    expect(matches).not.toContainEqual(matchA);
-    expect(matches).not.toContainEqual(matchB);
+        // Matches should only be fetched here if they're associated with a team
+        // This is weird behavior - see src/storage/backend.ts:17
+        let matches = backend.getMatchesByTeam(matchA.teamNumber);
+        expect(matches).not.toContainEqual(matchA);
+        expect(matches).not.toContainEqual(matchB);
 
-    // Deletion
-    // Deleting a match only deletes matches associated with a team
-    // not all matches scouted for the team. We can change this if desired
-    // see see src/storage/backend.ts:17
-    const team = new Team(matchA.teamNumber, matchA, matchB);
-    backend.saveTeam(team);
-    backend.deleteMatchesByTeam(matchA.teamNumber);
+        // Deletion
+        // Deleting a match only deletes matches associated with a team
+        // not all matches scouted for the team. We can change this if desired
+        // see see src/storage/backend.ts:17
+        const team = new Team(matchA.teamNumber, matchA, matchB);
+        backend.saveTeam(team);
+        backend.deleteMatchesByTeam(matchA.teamNumber);
 
-    matches = backend.getMatchesByTeam(matchA.teamNumber);
-    expect(matches).not.toContainEqual(matchA);
-    expect(matches).not.toContainEqual(matchB);
-    expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
-    expect(backend.getMatchByNumber(matchB.number)).toEqual(null);
+        matches = backend.getMatchesByTeam(matchA.teamNumber);
+        expect(matches).not.toContainEqual(matchA);
+        expect(matches).not.toContainEqual(matchB);
+        expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
+        expect(backend.getMatchByNumber(matchB.number)).toEqual(null);
 
-    backend.saveMatch(matchA);
-    expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
-    expect(backend.getMatchByNumber(matchB.number)).toEqual(null);
+        backend.saveMatch(matchA);
+        expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
+        expect(backend.getMatchByNumber(matchB.number)).toEqual(null);
 
-    backend.deleteMatchByNumber(matchA.number);
-    expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
-    expect(backend.getMatchesByTeam(matchA.teamNumber)).not.toContainEqual(matchA);
+        backend.deleteMatchByNumber(matchA.number);
+        expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
+        expect(backend.getMatchesByTeam(matchA.teamNumber)).not.toContainEqual(matchA);
+    });
 });
