@@ -14,9 +14,18 @@ class TestTracker extends GamePieceTracker {
     }
 }
 
-test('point calculation makes sense', () => {
-    const match = new TestMatch(
-        1, 'test', 5940, 'BLUE', [new TestTracker(15)], {pointsFromFouls: 15, bonusPoints: 20},
-    );
-    expect(match.points).toEqual(15 + 15 + 20);
+describe('point calculation', () => {
+    it('should make sense', () => {
+        const match = new TestMatch(
+            1, 'test', 5940, 'BLUE', [new TestTracker(15)], {pointsFromFouls: 15, bonusPoints: 20},
+        );
+        expect(match.points).toEqual(15 + 15 + 20);
+    });
+
+    it('should award five points for crossing the start line in auto', () => {
+        const match = new TestMatch(
+            1, 'test', 5940, 'BLUE', [new TestTracker(15)], {pointsFromFouls: 15, crossedStartLineInAuto: true},
+        );
+        expect(match.points).toEqual(15 + 15 + 5);
+    });
 });

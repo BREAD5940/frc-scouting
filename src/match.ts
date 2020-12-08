@@ -33,6 +33,7 @@ export interface MatchData {
     nonPieceTrackerRankingPoints: number;
     pointsFromFouls: number;
     bonusPoints: number;
+    crossedStartLineInAuto: boolean;
 }
 
 /**
@@ -55,6 +56,7 @@ export abstract class Match {
     readonly nonPieceTrackerRankingPoints: number;
     readonly pointsFromFouls: number;
     readonly bonusPoints: number;
+    readonly crossedStartLineInAuto: boolean;
 
     /** Creates a new Match */
     constructor(
@@ -75,13 +77,16 @@ export abstract class Match {
         this.nonPieceTrackerRankingPoints = data.nonPieceTrackerRankingPoints || 0;
         this.pointsFromFouls = data.pointsFromFouls || 0;
         this.bonusPoints = data.bonusPoints || 0;
+        this.crossedStartLineInAuto = data.crossedStartLineInAuto || false;
     }
 
     /** Gets the total number of points scored in a match */
     get points(): number {
-        return this.pointsFromFouls + this.bonusPoints + this.pieceTrackers.reduce(
-            (accumulator, tracker) => accumulator + tracker.totalPoints,
-            0,
+        return (
+            this.pointsFromFouls +
+            this.bonusPoints +
+            (this.crossedStartLineInAuto ? 5 : 0) +
+            this.pieceTrackers.reduce((accumulator, tracker) => accumulator + tracker.totalPoints, 0)
         );
     }
 
