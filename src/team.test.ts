@@ -34,3 +34,11 @@ test('statistical functions should throw errors when used on non-numerical prope
     expect(() => testTeam.getMode('borked')).toThrowError(/non-number property/);
     expect(() => testTeam.getMedian('borked')).toThrowError(/non-number property/);
 });
+
+test('adding matches should fail if you try to add matches from other teams', () => {
+    expect(() => testTeam.addMatches(new TestMatch(5941, 'test', 1, 'RED', [], {})))
+        .toThrowError(/Matches to be added to team/);
+
+    expect(() => testTeam.addMatches(new TestMatch(5940, 'test', 1, 'RED', [], {})))
+        .not.toThrow();
+});
