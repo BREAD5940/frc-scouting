@@ -13,5 +13,9 @@ npm test
 echo "Publishing to NPM..."
 npm publish
 echo "Publishing to GitHub Packages..."
+cp package.json package.json.old
+sed -i '' 's/"name": "frc-scouting"/"name": "@theannalyst\/frc-scouting"/g' package.json
+cat package.json
 npm publish --registry=https://npm.pkg.github.com
+mv package.json.old package.json
 echo "Done!"
