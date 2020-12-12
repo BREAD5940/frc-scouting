@@ -1,4 +1,4 @@
-**[frc-scouting](../README.md)**
+**[@theannalyst/frc-scouting](../README.md)**
 
 > [Globals](../globals.md) / ["storage/json"](../modules/_storage_json_.md) / JSONBackend
 

@@ -1,8 +1,8 @@
-**[frc-scouting](README.md)**
+**[@theannalyst/frc-scouting](README.md)**
 
 > Globals
 
-# frc-scouting
+# @theannalyst/frc-scouting
 
 ## Index
 

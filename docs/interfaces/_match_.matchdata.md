@@ -1,4 +1,4 @@
-**[frc-scouting](../README.md)**
+**[@theannalyst/frc-scouting](../README.md)**
 
 > [Globals](../globals.md) / ["match"](../modules/_match_.md) / MatchData
 

@@ -1,7 +1,11 @@
 # Changelog
 
+### v0.1.0
+- Fixed a bug in 0.0.5's dependencies
+- (v0.0.5 should've been 0.1.x per semver... oops!)
+
 ### v0.0.5
-- Added support for Infinite Recharge
+- Added beta support for Infinite Recharge
 - Properly awarded ranking points for crossing the start line in auto
 - Improved support for ranking points
 - Renamed the `autonomous` mode to `auto`
