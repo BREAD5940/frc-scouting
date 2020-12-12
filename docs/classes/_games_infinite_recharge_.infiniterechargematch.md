@@ -1,55 +1,55 @@
 **[frc-scouting](../README.md)**
 
-> [Globals](../globals.md) / ["storage/json"](../modules/_storage_json_.md) / MatchTemplate
+> [Globals](../globals.md) / ["games/infinite-recharge"](../modules/_games_infinite_recharge_.md) / InfiniteRechargeMatch
 
-# Class: MatchTemplate
+# Class: InfiniteRechargeMatch
 
-A template match to be hackily overloaded with JSON data
+Represents an Infinite Recharge match
 
 ## Hierarchy
 
 * [Match](_match_.match.md)
 
-  ↳ **MatchTemplate**
+  ↳ **InfiniteRechargeMatch**
 
 ## Index
 
 ### Constructors
 
-* [constructor](_storage_json_.matchtemplate.md#constructor)
+* [constructor](_games_infinite_recharge_.infiniterechargematch.md#constructor)
 
 ### Properties
 
-* [alliance](_storage_json_.matchtemplate.md#alliance)
-* [bonusPoints](_storage_json_.matchtemplate.md#bonuspoints)
-* [borked](_storage_json_.matchtemplate.md#borked)
-* [cards](_storage_json_.matchtemplate.md#cards)
-* [crossedStartLineInAuto](_storage_json_.matchtemplate.md#crossedstartlineinauto)
-* [emergencyStopped](_storage_json_.matchtemplate.md#emergencystopped)
-* [fouls](_storage_json_.matchtemplate.md#fouls)
-* [nonPieceTrackerRankingPoints](_storage_json_.matchtemplate.md#nonpiecetrackerrankingpoints)
-* [number](_storage_json_.matchtemplate.md#number)
-* [pieceTrackers](_storage_json_.matchtemplate.md#piecetrackers)
-* [pointsFromFouls](_storage_json_.matchtemplate.md#pointsfromfouls)
-* [teamNumber](_storage_json_.matchtemplate.md#teamnumber)
-* [type](_storage_json_.matchtemplate.md#type)
+* [alliance](_games_infinite_recharge_.infiniterechargematch.md#alliance)
+* [bonusPoints](_games_infinite_recharge_.infiniterechargematch.md#bonuspoints)
+* [borked](_games_infinite_recharge_.infiniterechargematch.md#borked)
+* [cards](_games_infinite_recharge_.infiniterechargematch.md#cards)
+* [crossedStartLineInAuto](_games_infinite_recharge_.infiniterechargematch.md#crossedstartlineinauto)
+* [emergencyStopped](_games_infinite_recharge_.infiniterechargematch.md#emergencystopped)
+* [fouls](_games_infinite_recharge_.infiniterechargematch.md#fouls)
+* [nonPieceTrackerRankingPoints](_games_infinite_recharge_.infiniterechargematch.md#nonpiecetrackerrankingpoints)
+* [number](_games_infinite_recharge_.infiniterechargematch.md#number)
+* [pieceTrackers](_games_infinite_recharge_.infiniterechargematch.md#piecetrackers)
+* [pointsFromFouls](_games_infinite_recharge_.infiniterechargematch.md#pointsfromfouls)
+* [teamNumber](_games_infinite_recharge_.infiniterechargematch.md#teamnumber)
+* [type](_games_infinite_recharge_.infiniterechargematch.md#type)
 
 ### Accessors
 
-* [points](_storage_json_.matchtemplate.md#points)
-* [rankingPoints](_storage_json_.matchtemplate.md#rankingpoints)
+* [points](_games_infinite_recharge_.infiniterechargematch.md#points)
+* [rankingPoints](_games_infinite_recharge_.infiniterechargematch.md#rankingpoints)
 
 ## Constructors
 
 ### constructor
 
-\+ **new MatchTemplate**(`teamNumber`: number, `type`: string, `number`: number, `alliance`: [Alliance](../modules/_match_.md#alliance), `trackers`: [GamePieceTracker](_match_.gamepiecetracker.md)[], `data`: Partial\<[MatchData](../interfaces/_match_.matchdata.md)>): [MatchTemplate](_storage_json_.matchtemplate.md)
+\+ **new InfiniteRechargeMatch**(`teamNumber`: number, `type`: string, `number`: number, `alliance`: [Alliance](../modules/_match_.md#alliance), `data`: Partial\<[InfiniteRechargeMatchData](../interfaces/_games_infinite_recharge_.infiniterechargematchdata.md)>): [InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)
 
-*Inherited from [Match](_match_.match.md).[constructor](_match_.match.md#constructor)*
+*Overrides [Match](_match_.match.md).[constructor](_match_.match.md#constructor)*
 
-*Defined in match.ts:59*
+*Defined in games/infinite-recharge.ts:145*
 
-Creates a new Match
+creates a new InfiniteRechargeMatch
 
 #### Parameters:
 
@@ -59,10 +59,9 @@ Name | Type |
 `type` | string |
 `number` | number |
 `alliance` | [Alliance](../modules/_match_.md#alliance) |
-`trackers` | [GamePieceTracker](_match_.gamepiecetracker.md)[] |
-`data` | Partial\<[MatchData](../interfaces/_match_.matchdata.md)> |
+`data` | Partial\<[InfiniteRechargeMatchData](../interfaces/_games_infinite_recharge_.infiniterechargematchdata.md)> |
 
-**Returns:** [MatchTemplate](_storage_json_.matchtemplate.md)
+**Returns:** [InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)
 
 ## Properties
 
@@ -158,11 +157,11 @@ ___
 
 ### pieceTrackers
 
-• `Readonly` **pieceTrackers**: [GamePieceTracker](_match_.gamepiecetracker.md)[]
+•  **pieceTrackers**: [[PowerCellTracker](_games_infinite_recharge_.powercelltracker.md), [ColorWheel](_games_infinite_recharge_.colorwheel.md), [ShieldGenerator](_games_infinite_recharge_.shieldgenerator.md)]
 
-*Inherited from [Match](_match_.match.md).[pieceTrackers](_match_.match.md#piecetrackers)*
+*Overrides [Match](_match_.match.md).[pieceTrackers](_match_.match.md#piecetrackers)*
 
-*Defined in match.ts:49*
+*Defined in games/infinite-recharge.ts:145*
 
 ___
 

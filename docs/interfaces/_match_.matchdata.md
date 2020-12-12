@@ -10,6 +10,8 @@
 
   ↳ [DeepSpaceMatchData](_games_deep_space_.deepspacematchdata.md)
 
+  ↳ [InfiniteRechargeMatchData](_games_infinite_recharge_.infiniterechargematchdata.md)
+
 ## Index
 
 ### Properties
@@ -17,10 +19,11 @@
 * [bonusPoints](_match_.matchdata.md#bonuspoints)
 * [borked](_match_.matchdata.md#borked)
 * [cards](_match_.matchdata.md#cards)
+* [crossedStartLineInAuto](_match_.matchdata.md#crossedstartlineinauto)
 * [emergencyStopped](_match_.matchdata.md#emergencystopped)
 * [fouls](_match_.matchdata.md#fouls)
+* [nonPieceTrackerRankingPoints](_match_.matchdata.md#nonpiecetrackerrankingpoints)
 * [pointsFromFouls](_match_.matchdata.md#pointsfromfouls)
-* [rankingPoints](_match_.matchdata.md#rankingpoints)
 
 ## Properties
 
@@ -28,7 +31,7 @@
 
 •  **bonusPoints**: number
 
-*Defined in match.ts:33*
+*Defined in match.ts:35*
 
 ___
 
@@ -36,7 +39,7 @@ ___
 
 •  **borked**: boolean
 
-*Defined in match.ts:29*
+*Defined in match.ts:31*
 
 ___
 
@@ -44,7 +47,15 @@ ___
 
 •  **cards**: [Cards](_match_.cards.md)
 
-*Defined in match.ts:27*
+*Defined in match.ts:29*
+
+___
+
+### crossedStartLineInAuto
+
+•  **crossedStartLineInAuto**: boolean
+
+*Defined in match.ts:36*
 
 ___
 
@@ -52,7 +63,7 @@ ___
 
 •  **emergencyStopped**: boolean
 
-*Defined in match.ts:28*
+*Defined in match.ts:30*
 
 ___
 
@@ -60,7 +71,15 @@ ___
 
 •  **fouls**: [Fouls](_match_.fouls.md)
 
-*Defined in match.ts:26*
+*Defined in match.ts:28*
+
+___
+
+### nonPieceTrackerRankingPoints
+
+•  **nonPieceTrackerRankingPoints**: number
+
+*Defined in match.ts:33*
 
 ___
 
@@ -68,12 +87,4 @@ ___
 
 •  **pointsFromFouls**: number
 
-*Defined in match.ts:32*
-
-___
-
-### rankingPoints
-
-•  **rankingPoints**: number
-
-*Defined in match.ts:31*
+*Defined in match.ts:34*

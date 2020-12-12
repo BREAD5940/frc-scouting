@@ -1,53 +1,53 @@
 **[frc-scouting](../README.md)**
 
-> [Globals](../globals.md) / ["games/deep-space"](../modules/_games_deep_space_.md) / DeepSpaceSQL
+> [Globals](../globals.md) / ["games/infinite-recharge"](../modules/_games_infinite_recharge_.md) / InfiniteRechargeSQL
 
-# Class: DeepSpaceSQL
+# Class: InfiniteRechargeSQL
 
-Stores Deep Space teams/matches in SQLite
+Stores Infinite Recharge teams/matches in SQL
 
 ## Hierarchy
 
-* [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md)\<[DeepSpaceMatch](_games_deep_space_.deepspacematch.md)>
+* [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md)\<[InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)>
 
-  ↳ **DeepSpaceSQL**
+  ↳ **InfiniteRechargeSQL**
 
 ## Index
 
 ### Constructors
 
-* [constructor](_games_deep_space_.deepspacesql.md#constructor)
+* [constructor](_games_infinite_recharge_.infiniterechargesql.md#constructor)
 
 ### Properties
 
-* [database](_games_deep_space_.deepspacesql.md#database)
-* [matchInsertionTransaction](_games_deep_space_.deepspacesql.md#matchinsertiontransaction)
-* [statementCache](_games_deep_space_.deepspacesql.md#statementcache)
+* [database](_games_infinite_recharge_.infiniterechargesql.md#database)
+* [matchInsertionTransaction](_games_infinite_recharge_.infiniterechargesql.md#matchinsertiontransaction)
+* [statementCache](_games_infinite_recharge_.infiniterechargesql.md#statementcache)
 
 ### Methods
 
-* [applies](_games_deep_space_.deepspacesql.md#applies)
-* [dbDataToMatch](_games_deep_space_.deepspacesql.md#dbdatatomatch)
-* [dbDataToTeam](_games_deep_space_.deepspacesql.md#dbdatatoteam)
-* [deleteMatches](_games_deep_space_.deepspacesql.md#deletematches)
-* [deleteTeams](_games_deep_space_.deepspacesql.md#deleteteams)
-* [getMatches](_games_deep_space_.deepspacesql.md#getmatches)
-* [getStatement](_games_deep_space_.deepspacesql.md#getstatement)
-* [getTeams](_games_deep_space_.deepspacesql.md#getteams)
-* [insertMatch](_games_deep_space_.deepspacesql.md#insertmatch)
-* [insertTeam](_games_deep_space_.deepspacesql.md#insertteam)
+* [applies](_games_infinite_recharge_.infiniterechargesql.md#applies)
+* [dbDataToMatch](_games_infinite_recharge_.infiniterechargesql.md#dbdatatomatch)
+* [dbDataToTeam](_games_infinite_recharge_.infiniterechargesql.md#dbdatatoteam)
+* [deleteMatches](_games_infinite_recharge_.infiniterechargesql.md#deletematches)
+* [deleteTeams](_games_infinite_recharge_.infiniterechargesql.md#deleteteams)
+* [getMatches](_games_infinite_recharge_.infiniterechargesql.md#getmatches)
+* [getStatement](_games_infinite_recharge_.infiniterechargesql.md#getstatement)
+* [getTeams](_games_infinite_recharge_.infiniterechargesql.md#getteams)
+* [insertMatch](_games_infinite_recharge_.infiniterechargesql.md#insertmatch)
+* [insertTeam](_games_infinite_recharge_.infiniterechargesql.md#insertteam)
 
 ## Constructors
 
 ### constructor
 
-\+ **new DeepSpaceSQL**(`absolutePath`: string): [DeepSpaceSQL](_games_deep_space_.deepspacesql.md)
+\+ **new InfiniteRechargeSQL**(`absolutePath`: string): [InfiniteRechargeSQL](_games_infinite_recharge_.infiniterechargesql.md)
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[constructor](_storage_sqlite_.sqlstorageplan.md#constructor)*
 
-*Defined in games/deep-space.ts:157*
+*Defined in games/infinite-recharge.ts:166*
 
-constructor
+it's a constructor, you absolutely incompetent dingus of a linter, shut up about JSDoc already
 
 #### Parameters:
 
@@ -55,7 +55,7 @@ Name | Type |
 ------ | ------ |
 `absolutePath` | string |
 
-**Returns:** [DeepSpaceSQL](_games_deep_space_.deepspacesql.md)
+**Returns:** [InfiniteRechargeSQL](_games_infinite_recharge_.infiniterechargesql.md)
 
 ## Properties
 
@@ -73,7 +73,7 @@ ___
 
 •  **matchInsertionTransaction**: Transaction
 
-*Defined in games/deep-space.ts:157*
+*Defined in games/infinite-recharge.ts:166*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[applies](_storage_sqlite_.sqlstorageplan.md#applies)*
 
-*Defined in games/deep-space.ts:204*
+*Defined in games/infinite-recharge.ts:200*
 
 Determines whether a match can be stored by this storage plan.
 
@@ -109,13 +109,13 @@ ___
 
 ### dbDataToMatch
 
-▸ **dbDataToMatch**(`data`: any): [DeepSpaceMatch](_games_deep_space_.deepspacematch.md)
+▸ **dbDataToMatch**(`data`: any): [InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[dbDataToMatch](_storage_sqlite_.sqlstorageplan.md#dbdatatomatch)*
 
-*Defined in games/deep-space.ts:209*
+*Defined in games/infinite-recharge.ts:214*
 
-Converts data from the database to a Match
+Converts match data from the db into a match
 
 #### Parameters:
 
@@ -123,17 +123,17 @@ Name | Type |
 ------ | ------ |
 `data` | any |
 
-**Returns:** [DeepSpaceMatch](_games_deep_space_.deepspacematch.md)
+**Returns:** [InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)
 
 ___
 
 ### dbDataToTeam
 
-▸ **dbDataToTeam**(`data`: any): [Team](_team_.team.md)\<[DeepSpaceMatch](_games_deep_space_.deepspacematch.md)>
+▸ **dbDataToTeam**(`data`: any): [Team](_team_.team.md)\<[InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)>
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[dbDataToTeam](_storage_sqlite_.sqlstorageplan.md#dbdatatoteam)*
 
-*Defined in games/deep-space.ts:260*
+*Defined in games/infinite-recharge.ts:205*
 
 Converts data from the database into a team
 
@@ -143,7 +143,7 @@ Name | Type |
 ------ | ------ |
 `data` | any |
 
-**Returns:** [Team](_team_.team.md)\<[DeepSpaceMatch](_games_deep_space_.deepspacematch.md)>
+**Returns:** [Team](_team_.team.md)\<[InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)>
 
 ___
 
@@ -249,11 +249,11 @@ ___
 
 ### insertMatch
 
-▸ **insertMatch**(`match`: [DeepSpaceMatch](_games_deep_space_.deepspacematch.md)): void
+▸ **insertMatch**(`match`: [InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)): void
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[insertMatch](_storage_sqlite_.sqlstorageplan.md#insertmatch)*
 
-*Defined in games/deep-space.ts:269*
+*Defined in games/infinite-recharge.ts:268*
 
 Inserts a match
 
@@ -261,7 +261,7 @@ Inserts a match
 
 Name | Type |
 ------ | ------ |
-`match` | [DeepSpaceMatch](_games_deep_space_.deepspacematch.md) |
+`match` | [InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md) |
 
 **Returns:** void
 
@@ -269,11 +269,11 @@ ___
 
 ### insertTeam
 
-▸ **insertTeam**(`team`: [Team](_team_.team.md)\<[DeepSpaceMatch](_games_deep_space_.deepspacematch.md)>): void
+▸ **insertTeam**(`team`: [Team](_team_.team.md)\<[InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)>): void
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[insertTeam](_storage_sqlite_.sqlstorageplan.md#insertteam)*
 
-*Defined in games/deep-space.ts:274*
+*Defined in games/infinite-recharge.ts:273*
 
 Inserts a team
 
@@ -281,6 +281,6 @@ Inserts a team
 
 Name | Type |
 ------ | ------ |
-`team` | [Team](_team_.team.md)\<[DeepSpaceMatch](_games_deep_space_.deepspacematch.md)> |
+`team` | [Team](_team_.team.md)\<[InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)> |
 
 **Returns:** void

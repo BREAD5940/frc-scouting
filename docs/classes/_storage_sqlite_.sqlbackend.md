@@ -70,7 +70,7 @@ Name | Type |
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/sqlite.ts:178*
+*Defined in storage/sqlite.ts:182*
 
 deletes a match
 
@@ -90,7 +90,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/sqlite.ts:185*
+*Defined in storage/sqlite.ts:189*
 
 deletes matches
 
@@ -110,7 +110,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/sqlite.ts:133*
+*Defined in storage/sqlite.ts:136*
 
 deletes a team
 
@@ -131,7 +131,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/sqlite.ts:155*
+*Defined in storage/sqlite.ts:158*
 
 gets a match
 
@@ -151,7 +151,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/sqlite.ts:167*
+*Defined in storage/sqlite.ts:171*
 
 gets matches
 
@@ -171,7 +171,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/sqlite.ts:121*
+*Defined in storage/sqlite.ts:123*
 
 gets a team
 
@@ -209,7 +209,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/sqlite.ts:142*
+*Defined in storage/sqlite.ts:145*
 
 saves a match
 

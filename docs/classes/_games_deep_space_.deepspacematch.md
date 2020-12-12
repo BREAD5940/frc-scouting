@@ -24,17 +24,18 @@ Represents a Deep Space match
 * [bonusPoints](_games_deep_space_.deepspacematch.md#bonuspoints)
 * [borked](_games_deep_space_.deepspacematch.md#borked)
 * [cards](_games_deep_space_.deepspacematch.md#cards)
+* [crossedStartLineInAuto](_games_deep_space_.deepspacematch.md#crossedstartlineinauto)
 * [crossesStartLine](_games_deep_space_.deepspacematch.md#crossesstartline)
 * [emergencyStopped](_games_deep_space_.deepspacematch.md#emergencystopped)
 * [finalHABLevel](_games_deep_space_.deepspacematch.md#finalhablevel)
 * [fouls](_games_deep_space_.deepspacematch.md#fouls)
 * [helpsOthersHABClimb](_games_deep_space_.deepspacematch.md#helpsothershabclimb)
 * [initialHABLevel](_games_deep_space_.deepspacematch.md#initialhablevel)
+* [nonPieceTrackerRankingPoints](_games_deep_space_.deepspacematch.md#nonpiecetrackerrankingpoints)
 * [number](_games_deep_space_.deepspacematch.md#number)
 * [pieceTrackers](_games_deep_space_.deepspacematch.md#piecetrackers)
 * [pointsFromFouls](_games_deep_space_.deepspacematch.md#pointsfromfouls)
 * [rankingPointRecord](_games_deep_space_.deepspacematch.md#rankingpointrecord)
-* [rankingPoints](_games_deep_space_.deepspacematch.md#rankingpoints)
 * [rocketsAssembled](_games_deep_space_.deepspacematch.md#rocketsassembled)
 * [teamNumber](_games_deep_space_.deepspacematch.md#teamnumber)
 * [type](_games_deep_space_.deepspacematch.md#type)
@@ -42,6 +43,7 @@ Represents a Deep Space match
 ### Accessors
 
 * [points](_games_deep_space_.deepspacematch.md#points)
+* [rankingPoints](_games_deep_space_.deepspacematch.md#rankingpoints)
 
 ## Constructors
 
@@ -51,7 +53,7 @@ Represents a Deep Space match
 
 *Overrides [Match](_match_.match.md).[constructor](_match_.match.md#constructor)*
 
-*Defined in games/deep-space.ts:103*
+*Defined in games/deep-space.ts:104*
 
 Creates a new DeepSpaceMatch
 
@@ -75,7 +77,7 @@ Name | Type |
 
 *Inherited from [Match](_match_.match.md).[alliance](_match_.match.md#alliance)*
 
-*Defined in match.ts:44*
+*Defined in match.ts:47*
 
 ___
 
@@ -85,7 +87,7 @@ ___
 
 *Inherited from [Match](_match_.match.md).[bonusPoints](_match_.match.md#bonuspoints)*
 
-*Defined in match.ts:55*
+*Defined in match.ts:58*
 
 ___
 
@@ -95,7 +97,7 @@ ___
 
 *Inherited from [Match](_match_.match.md).[borked](_match_.match.md#borked)*
 
-*Defined in match.ts:51*
+*Defined in match.ts:54*
 
 ___
 
@@ -105,7 +107,17 @@ ___
 
 *Inherited from [Match](_match_.match.md).[cards](_match_.match.md#cards)*
 
-*Defined in match.ts:49*
+*Defined in match.ts:52*
+
+___
+
+### crossedStartLineInAuto
+
+• `Readonly` **crossedStartLineInAuto**: boolean
+
+*Inherited from [Match](_match_.match.md).[crossedStartLineInAuto](_match_.match.md#crossedstartlineinauto)*
+
+*Defined in match.ts:59*
 
 ___
 
@@ -113,7 +125,7 @@ ___
 
 •  **crossesStartLine**: boolean
 
-*Defined in games/deep-space.ts:96*
+*Defined in games/deep-space.ts:97*
 
 ___
 
@@ -123,7 +135,7 @@ ___
 
 *Inherited from [Match](_match_.match.md).[emergencyStopped](_match_.match.md#emergencystopped)*
 
-*Defined in match.ts:50*
+*Defined in match.ts:53*
 
 ___
 
@@ -131,7 +143,7 @@ ___
 
 •  **finalHABLevel**: [HABLevel](../modules/_games_deep_space_.md#hablevel)
 
-*Defined in games/deep-space.ts:95*
+*Defined in games/deep-space.ts:96*
 
 ___
 
@@ -141,7 +153,7 @@ ___
 
 *Inherited from [Match](_match_.match.md).[fouls](_match_.match.md#fouls)*
 
-*Defined in match.ts:48*
+*Defined in match.ts:51*
 
 ___
 
@@ -149,7 +161,7 @@ ___
 
 •  **helpsOthersHABClimb**: boolean
 
-*Defined in games/deep-space.ts:93*
+*Defined in games/deep-space.ts:94*
 
 ___
 
@@ -157,7 +169,17 @@ ___
 
 •  **initialHABLevel**: [HABLevel](../modules/_games_deep_space_.md#hablevel)
 
-*Defined in games/deep-space.ts:94*
+*Defined in games/deep-space.ts:95*
+
+___
+
+### nonPieceTrackerRankingPoints
+
+• `Readonly` **nonPieceTrackerRankingPoints**: number
+
+*Overrides [Match](_match_.match.md).[nonPieceTrackerRankingPoints](_match_.match.md#nonpiecetrackerrankingpoints)*
+
+*Defined in games/deep-space.ts:104*
 
 ___
 
@@ -167,7 +189,7 @@ ___
 
 *Inherited from [Match](_match_.match.md).[number](_match_.match.md#number)*
 
-*Defined in match.ts:43*
+*Defined in match.ts:46*
 
 ___
 
@@ -177,7 +199,7 @@ ___
 
 *Overrides [Match](_match_.match.md).[pieceTrackers](_match_.match.md#piecetrackers)*
 
-*Defined in games/deep-space.ts:91*
+*Defined in games/deep-space.ts:92*
 
 ___
 
@@ -187,7 +209,7 @@ ___
 
 *Inherited from [Match](_match_.match.md).[pointsFromFouls](_match_.match.md#pointsfromfouls)*
 
-*Defined in match.ts:54*
+*Defined in match.ts:57*
 
 ___
 
@@ -195,19 +217,9 @@ ___
 
 •  **rankingPointRecord**: Record\<[RankingPoints](../modules/_games_deep_space_.md#rankingpoints), boolean>
 
-*Defined in games/deep-space.ts:101*
+*Defined in games/deep-space.ts:102*
 
 point:isGained
-
-___
-
-### rankingPoints
-
-• `Readonly` **rankingPoints**: number
-
-*Overrides [Match](_match_.match.md).[rankingPoints](_match_.match.md#rankingpoints)*
-
-*Defined in games/deep-space.ts:103*
 
 ___
 
@@ -215,7 +227,7 @@ ___
 
 •  **rocketsAssembled**: Record\<[Rocket](../modules/_games_deep_space_.md#rocket), boolean>
 
-*Defined in games/deep-space.ts:99*
+*Defined in games/deep-space.ts:100*
 
 rocket:isAssembled
 
@@ -227,7 +239,7 @@ ___
 
 *Inherited from [Match](_match_.match.md).[teamNumber](_match_.match.md#teamnumber)*
 
-*Defined in match.ts:40*
+*Defined in match.ts:43*
 
 ___
 
@@ -237,7 +249,7 @@ ___
 
 *Inherited from [Match](_match_.match.md).[type](_match_.match.md#type)*
 
-*Defined in match.ts:42*
+*Defined in match.ts:45*
 
 ## Accessors
 
@@ -247,8 +259,22 @@ ___
 
 *Inherited from [Match](_match_.match.md).[points](_match_.match.md#points)*
 
-*Defined in match.ts:79*
+*Defined in match.ts:84*
 
 Gets the total number of points scored in a match
+
+**Returns:** number
+
+___
+
+### rankingPoints
+
+• get **rankingPoints**(): number
+
+*Inherited from [Match](_match_.match.md).[rankingPoints](_match_.match.md#rankingpoints)*
+
+*Defined in match.ts:94*
+
+Gets ranking points
 
 **Returns:** number

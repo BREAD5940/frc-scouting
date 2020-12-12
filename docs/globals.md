@@ -9,6 +9,7 @@
 ### Modules
 
 * ["games/deep-space"](modules/_games_deep_space_.md)
+* ["games/infinite-recharge"](modules/_games_infinite_recharge_.md)
 * ["index"](modules/_index_.md)
 * ["match"](modules/_match_.md)
 * ["storage/backend"](modules/_storage_backend_.md)

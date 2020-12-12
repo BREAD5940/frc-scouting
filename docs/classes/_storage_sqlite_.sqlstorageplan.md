@@ -19,6 +19,8 @@ Name | Type |
 
   ↳ [DeepSpaceSQL](_games_deep_space_.deepspacesql.md)
 
+  ↳ [InfiniteRechargeSQL](_games_infinite_recharge_.infiniterechargesql.md)
+
 ## Index
 
 ### Constructors
