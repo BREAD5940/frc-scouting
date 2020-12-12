@@ -60,6 +60,41 @@ describe('color wheel', () => {
         expect(atColor.rankingPoints).toEqual(0);
         expect(notMoved.rankingPoints).toEqual(0);
     });
+
+    it('should validate the provided power cell tracker', () => {
+        const fiveCellTracker = new PowerCellTracker({
+            LOW: {teleop: 1, auto: 1},
+            INNER: {teleop: 1, auto: 1},
+            OUTER: {teleop: 1, auto: 0},
+        }, true);
+        const tenCellTracker = new PowerCellTracker({
+            LOW: {teleop: 2, auto: 2},
+            INNER: {teleop: 2, auto: 2},
+            OUTER: {teleop: 1, auto: 1},
+        }, true);
+        const twentyCellTracker = new PowerCellTracker({
+            LOW: {teleop: 4, auto: 4},
+            INNER: {teleop: 4, auto: 4},
+            OUTER: {teleop: 2, auto: 2},
+        }, true);
+
+        // sanity
+        expect(fiveCellTracker.totalCells).toEqual(5);
+        expect(tenCellTracker.totalCells).toEqual(10);
+        expect(twentyCellTracker.totalCells).toEqual(20);
+
+        expect(() => new ColorWheel(null, fiveCellTracker)).not.toThrow();
+        expect(() => new ColorWheel(null, tenCellTracker)).not.toThrow();
+        expect(() => new ColorWheel(null, twentyCellTracker)).not.toThrow();
+
+        expect(() => new ColorWheel('ROTATED_X_TIMES', fiveCellTracker)).toThrowError(/Need 9 Power Cells/);
+        expect(() => new ColorWheel('ROTATED_X_TIMES', tenCellTracker)).not.toThrow();
+        expect(() => new ColorWheel('ROTATED_X_TIMES', twentyCellTracker)).not.toThrow();
+
+        expect(() => new ColorWheel('SPECIFIC_COLOR', fiveCellTracker)).toThrowError(/Need 20 Power Cells/);
+        expect(() => new ColorWheel('SPECIFIC_COLOR', tenCellTracker)).toThrowError(/Need 20 Power Cells/);
+        expect(() => new ColorWheel('SPECIFIC_COLOR', twentyCellTracker)).not.toThrow();
+    });
 });
 
 describe('shield generator', () => {

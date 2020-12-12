@@ -38,10 +38,11 @@ function makeIRMatch(points: number, number?: number) {
 
 const matchGenerators = [makeDSMatch, makeIRMatch];
 
-const backends: StorageBackend[] = [new SQLBackend(
-    new DeepSpaceSQL(':memory:'),
-    new InfiniteRechargeSQL(':memory:'),
-)];
+const sql = new SQLBackend();
+sql.registerPlan(new DeepSpaceSQL(':memory:'));
+sql.registerPlan(new InfiniteRechargeSQL(':memory:'));
+
+const backends: StorageBackend[] = [sql];
 
 if (platform() !== 'win32') {
     // Recursively removing directories doesn't work correctly on Windows
@@ -68,6 +69,9 @@ describe.each(backends)('storage', (backend) => {
 
         expect(backend.getMatchesByTeam(5940)).toContainEqual(matchA);
         expect(backend.getMatchesByTeam(5940)).toContainEqual(matchB);
+
+        // numbers and Team objects both need to work
+        expect(backend.getMatchesByTeam(5940)).toEqual(backend.getMatchesByTeam(bread));
 
         backend.deleteTeam(5940);
         expect(backend.getTeam(5940)).toEqual(null);

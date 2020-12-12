@@ -102,6 +102,8 @@ export class SQLBackend implements StorageBackend {
     /** Saves a team */
     saveTeam(team: Team<Match>) {
         if (!team.matches.length) {
+            // this is an SQL specific error (JSON can store teams without matches)....
+            // sigh
             throw new Error(`This team has no matches, so we don't know where to save it.`);
         }
 
@@ -122,6 +124,7 @@ export class SQLBackend implements StorageBackend {
         for (const plan of this.plans) {
             const teams = plan.getTeams([{column: 'number', value: number}]);
             if (teams.length > 1) {
+                // Should never happen, afaik
                 throw new Error(`Somehow there are multiple teams in one storage plan with that number.`);
             }
             if (teams[0]) return teams[0];
@@ -156,6 +159,7 @@ export class SQLBackend implements StorageBackend {
         for (const plan of this.plans) {
             const matches = plan.getMatches([{column: 'match_number', value: number}]);
             if (matches.length > 1) {
+                // wtf
                 throw new Error(`Somehow there are multiple matches in one storage plan with that number.`);
             }
             if (matches[0]) return matches[0];
