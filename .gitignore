@@ -110,3 +110,4 @@ package-lock.json
 # test files
 src/storage/test
 
+.npmrc
