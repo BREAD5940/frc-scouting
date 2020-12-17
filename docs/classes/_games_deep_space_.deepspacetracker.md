@@ -39,7 +39,7 @@ Tracks a game piece.
 
 \+ **new DeepSpaceTracker**(`type`: [GamePiece](../modules/_games_deep_space_.md#gamepiece), `baseValue`: number, `results`: Record\<[GamePieceStatus](../modules/_games_deep_space_.md#gamepiecestatus), { auto: number ; teleop: number  }>): [DeepSpaceTracker](_games_deep_space_.deepspacetracker.md)
 
-*Defined in games/deep-space.ts:30*
+*Defined in games/deep-space.ts:31*
 
 Constructs a new GamePieceTracker. Should be extended not called directly.
 
@@ -59,7 +59,7 @@ Name | Type | Description |
 
 •  **baseValue**: number
 
-*Defined in games/deep-space.ts:29*
+*Defined in games/deep-space.ts:30*
 
 doubled in auto
 
@@ -71,7 +71,7 @@ ___
 
 *Overrides [GamePieceTracker](_match_.gamepiecetracker.md).[rankingPoints](_match_.gamepiecetracker.md#rankingpoints)*
 
-*Defined in games/deep-space.ts:30*
+*Defined in games/deep-space.ts:31*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 •  **results**: Record\<[GamePieceStatus](../modules/_games_deep_space_.md#gamepiecestatus), { auto: number ; teleop: number  }>
 
-*Defined in games/deep-space.ts:27*
+*Defined in games/deep-space.ts:28*
 
 status:number of pieces
 
@@ -89,7 +89,7 @@ ___
 
 •  **type**: [GamePiece](../modules/_games_deep_space_.md#gamepiece)
 
-*Defined in games/deep-space.ts:25*
+*Defined in games/deep-space.ts:26*
 
 ## Accessors
 
@@ -99,7 +99,7 @@ ___
 
 *Overrides [GamePieceTracker](_match_.gamepiecetracker.md).[totalPoints](_match_.gamepiecetracker.md#totalpoints)*
 
-*Defined in games/deep-space.ts:47*
+*Defined in games/deep-space.ts:48*
 
 Returns the total number of points scored
 

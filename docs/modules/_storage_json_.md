@@ -9,4 +9,7 @@
 ### Classes
 
 * [JSONBackend](../classes/_storage_json_.jsonbackend.md)
-* [MatchTemplate](../classes/_storage_json_.matchtemplate.md)
+
+### Interfaces
+
+* [JSONStoragePlan](../interfaces/_storage_json_.jsonstorageplan.md)

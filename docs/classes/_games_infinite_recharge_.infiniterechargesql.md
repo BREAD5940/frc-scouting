@@ -45,7 +45,7 @@ Stores Infinite Recharge teams/matches in SQL
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[constructor](_storage_sqlite_.sqlstorageplan.md#constructor)*
 
-*Defined in games/infinite-recharge.ts:166*
+*Defined in games/infinite-recharge.ts:167*
 
 it's a constructor, you absolutely incompetent dingus of a linter, shut up about JSDoc already
 
@@ -73,7 +73,7 @@ ___
 
 •  **matchInsertionTransaction**: Transaction
 
-*Defined in games/infinite-recharge.ts:166*
+*Defined in games/infinite-recharge.ts:167*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[applies](_storage_sqlite_.sqlstorageplan.md#applies)*
 
-*Defined in games/infinite-recharge.ts:200*
+*Defined in games/infinite-recharge.ts:201*
 
 Determines whether a match can be stored by this storage plan.
 
@@ -113,7 +113,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[dbDataToMatch](_storage_sqlite_.sqlstorageplan.md#dbdatatomatch)*
 
-*Defined in games/infinite-recharge.ts:214*
+*Defined in games/infinite-recharge.ts:215*
 
 Converts match data from the db into a match
 
@@ -133,7 +133,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[dbDataToTeam](_storage_sqlite_.sqlstorageplan.md#dbdatatoteam)*
 
-*Defined in games/infinite-recharge.ts:205*
+*Defined in games/infinite-recharge.ts:206*
 
 Converts data from the database into a team
 
@@ -253,7 +253,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[insertMatch](_storage_sqlite_.sqlstorageplan.md#insertmatch)*
 
-*Defined in games/infinite-recharge.ts:268*
+*Defined in games/infinite-recharge.ts:269*
 
 Inserts a match
 
@@ -273,7 +273,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[insertTeam](_storage_sqlite_.sqlstorageplan.md#insertteam)*
 
-*Defined in games/infinite-recharge.ts:273*
+*Defined in games/infinite-recharge.ts:274*
 
 Inserts a team
 

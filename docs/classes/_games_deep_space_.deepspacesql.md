@@ -45,7 +45,7 @@ Stores Deep Space teams/matches in SQLite
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[constructor](_storage_sqlite_.sqlstorageplan.md#constructor)*
 
-*Defined in games/deep-space.ts:157*
+*Defined in games/deep-space.ts:158*
 
 constructor
 
@@ -73,7 +73,7 @@ ___
 
 •  **matchInsertionTransaction**: Transaction
 
-*Defined in games/deep-space.ts:157*
+*Defined in games/deep-space.ts:158*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[applies](_storage_sqlite_.sqlstorageplan.md#applies)*
 
-*Defined in games/deep-space.ts:204*
+*Defined in games/deep-space.ts:205*
 
 Determines whether a match can be stored by this storage plan.
 
@@ -113,7 +113,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[dbDataToMatch](_storage_sqlite_.sqlstorageplan.md#dbdatatomatch)*
 
-*Defined in games/deep-space.ts:209*
+*Defined in games/deep-space.ts:210*
 
 Converts data from the database to a Match
 
@@ -133,7 +133,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[dbDataToTeam](_storage_sqlite_.sqlstorageplan.md#dbdatatoteam)*
 
-*Defined in games/deep-space.ts:260*
+*Defined in games/deep-space.ts:261*
 
 Converts data from the database into a team
 
@@ -253,7 +253,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[insertMatch](_storage_sqlite_.sqlstorageplan.md#insertmatch)*
 
-*Defined in games/deep-space.ts:269*
+*Defined in games/deep-space.ts:270*
 
 Inserts a match
 
@@ -273,7 +273,7 @@ ___
 
 *Overrides [SQLStoragePlan](_storage_sqlite_.sqlstorageplan.md).[insertTeam](_storage_sqlite_.sqlstorageplan.md#insertteam)*
 
-*Defined in games/deep-space.ts:274*
+*Defined in games/deep-space.ts:275*
 
 Inserts a team
 

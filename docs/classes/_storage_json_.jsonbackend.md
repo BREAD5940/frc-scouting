@@ -31,6 +31,7 @@ The directory structure is as follows:
 
 ### Properties
 
+* [plans](_storage_json_.jsonbackend.md#plans)
 * [storageDir](_storage_json_.jsonbackend.md#storagedir)
 
 ### Methods
@@ -41,6 +42,7 @@ The directory structure is as follows:
 * [getMatchByNumber](_storage_json_.jsonbackend.md#getmatchbynumber)
 * [getMatchesByTeam](_storage_json_.jsonbackend.md#getmatchesbyteam)
 * [getTeam](_storage_json_.jsonbackend.md#getteam)
+* [registerPlan](_storage_json_.jsonbackend.md#registerplan)
 * [saveMatch](_storage_json_.jsonbackend.md#savematch)
 * [saveTeam](_storage_json_.jsonbackend.md#saveteam)
 
@@ -48,9 +50,9 @@ The directory structure is as follows:
 
 ### constructor
 
-\+ **new JSONBackend**(`path`: string): [JSONBackend](_storage_json_.jsonbackend.md)
+\+ **new JSONBackend**(`path`: string, ...`plans`: [JSONStoragePlan](../interfaces/_storage_json_.jsonstorageplan.md)\<[Match](_match_.match.md)>[]): [JSONBackend](_storage_json_.jsonbackend.md)
 
-*Defined in storage/json.ts:29*
+*Defined in storage/json.ts:36*
 
 constructor
 
@@ -59,16 +61,25 @@ constructor
 Name | Type |
 ------ | ------ |
 `path` | string |
+`...plans` | [JSONStoragePlan](../interfaces/_storage_json_.jsonstorageplan.md)\<[Match](_match_.match.md)>[] |
 
 **Returns:** [JSONBackend](_storage_json_.jsonbackend.md)
 
 ## Properties
 
+### plans
+
+•  **plans**: [JSONStoragePlan](../interfaces/_storage_json_.jsonstorageplan.md)\<[Match](_match_.match.md)>[]
+
+*Defined in storage/json.ts:36*
+
+___
+
 ### storageDir
 
 •  **storageDir**: string
 
-*Defined in storage/json.ts:29*
+*Defined in storage/json.ts:35*
 
 ## Methods
 
@@ -78,7 +89,7 @@ Name | Type |
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/json.ts:102*
+*Defined in storage/json.ts:115*
 
 deletes a match by number
 
@@ -98,7 +109,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/json.ts:110*
+*Defined in storage/json.ts:123*
 
 deletes all matches associated with a given team
 
@@ -118,7 +129,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/json.ts:95*
+*Defined in storage/json.ts:108*
 
 deletes a team
 
@@ -135,11 +146,11 @@ ___
 
 ### getMatchByNumber
 
-▸ **getMatchByNumber**(`number`: number): null \| [MatchTemplate](_storage_json_.matchtemplate.md)
+▸ **getMatchByNumber**(`number`: number): null \| [Match](_match_.match.md)
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/json.ts:70*
+*Defined in storage/json.ts:83*
 
 gets a match
 
@@ -149,7 +160,7 @@ Name | Type |
 ------ | ------ |
 `number` | number |
 
-**Returns:** null \| [MatchTemplate](_storage_json_.matchtemplate.md)
+**Returns:** null \| [Match](_match_.match.md)
 
 ___
 
@@ -159,7 +170,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/json.ts:80*
+*Defined in storage/json.ts:93*
 
 gets matches by team
 
@@ -179,7 +190,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/json.ts:57*
+*Defined in storage/json.ts:70*
 
 gets a team
 
@@ -193,13 +204,31 @@ Name | Type |
 
 ___
 
+### registerPlan
+
+▸ **registerPlan**(`plan`: [JSONStoragePlan](../interfaces/_storage_json_.jsonstorageplan.md)\<[Match](_match_.match.md)>): void
+
+*Defined in storage/json.ts:48*
+
+register a plan
+
+#### Parameters:
+
+Name | Type |
+------ | ------ |
+`plan` | [JSONStoragePlan](../interfaces/_storage_json_.jsonstorageplan.md)\<[Match](_match_.match.md)> |
+
+**Returns:** void
+
+___
+
 ### saveMatch
 
 ▸ **saveMatch**(`match`: [Match](_match_.match.md)): void
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/json.ts:52*
+*Defined in storage/json.ts:65*
 
 saves a match
 
@@ -219,7 +248,7 @@ ___
 
 *Implementation of [StorageBackend](../interfaces/_storage_backend_.storagebackend.md)*
 
-*Defined in storage/json.ts:40*
+*Defined in storage/json.ts:53*
 
 saves a team
 

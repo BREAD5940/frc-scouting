@@ -36,7 +36,7 @@ Includes Endgame bonus point stuff (which I don't fully understand).
 
 \+ **new ShieldGenerator**(`hangingBots`: [NumberOfBots](../modules/_games_infinite_recharge_.md#numberofbots), `floorBots`: [NumberOfBots](../modules/_games_infinite_recharge_.md#numberofbots), `isLevel`: boolean): [ShieldGenerator](_games_infinite_recharge_.shieldgenerator.md)
 
-*Defined in games/infinite-recharge.ts:111*
+*Defined in games/infinite-recharge.ts:112*
 
 construction owo
 
@@ -56,7 +56,7 @@ Name | Type |
 
 •  **floorBots**: [NumberOfBots](../modules/_games_infinite_recharge_.md#numberofbots)
 
-*Defined in games/infinite-recharge.ts:109*
+*Defined in games/infinite-recharge.ts:110*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 •  **hangingBots**: [NumberOfBots](../modules/_games_infinite_recharge_.md#numberofbots)
 
-*Defined in games/infinite-recharge.ts:108*
+*Defined in games/infinite-recharge.ts:109*
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 •  **isLevel**: boolean
 
-*Defined in games/infinite-recharge.ts:111*
+*Defined in games/infinite-recharge.ts:112*
 
 ## Accessors
 
@@ -82,7 +82,7 @@ ___
 
 *Overrides [GamePieceTracker](_match_.gamepiecetracker.md).[rankingPoints](_match_.gamepiecetracker.md#rankingpoints)*
 
-*Defined in games/infinite-recharge.ts:129*
+*Defined in games/infinite-recharge.ts:130*
 
 gets total ranking points
 
@@ -96,7 +96,7 @@ ___
 
 *Overrides [GamePieceTracker](_match_.gamepiecetracker.md).[totalPoints](_match_.gamepiecetracker.md#totalpoints)*
 
-*Defined in games/infinite-recharge.ts:124*
+*Defined in games/infinite-recharge.ts:125*
 
 total points
 

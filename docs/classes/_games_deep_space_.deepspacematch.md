@@ -53,7 +53,7 @@ Represents a Deep Space match
 
 *Overrides [Match](_match_.match.md).[constructor](_match_.match.md#constructor)*
 
-*Defined in games/deep-space.ts:104*
+*Defined in games/deep-space.ts:105*
 
 Creates a new DeepSpaceMatch
 
@@ -125,7 +125,7 @@ ___
 
 •  **crossesStartLine**: boolean
 
-*Defined in games/deep-space.ts:97*
+*Defined in games/deep-space.ts:98*
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 •  **finalHABLevel**: [HABLevel](../modules/_games_deep_space_.md#hablevel)
 
-*Defined in games/deep-space.ts:96*
+*Defined in games/deep-space.ts:97*
 
 ___
 
@@ -161,7 +161,7 @@ ___
 
 •  **helpsOthersHABClimb**: boolean
 
-*Defined in games/deep-space.ts:94*
+*Defined in games/deep-space.ts:95*
 
 ___
 
@@ -169,7 +169,7 @@ ___
 
 •  **initialHABLevel**: [HABLevel](../modules/_games_deep_space_.md#hablevel)
 
-*Defined in games/deep-space.ts:95*
+*Defined in games/deep-space.ts:96*
 
 ___
 
@@ -179,7 +179,7 @@ ___
 
 *Overrides [Match](_match_.match.md).[nonPieceTrackerRankingPoints](_match_.match.md#nonpiecetrackerrankingpoints)*
 
-*Defined in games/deep-space.ts:104*
+*Defined in games/deep-space.ts:105*
 
 ___
 
@@ -199,7 +199,7 @@ ___
 
 *Overrides [Match](_match_.match.md).[pieceTrackers](_match_.match.md#piecetrackers)*
 
-*Defined in games/deep-space.ts:92*
+*Defined in games/deep-space.ts:93*
 
 ___
 
@@ -217,7 +217,7 @@ ___
 
 •  **rankingPointRecord**: Record\<[RankingPoints](../modules/_games_deep_space_.md#rankingpoints), boolean>
 
-*Defined in games/deep-space.ts:102*
+*Defined in games/deep-space.ts:103*
 
 point:isGained
 
@@ -227,7 +227,7 @@ ___
 
 •  **rocketsAssembled**: Record\<[Rocket](../modules/_games_deep_space_.md#rocket), boolean>
 
-*Defined in games/deep-space.ts:100*
+*Defined in games/deep-space.ts:101*
 
 rocket:isAssembled
 

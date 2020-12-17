@@ -14,8 +14,6 @@ Represents an FRC match. Is extended by each FRC game.
 
   ↳ [InfiniteRechargeMatch](_games_infinite_recharge_.infiniterechargematch.md)
 
-  ↳ [MatchTemplate](_storage_json_.matchtemplate.md)
-
 ## Index
 
 ### Constructors

@@ -37,7 +37,7 @@ Tracks cargo pieces
 
 *Overrides [DeepSpaceTracker](_games_deep_space_.deepspacetracker.md).[constructor](_games_deep_space_.deepspacetracker.md#constructor)*
 
-*Defined in games/deep-space.ts:60*
+*Defined in games/deep-space.ts:61*
 
 Creates a new CargoTracker
 
@@ -57,7 +57,7 @@ Name | Type |
 
 *Inherited from [DeepSpaceTracker](_games_deep_space_.deepspacetracker.md).[baseValue](_games_deep_space_.deepspacetracker.md#basevalue)*
 
-*Defined in games/deep-space.ts:29*
+*Defined in games/deep-space.ts:30*
 
 doubled in auto
 
@@ -71,7 +71,7 @@ ___
 
 *Overrides [GamePieceTracker](_match_.gamepiecetracker.md).[rankingPoints](_match_.gamepiecetracker.md#rankingpoints)*
 
-*Defined in games/deep-space.ts:30*
+*Defined in games/deep-space.ts:31*
 
 ___
 
@@ -81,7 +81,7 @@ ___
 
 *Inherited from [DeepSpaceTracker](_games_deep_space_.deepspacetracker.md).[results](_games_deep_space_.deepspacetracker.md#results)*
 
-*Defined in games/deep-space.ts:27*
+*Defined in games/deep-space.ts:28*
 
 status:number of pieces
 
@@ -93,7 +93,7 @@ ___
 
 *Inherited from [DeepSpaceTracker](_games_deep_space_.deepspacetracker.md).[type](_games_deep_space_.deepspacetracker.md#type)*
 
-*Defined in games/deep-space.ts:25*
+*Defined in games/deep-space.ts:26*
 
 ## Accessors
 
@@ -105,7 +105,7 @@ ___
 
 *Overrides [GamePieceTracker](_match_.gamepiecetracker.md).[totalPoints](_match_.gamepiecetracker.md#totalpoints)*
 
-*Defined in games/deep-space.ts:47*
+*Defined in games/deep-space.ts:48*
 
 Returns the total number of points scored
 

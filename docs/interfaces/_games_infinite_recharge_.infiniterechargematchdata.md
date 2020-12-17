@@ -62,7 +62,7 @@ ___
 
 •  **colorWheel**: [ColorWheel](../classes/_games_infinite_recharge_.colorwheel.md)
 
-*Defined in games/infinite-recharge.ts:137*
+*Defined in games/infinite-recharge.ts:138*
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 •  **powerCells**: [PowerCellTracker](../classes/_games_infinite_recharge_.powercelltracker.md)
 
-*Defined in games/infinite-recharge.ts:136*
+*Defined in games/infinite-recharge.ts:137*
 
 ___
 
@@ -128,4 +128,4 @@ ___
 
 •  **shieldGenerator**: [ShieldGenerator](../classes/_games_infinite_recharge_.shieldgenerator.md)
 
-*Defined in games/infinite-recharge.ts:138*
+*Defined in games/infinite-recharge.ts:139*

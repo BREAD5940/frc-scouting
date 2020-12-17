@@ -9,6 +9,7 @@
 ### Classes
 
 * [ColorWheel](../classes/_games_infinite_recharge_.colorwheel.md)
+* [InfiniteRechargeJSON](../classes/_games_infinite_recharge_.infiniterechargejson.md)
 * [InfiniteRechargeMatch](../classes/_games_infinite_recharge_.infiniterechargematch.md)
 * [InfiniteRechargeSQL](../classes/_games_infinite_recharge_.infiniterechargesql.md)
 * [PowerCellTracker](../classes/_games_infinite_recharge_.powercelltracker.md)
@@ -34,7 +35,7 @@
 
 Ƭ  **ColorWheelPosition**: \"SPECIFIC\_COLOR\" \| \"ROTATED\_X\_TIMES\"
 
-*Defined in games/infinite-recharge.ts:16*
+*Defined in games/infinite-recharge.ts:17*
 
 ___
 
@@ -42,7 +43,7 @@ ___
 
 Ƭ  **NumberOfBots**: 0 \| 1 \| 2 \| 3
 
-*Defined in games/infinite-recharge.ts:18*
+*Defined in games/infinite-recharge.ts:19*
 
 ___
 
@@ -50,7 +51,7 @@ ___
 
 Ƭ  **PowerCellLocation**: \"LOW\" \| \"OUTER\" \| \"INNER\"
 
-*Defined in games/infinite-recharge.ts:15*
+*Defined in games/infinite-recharge.ts:16*
 
 ## Object literals
 
@@ -58,7 +59,7 @@ ___
 
 ▪ `Const` **POWER\_CELL\_BASE\_VALUES**: object
 
-*Defined in games/infinite-recharge.ts:20*
+*Defined in games/infinite-recharge.ts:21*
 
 #### Properties:
 

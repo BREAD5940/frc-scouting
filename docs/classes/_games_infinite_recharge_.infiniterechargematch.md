@@ -47,7 +47,7 @@ Represents an Infinite Recharge match
 
 *Overrides [Match](_match_.match.md).[constructor](_match_.match.md#constructor)*
 
-*Defined in games/infinite-recharge.ts:145*
+*Defined in games/infinite-recharge.ts:146*
 
 creates a new InfiniteRechargeMatch
 
@@ -161,7 +161,7 @@ ___
 
 *Overrides [Match](_match_.match.md).[pieceTrackers](_match_.match.md#piecetrackers)*
 
-*Defined in games/infinite-recharge.ts:145*
+*Defined in games/infinite-recharge.ts:146*
 
 ___
 

@@ -35,7 +35,7 @@ Tracks a Power Cell
 
 \+ **new PowerCellTracker**(`results`: PowerCellTracker[\"results\"], `colorWheelSpun`: boolean): [PowerCellTracker](_games_infinite_recharge_.powercelltracker.md)
 
-*Defined in games/infinite-recharge.ts:31*
+*Defined in games/infinite-recharge.ts:32*
 
 creates a new PowerCellTracker
 
@@ -54,7 +54,7 @@ Name | Type |
 
 •  **colorWheelSpun**: boolean
 
-*Defined in games/infinite-recharge.ts:31*
+*Defined in games/infinite-recharge.ts:32*
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 •  **results**: Record\<[PowerCellLocation](../modules/_games_infinite_recharge_.md#powercelllocation), { auto: number ; teleop: number  }>
 
-*Defined in games/infinite-recharge.ts:30*
+*Defined in games/infinite-recharge.ts:31*
 
 ## Accessors
 
@@ -72,7 +72,7 @@ ___
 
 *Overrides [GamePieceTracker](_match_.gamepiecetracker.md).[rankingPoints](_match_.gamepiecetracker.md#rankingpoints)*
 
-*Defined in games/infinite-recharge.ts:58*
+*Defined in games/infinite-recharge.ts:59*
 
 rp
 
@@ -84,7 +84,7 @@ ___
 
 • get **totalCells**(): number
 
-*Defined in games/infinite-recharge.ts:53*
+*Defined in games/infinite-recharge.ts:54*
 
 the number of power cells scored
 
@@ -98,7 +98,7 @@ ___
 
 *Overrides [GamePieceTracker](_match_.gamepiecetracker.md).[totalPoints](_match_.gamepiecetracker.md#totalpoints)*
 
-*Defined in games/infinite-recharge.ts:41*
+*Defined in games/infinite-recharge.ts:42*
 
 the total points scored
 

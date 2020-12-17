@@ -67,7 +67,7 @@ ___
 
 •  **cargo**: [CargoTracker](../classes/_games_deep_space_.cargotracker.md)
 
-*Defined in games/deep-space.ts:81*
+*Defined in games/deep-space.ts:82*
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 •  **crossesStartLine**: boolean
 
-*Defined in games/deep-space.ts:79*
+*Defined in games/deep-space.ts:80*
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 •  **finalHABLevel**: [HABLevel](../modules/_games_deep_space_.md#hablevel)
 
-*Defined in games/deep-space.ts:78*
+*Defined in games/deep-space.ts:79*
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 •  **hatches**: [HatchPanelTracker](../classes/_games_deep_space_.hatchpaneltracker.md)
 
-*Defined in games/deep-space.ts:82*
+*Defined in games/deep-space.ts:83*
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 •  **helpsOthersHABClimb**: boolean
 
-*Defined in games/deep-space.ts:76*
+*Defined in games/deep-space.ts:77*
 
 ___
 
@@ -137,7 +137,7 @@ ___
 
 •  **initialHABLevel**: [HABLevel](../modules/_games_deep_space_.md#hablevel)
 
-*Defined in games/deep-space.ts:77*
+*Defined in games/deep-space.ts:78*
 
 ___
 
@@ -165,7 +165,7 @@ ___
 
 •  **rankingPointRecord**: Record\<[RankingPoints](../modules/_games_deep_space_.md#rankingpoints), boolean>
 
-*Defined in games/deep-space.ts:87*
+*Defined in games/deep-space.ts:88*
 
 point:isGained
 
@@ -175,6 +175,6 @@ ___
 
 •  **rocketsAssembled**: Record\<[Rocket](../modules/_games_deep_space_.md#rocket), boolean>
 
-*Defined in games/deep-space.ts:85*
+*Defined in games/deep-space.ts:86*
 
 rocket:isAssembled

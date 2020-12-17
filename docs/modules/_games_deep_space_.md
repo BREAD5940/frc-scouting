@@ -9,6 +9,7 @@
 ### Classes
 
 * [CargoTracker](../classes/_games_deep_space_.cargotracker.md)
+* [DeepSpaceJSON](../classes/_games_deep_space_.deepspacejson.md)
 * [DeepSpaceMatch](../classes/_games_deep_space_.deepspacematch.md)
 * [DeepSpaceSQL](../classes/_games_deep_space_.deepspacesql.md)
 * [DeepSpaceTracker](../classes/_games_deep_space_.deepspacetracker.md)
@@ -32,7 +33,7 @@
 
 Ƭ  **GamePiece**: \"HATCH\_PANEL\" \| \"CARGO\"
 
-*Defined in games/deep-space.ts:18*
+*Defined in games/deep-space.ts:19*
 
 ___
 
@@ -40,7 +41,7 @@ ___
 
 Ƭ  **GamePieceStatus**: \"DROPPED\" \| \"SHIP\" \| \"ROCKET\"
 
-*Defined in games/deep-space.ts:14*
+*Defined in games/deep-space.ts:15*
 
 ___
 
@@ -48,7 +49,7 @@ ___
 
 Ƭ  **HABLevel**: 0 \| 1 \| 2 \| 3
 
-*Defined in games/deep-space.ts:15*
+*Defined in games/deep-space.ts:16*
 
 ___
 
@@ -56,7 +57,7 @@ ___
 
 Ƭ  **RankingPoints**: \"HAB\" \| \"ROCKET\"
 
-*Defined in games/deep-space.ts:17*
+*Defined in games/deep-space.ts:18*
 
 ___
 
@@ -64,4 +65,4 @@ ___
 
 Ƭ  **Rocket**: \"RIGHT\" \| \"LEFT\"
 
-*Defined in games/deep-space.ts:16*
+*Defined in games/deep-space.ts:17*
