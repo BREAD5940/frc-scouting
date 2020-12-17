@@ -14,9 +14,13 @@ import {rmSync} from 'fs';
 import type {StorageBackend} from './backend';
 import {Team} from '../team';
 import {SQLBackend} from './sqlite';
-import {DeepSpaceMatch, DeepSpaceSQL} from '../games/deep-space';
+import {CargoTracker, DeepSpaceMatch, DeepSpaceSQL, HatchPanelTracker} from '../games/deep-space';
 import {JSONBackend} from './json';
-import {InfiniteRechargeMatch, InfiniteRechargeSQL} from '../games/infinite-recharge';
+import {
+    ColorWheel, PowerCellTracker, ShieldGenerator,
+    InfiniteRechargeMatch,
+    InfiniteRechargeSQL,
+} from '../games/infinite-recharge';
 
 let curMatchNum = 0;
 
@@ -47,7 +51,7 @@ const backends: StorageBackend[] = [sql];
 if (platform() !== 'win32') {
     // Recursively removing directories doesn't work correctly on Windows
     // Ask Annika about her experiences with this! She hates Node's odd behavior.
-    const path = `${__dirname}/test/`;
+    const path = `${__dirname}/test`;
     rmSync(path, {recursive: true, force: true});
     backends.push(new JSONBackend(path));
 }
@@ -123,5 +127,61 @@ describe.each(backends)('storage', (backend) => {
         backend.deleteMatchByNumber(matchA.number);
         expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
         expect(backend.getMatchesByTeam(matchA.teamNumber)).not.toContainEqual(matchA);
+    });
+
+    // Tests for game-specific stuff
+    it('should properly store Deep Space matches', () => {
+        expect(backend.getMatchByNumber(15)).toEqual(null);
+
+        const match = new DeepSpaceMatch(5940, 'test', 15, 'RED', {
+            helpsOthersHABClimb: true,
+            initialHABLevel: 2,
+            finalHABLevel: 3,
+            crossesStartLine: true,
+            cargo: new CargoTracker({
+                DROPPED: {teleop: 2, auto: 1},
+                ROCKET: {teleop: 1, auto: 2},
+                SHIP: {auto: 3, teleop: 0},
+            }),
+            hatches: new HatchPanelTracker({
+                DROPPED: {teleop: 3, auto: 0},
+                ROCKET: {teleop: 5, auto: 32},
+                SHIP: {auto: 2, teleop: 1},
+            }),
+            rankingPointRecord: {ROCKET: true, HAB: true},
+            bonusPoints: 15,
+            rocketsAssembled: {LEFT: true, RIGHT: false},
+        });
+
+        backend.saveMatch(match);
+
+        const loaded = backend.getMatchByNumber(match.number);
+
+        expect(loaded instanceof DeepSpaceMatch).toEqual(match instanceof DeepSpaceMatch);
+
+        expect(loaded).toEqual(match);
+        expect(loaded?.points).toEqual(match.points);
+    });
+
+    it('should properly store Infinite Recharge matches', () => {
+        expect(backend.getMatchByNumber(16)).toEqual(null);
+
+        const match = new InfiniteRechargeMatch(5940, 'test', 16, 'RED', {
+            colorWheel: new ColorWheel('ROTATED_X_TIMES'),
+            powerCells: new PowerCellTracker({
+                LOW: {auto: 3, teleop: 1},
+                INNER: {auto: 2, teleop: 1},
+                OUTER: {auto: 1, teleop: 2},
+            }, true),
+            shieldGenerator: new ShieldGenerator(1, 2, true),
+        });
+
+        backend.saveMatch(match);
+
+        const loaded = backend.getMatchByNumber(match.number);
+
+        expect(loaded instanceof InfiniteRechargeMatch).toEqual(match instanceof InfiniteRechargeMatch);
+        expect(loaded).toEqual(match);
+        expect(loaded?.points).toEqual(match.points);
     });
 });

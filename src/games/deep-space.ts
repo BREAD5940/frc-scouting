@@ -241,9 +241,9 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
                 nonPieceTrackerRankingPoints: data.ranking_points,
                 pointsFromFouls: data.foul_points,
                 bonusPoints: data.bonus_points,
-                helpsOthersHABClimb: data.helps_hab_climb,
+                helpsOthersHABClimb: !!data.helps_hab_climb,
                 finalHABLevel: data.end_hab_level,
-                crossesStartLine: data.crossesStartLine,
+                crossesStartLine: !!data.crosses_start_line,
                 rocketsAssembled: {
                     RIGHT: !!data.right_rocket_assembled,
                     LEFT: !!data.left_rocket_assembled,
