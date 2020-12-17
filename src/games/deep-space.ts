@@ -4,12 +4,13 @@
  * @author Annika
  */
 
-import type {Alliance, MatchData} from '../match';
-import type {Transaction} from 'better-sqlite3';
-import {GamePieceTracker, Match} from '../match';
-import {SQLStoragePlan} from '../storage/sqlite';
 import {readFileSync} from 'fs';
+import type {Transaction} from 'better-sqlite3';
+
+import {GamePieceTracker, Match, Alliance, MatchData} from '../match';
 import {Team} from '../team';
+import {SQLStoragePlan} from '../storage/sqlite';
+import {JSONStoragePlan} from '../storage/json';
 
 type GamePieceStatus = 'DROPPED' | 'SHIP' | 'ROCKET';
 type HABLevel = 0 | 1 | 2 | 3;
@@ -278,5 +279,37 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
         for (const match of team.matches) {
             this.matchInsertionTransaction(match, id);
         }
+    }
+}
+
+/** Stores Deep Space matches in JSON */
+export class DeepSpaceJSON implements JSONStoragePlan<DeepSpaceMatch> {
+    /** Checks if this storage plan applies */
+    applies(data: any) {
+        return data.pieceTrackers?.[0]?.baseValue === 3 && [
+            data.helpsOthersHABClimb, data.initialHABLevel, data.finalHABLevel,
+        ].every((thing) => thing !== undefined);
+    }
+
+    /** JSON => Match */
+    dataToMatch(data: any) {
+        const cargo = data.pieceTrackers?.[0]?.results;
+        const hatches = data.pieceTrackers?.[1]?.results;
+
+        if (!cargo || !hatches) throw new Error(`Bad JSON data: ${data}`);
+
+        return new DeepSpaceMatch(data.teamNumber, data.type, data.number, data.alliance, {
+            cargo: new CargoTracker({
+                DROPPED: {auto: cargo.DROPPED.auto as number, teleop: cargo.DROPPED.teleop as number},
+                SHIP: {auto: cargo.SHIP.auto as number, teleop: cargo.SHIP.teleop as number},
+                ROCKET: {auto: cargo.ROCKET.auto as number, teleop: cargo.ROCKET.teleop as number},
+            }),
+            hatches: new HatchPanelTracker({
+                DROPPED: {auto: hatches.DROPPED.auto as number, teleop: hatches.DROPPED.teleop as number},
+                SHIP: {auto: hatches.SHIP.auto as number, teleop: hatches.SHIP.teleop as number},
+                ROCKET: {auto: hatches.ROCKET.auto as number, teleop: hatches.ROCKET.teleop as number},
+            }),
+            ...data,
+        });
     }
 }

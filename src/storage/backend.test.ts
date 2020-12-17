@@ -14,12 +14,13 @@ import {rmSync} from 'fs';
 import type {StorageBackend} from './backend';
 import {Team} from '../team';
 import {SQLBackend} from './sqlite';
-import {CargoTracker, DeepSpaceMatch, DeepSpaceSQL, HatchPanelTracker} from '../games/deep-space';
+import {CargoTracker, DeepSpaceJSON, DeepSpaceMatch, DeepSpaceSQL, HatchPanelTracker} from '../games/deep-space';
 import {JSONBackend} from './json';
 import {
     ColorWheel, PowerCellTracker, ShieldGenerator,
     InfiniteRechargeMatch,
     InfiniteRechargeSQL,
+    InfiniteRechargeJSON,
 } from '../games/infinite-recharge';
 
 let curMatchNum = 0;
@@ -53,7 +54,7 @@ if (platform() !== 'win32') {
     // Ask Annika about her experiences with this! She hates Node's odd behavior.
     const path = `${__dirname}/test`;
     rmSync(path, {recursive: true, force: true});
-    backends.push(new JSONBackend(path));
+    backends.push(new JSONBackend(path, new InfiniteRechargeJSON(), new DeepSpaceJSON()));
 }
 
 describe.each(backends)('storage', (backend) => {

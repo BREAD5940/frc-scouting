@@ -10,8 +10,14 @@ import {Match} from '../match';
 import {Team} from '../team';
 import {StorageBackend} from './backend';
 
-/** A template match to be hackily overloaded with JSON data */
-class MatchTemplate extends Match {};
+
+/**
+ * Plans out how to store a match of a given game as JSON.
+ */
+export interface JSONStoragePlan<T extends Match> {
+    applies(data: any): boolean;
+    dataToMatch(data: any): T;
+}
 
 /**
  * The JSON storage backend.
@@ -27,13 +33,20 @@ class MatchTemplate extends Match {};
  */
 export class JSONBackend implements StorageBackend {
     storageDir: string;
+    plans: JSONStoragePlan<Match>[];
 
     /** constructor */
-    constructor(path: string) {
+    constructor(path: string, ...plans: JSONStoragePlan<Match>[]) {
         this.storageDir = resolvePath(path);
+        this.plans = plans;
 
         fs.mkdirSync(resolvePath(this.storageDir, 'matches/'), {recursive: true});
         fs.mkdirSync(resolvePath(this.storageDir, 'teams/'), {recursive: true});
+    }
+
+    /** register a plan */
+    registerPlan(plan: JSONStoragePlan<Match>) {
+        this.plans.push(plan);
     }
 
     /** saves a team */
@@ -118,15 +131,11 @@ export class JSONBackend implements StorageBackend {
     /** converts a path to a match */
     private pathToMatch(path: string) {
         const data = JSON.parse(fs.readFileSync(path).toString());
-        // TODO: figure out a less hacky way to do this
-        const match = new MatchTemplate(data.teamNumber, data.type, data.number, data.alliance, [], {});
-        for (const key in data) {
-            if (Object.prototype.hasOwnProperty.call(data, key)) {
-                // @ts-ignore
-                match[key] = data[key];
-            }
-        }
-        return match;
+
+        const plan = this.plans.find((plan) => plan.applies(data));
+        if (!plan) throw new Error(`No JSON storage plan found to handle the path ${path}.`);
+
+        return plan.dataToMatch(data);
     }
 
     /** saves a match, with optional associated team number */
@@ -139,11 +148,17 @@ export class JSONBackend implements StorageBackend {
                 if (err.code !== 'ENOENT') throw err;
             }
         }
+
+        const data = JSON.stringify(match);
+        if (!this.plans.some((plan) => plan.applies(match))) {
+            throw new Error(`No JSON storage plan found to handle ${data}`);
+        }
+
         const path = resolvePath(
             this.storageDir,
             `matches`,
             `match${match.number}${associatedTeamNumber ? `-team${associatedTeamNumber}` : ``}.json`,
         );
-        fs.writeFileSync(path, JSON.stringify(match));
+        fs.writeFileSync(path, data);
     }
 }

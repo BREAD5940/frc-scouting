@@ -9,6 +9,7 @@ import type {Transaction} from 'better-sqlite3';
 import {readFileSync} from 'fs';
 
 import {Alliance, GamePieceTracker, Match, MatchData} from '../match';
+import {JSONStoragePlan} from '../storage/json';
 import {SQLStoragePlan} from '../storage/sqlite';
 import {Team} from '../team';
 
@@ -318,5 +319,40 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
         return this.getStatement(`INSERT INTO shield_generators (hanging_bots, floor_bots, is_level) VALUES (?, ?, ?)`)
             .run(shield.hangingBots, shield.floorBots, Number(shield.isLevel))
             .lastInsertRowid;
+    }
+}
+
+/** Stores Infinite Rhttps://github.com/TheAnnalyst/scouting-frontendecharge matches as JSON */
+export class InfiniteRechargeJSON implements JSONStoragePlan<InfiniteRechargeMatch> {
+    /** Checks if it applies */
+    applies(data: any) {
+        return data.pieceTrackers && [
+            data.pieceTrackers[0]?.colorWheelSpun,
+            data.pieceTrackers[1]?.state,
+            data.pieceTrackers[2]?.hangingBots,
+        ].every((thing) => thing !== undefined);
+    }
+
+    /** JSON => match */
+    dataToMatch(data: any) {
+        const powerCells = data.pieceTrackers[0];
+        const colorWheel = data.pieceTrackers[1];
+        const shieldGenerator = data.pieceTrackers[2];
+        if (!powerCells || !colorWheel || !shieldGenerator) throw new Error(`Bad JSON data: ${data}`);
+
+        return new InfiniteRechargeMatch(data.teamNumber, data.type, data.number, data.alliance, {
+            powerCells: new PowerCellTracker({
+                LOW: {auto: powerCells.results.LOW.auto, teleop: powerCells.results.LOW.teleop},
+                INNER: {auto: powerCells.results.INNER.auto, teleop: powerCells.results.INNER.teleop},
+                OUTER: {auto: powerCells.results.OUTER.auto, teleop: powerCells.results.OUTER.teleop},
+            }, powerCells.colorWheelSpun),
+            colorWheel: new ColorWheel(colorWheel.state),
+            shieldGenerator: new ShieldGenerator(
+                shieldGenerator.hangingBots,
+                shieldGenerator.floorBots,
+                shieldGenerator.isLevel,
+            ),
+            ...data,
+        });
     }
 }
