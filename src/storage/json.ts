@@ -145,7 +145,7 @@ export class JSONBackend implements StorageBackend {
             // Remove non-associated
             try {
                 fs.unlinkSync(resolvePath(this.storageDir, 'matches', `match${match.number}.json`));
-            } catch (err) {
+            } catch (err: any) {
                 if (err.code !== 'ENOENT') throw err;
             }
         }
