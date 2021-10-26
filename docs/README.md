@@ -1,6 +1,4 @@
-**[@theannalyst/frc-scouting](README.md)**
-
-> [Globals](globals.md)
+frc-scouting / [Exports](modules.md)
 
 # frc-scouting
 ![tests](https://github.com/TheAnnalyst/frc-scouting/workflows/tests/badge.svg?branch=main) [![coverage](https://codecov.io/gh/TheAnnalyst/frc-scouting/branch/main/graph/badge.svg?token=AL02Q8BYwp)](https://codecov.io/gh/TheAnnalyst/frc-scouting) [![npm version](https://badge.fury.io/js/frc-scouting.svg)](https://badge.fury.io/js/frc-scouting)
