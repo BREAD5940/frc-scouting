@@ -73,20 +73,21 @@ export class JSONBackend implements StorageBackend {
         for (const file of fs.readdirSync(path)) {
             if (file === target) {
                 const data = JSON.parse(fs.readFileSync(resolvePath(path, file)).toString());
-                return new Team<Match>(data.number, ...data.matches.map((num: number) => this.getMatchByNumber(num)));
+                return new Team<Match>(data.number, ...data.matches.map((num: number) => this.getMatchesByNumber(num)));
             }
         }
         return null;
     }
 
-    /** gets a match */
-    getMatchByNumber(number: number) {
+    /** gets matches */
+    getMatchesByNumber(number: number) {
         const prefix = `match${number}`;
         const path = resolvePath(this.storageDir, 'matches/');
+        const matches: Match[] = [];
         for (const file of fs.readdirSync(path)) {
-            if (file.startsWith(prefix)) return this.pathToMatch(resolvePath(path, file));
+            if (file.startsWith(prefix)) matches.push(this.pathToMatch(resolvePath(path, file)));
         }
-        return null;
+        return matches;
     }
 
     /** gets matches by team  */
@@ -160,5 +161,11 @@ export class JSONBackend implements StorageBackend {
             `match${match.number}${associatedTeamNumber ? `-team${associatedTeamNumber}` : ``}.json`,
         );
         fs.writeFileSync(path, data);
+    }
+
+
+    /** String representation */
+    toString() {
+        return 'JSON storage backend';
     }
 }

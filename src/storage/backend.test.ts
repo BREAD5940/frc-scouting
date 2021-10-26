@@ -9,7 +9,7 @@
  */
 
 import {platform} from 'os';
-import {rmSync} from 'fs';
+import * as fs from 'fs';
 
 import type {StorageBackend} from './backend';
 import {Team} from '../team';
@@ -41,6 +41,19 @@ function makeIRMatch(points: number, number?: number) {
     return match;
 }
 
+/** recursively removes a directory */
+async function deleteDirectory(path: string) {
+    await new Promise<void>((resolve, reject) => {
+        fs.rmdir(path, {recursive: true}, (err: NodeJS.ErrnoException | null) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
 const matchGenerators = [makeDSMatch, makeIRMatch];
 
 const sql = new SQLBackend();
@@ -50,14 +63,16 @@ sql.registerPlan(new InfiniteRechargeSQL(':memory:'));
 const backends: StorageBackend[] = [sql];
 
 if (platform() !== 'win32') {
-    // Recursively removing directories doesn't work correctly on Windows
-    // Ask Annika about her experiences with this! She hates Node's odd behavior.
-    const path = `${__dirname}/test`;
-    rmSync(path, {recursive: true, force: true});
-    backends.push(new JSONBackend(path, new InfiniteRechargeJSON(), new DeepSpaceJSON()));
+    beforeAll(async () => {
+        // Recursively removing directories doesn't work correctly on Windows
+        // Ask Annika about her experiences with this! She hates Node's odd behavior.
+        const path = `${__dirname}/test`;
+        await deleteDirectory(path);
+        backends.push(new JSONBackend(path, new InfiniteRechargeJSON(), new DeepSpaceJSON()));
+    });
 }
 
-describe.each(backends)('storage', (backend) => {
+describe.each(backends)('%s', (backend) => {
     it.each(matchGenerators)('should store teams', (makeMatch) => {
         expect(backend.getTeam(5940)).toEqual(null);
 
@@ -69,8 +84,8 @@ describe.each(backends)('storage', (backend) => {
 
         expect(backend.getTeam(5940)).toEqual(bread);
         // Storing a team should store all its matches
-        expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
-        expect(backend.getMatchByNumber(matchB.number)).toEqual(matchB);
+        expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
+        expect(backend.getMatchesByNumber(matchB.number)).toEqual([matchB]);
 
         expect(backend.getMatchesByTeam(5940)).toContainEqual(matchA);
         expect(backend.getMatchesByTeam(5940)).toContainEqual(matchB);
@@ -80,17 +95,17 @@ describe.each(backends)('storage', (backend) => {
 
         backend.deleteTeam(5940);
         expect(backend.getTeam(5940)).toEqual(null);
-        expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
+        expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
 
         backend.saveTeam(bread);
         backend.deleteTeam(bread, true);
         expect(backend.getTeam(5940)).toEqual(null);
-        expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
+        expect(backend.getMatchesByNumber(matchA.number)).toEqual([]);
     });
 
     it.each(matchGenerators)('should store matches', (makeMatch) => {
-        expect(backend.getMatchByNumber(10)).toEqual(null);
-        expect(backend.getMatchByNumber(11)).toEqual(null);
+        expect(backend.getMatchesByNumber(10)).toEqual([]);
+        expect(backend.getMatchesByNumber(11)).toEqual([]);
 
         const matchA = makeMatch(0, 10);
         const matchB = makeMatch(10, 11);
@@ -98,8 +113,8 @@ describe.each(backends)('storage', (backend) => {
         backend.saveMatch(matchA);
         backend.saveMatch(matchB);
 
-        expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
-        expect(backend.getMatchByNumber(matchB.number)).toEqual(matchB);
+        expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
+        expect(backend.getMatchesByNumber(matchB.number)).toEqual([matchB]);
 
         // Matches should only be fetched here if they're associated with a team
         // This is weird behavior - see src/storage/backend.ts:17
@@ -118,21 +133,21 @@ describe.each(backends)('storage', (backend) => {
         matches = backend.getMatchesByTeam(matchA.teamNumber);
         expect(matches).not.toContainEqual(matchA);
         expect(matches).not.toContainEqual(matchB);
-        expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
-        expect(backend.getMatchByNumber(matchB.number)).toEqual(null);
+        expect(backend.getMatchesByNumber(matchA.number)).toEqual([]);
+        expect(backend.getMatchesByNumber(matchB.number)).toEqual([]);
 
         backend.saveMatch(matchA);
-        expect(backend.getMatchByNumber(matchA.number)).toEqual(matchA);
-        expect(backend.getMatchByNumber(matchB.number)).toEqual(null);
+        expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
+        expect(backend.getMatchesByNumber(matchB.number)).toEqual([]);
 
         backend.deleteMatchByNumber(matchA.number);
-        expect(backend.getMatchByNumber(matchA.number)).toEqual(null);
+        expect(backend.getMatchesByNumber(matchA.number)).toEqual([]);
         expect(backend.getMatchesByTeam(matchA.teamNumber)).not.toContainEqual(matchA);
     });
 
     // Tests for game-specific stuff
     it('should properly store Deep Space matches', () => {
-        expect(backend.getMatchByNumber(15)).toEqual(null);
+        expect(backend.getMatchesByNumber(15)).toEqual([]);
 
         const match = new DeepSpaceMatch(5940, 'test', 15, 'RED', {
             helpsOthersHABClimb: true,
@@ -156,7 +171,7 @@ describe.each(backends)('storage', (backend) => {
 
         backend.saveMatch(match);
 
-        const loaded = backend.getMatchByNumber(match.number);
+        const loaded = backend.getMatchesByNumber(match.number).pop();
 
         expect(loaded instanceof DeepSpaceMatch).toEqual(match instanceof DeepSpaceMatch);
 
@@ -165,7 +180,7 @@ describe.each(backends)('storage', (backend) => {
     });
 
     it('should properly store Infinite Recharge matches', () => {
-        expect(backend.getMatchByNumber(16)).toEqual(null);
+        expect(backend.getMatchesByNumber(16)).toEqual([]);
 
         const match = new InfiniteRechargeMatch(5940, 'test', 16, 'RED', {
             colorWheel: new ColorWheel('ROTATED_X_TIMES'),
@@ -179,10 +194,22 @@ describe.each(backends)('storage', (backend) => {
 
         backend.saveMatch(match);
 
-        const loaded = backend.getMatchByNumber(match.number);
+        const loaded = backend.getMatchesByNumber(match.number).pop();
 
         expect(loaded instanceof InfiniteRechargeMatch).toEqual(match instanceof InfiniteRechargeMatch);
         expect(loaded).toEqual(match);
         expect(loaded?.points).toEqual(match.points);
+    });
+
+    it('should support storing multiple Match objects with the same match number', () => {
+        expect(backend.getMatchesByNumber(17)).toEqual([]);
+
+        const matchOnePoint = makeIRMatch(1, 17);
+        const matchTwentyPoints = makeIRMatch(20, 17);
+
+        backend.saveMatch(matchOnePoint);
+        backend.saveMatch(matchTwentyPoints);
+
+        expect(backend.getMatchesByNumber(17)).toEqual([matchOnePoint, matchTwentyPoints]);
     });
 });

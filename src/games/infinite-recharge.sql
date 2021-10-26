@@ -32,9 +32,7 @@ CREATE TABLE IF NOT EXISTS matches (
     FOREIGN KEY (power_cell_tracker_id) REFERENCES power_cell_trackers (id),
     FOREIGN KEY (color_wheel_id) REFERENCES color_wheels (id),
     FOREIGN KEY (shield_generator_id) REFERENCES shield_generators (id),
-    FOREIGN KEY (associated_team) REFERENCES teams (id) ON DELETE SET NULL,
-
-    CONSTRAINT unique_number UNIQUE (match_number)
+    FOREIGN KEY (associated_team) REFERENCES teams (id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS power_cell_trackers (

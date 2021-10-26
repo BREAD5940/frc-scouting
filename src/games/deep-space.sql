@@ -42,9 +42,7 @@ CREATE TABLE IF NOT EXISTS matches (
 
     FOREIGN KEY (cargo_tracker_id) REFERENCES cargo_trackers (id),
     FOREIGN KEY (hatch_tracker_id) REFERENCES hatch_trackers (id),
-    FOREIGN KEY (associated_team) REFERENCES teams (id) ON DELETE SET NULL,
-
-    CONSTRAINT unique_number UNIQUE (match_number)
+    FOREIGN KEY (associated_team) REFERENCES teams (id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS cargo_trackers (

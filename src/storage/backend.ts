@@ -13,7 +13,8 @@ export interface StorageBackend {
     deleteTeam(team: Team<Match> | number, deleteMatches?: boolean): void;
 
     saveMatch(match: Match): void;
-    getMatchByNumber(number: number): Match | null;
+    /** Get all match data for a given match number */
+    getMatchesByNumber(number: number): Match[];
     /**
      * Gets matches ASSOCIATED with the team (i.e. as part of the team, not just any match scouted for that team)
      * I don't know what the desired behavior is here, and if we deprecate JSON crap it'd be easier to make it do

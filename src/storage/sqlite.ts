@@ -154,17 +154,13 @@ export class SQLBackend implements StorageBackend {
         );
     }
 
-    /** gets a match */
-    getMatchByNumber(number: number) {
+    /** gets matches */
+    getMatchesByNumber(number: number) {
+        const matches = [];
         for (const plan of this.plans) {
-            const matches = plan.getMatches([{column: 'match_number', value: number}]);
-            if (matches.length > 1) {
-                // wtf
-                throw new Error(`Somehow there are multiple matches in one storage plan with that number.`);
-            }
-            if (matches[0]) return matches[0];
+            matches.push(...plan.getMatches([{column: 'match_number', value: number}]));
         }
-        return null;
+        return matches;
     }
 
     /** gets matches */
@@ -191,5 +187,10 @@ export class SQLBackend implements StorageBackend {
         for (const plan of this.plans) {
             plan.deleteMatches([{column: 'team_number', value}]);
         }
+    }
+
+    /** String representation */
+    toString() {
+        return 'SQL storage backend';
     }
 }
