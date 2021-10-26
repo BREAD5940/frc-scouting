@@ -67,7 +67,11 @@ if (platform() !== 'win32') {
         // Recursively removing directories doesn't work correctly on Windows
         // Ask Annika about her experiences with this! She hates Node's odd behavior.
         const path = `${__dirname}/test`;
-        await deleteDirectory(path);
+        try {
+            await deleteDirectory(path);
+        } catch (e) {
+            // ignore (directory probably doesn't exist)
+        }
         backends.push(new JSONBackend(path, new InfiniteRechargeJSON(), new DeepSpaceJSON()));
     });
 }
