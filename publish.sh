@@ -14,7 +14,7 @@ echo "Publishing to NPM..."
 npm publish
 echo "Publishing to GitHub Packages..."
 cp package.json package.json.old
-sed -i '' 's/"name": "frc-scouting"/"name": "@theannalyst\/frc-scouting"/g' package.json
+sed -i '' 's/"name": "frc-scouting"/"name": "@bread5940\/frc-scouting"/g' package.json
 cat package.json
 npm publish --registry=https://npm.pkg.github.com
 echo "Building documentation..."
