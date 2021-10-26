@@ -16,6 +16,12 @@ export interface StorageBackend {
     /** Get all match data for a given match number */
     getMatchesByNumber(number: number): Match[];
     /**
+     * Get only one match from a given match number.
+     *
+     * @deprecated Use getMatchesByNumber instead.
+     */
+    getMatchByNumber(number: number): Match | null;
+    /**
      * Gets matches ASSOCIATED with the team (i.e. as part of the team, not just any match scouted for that team)
      * I don't know what the desired behavior is here, and if we deprecate JSON crap it'd be easier to make it do
      * what we actually want.

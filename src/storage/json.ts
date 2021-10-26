@@ -90,6 +90,11 @@ export class JSONBackend implements StorageBackend {
         return matches;
     }
 
+    /** gets one match */
+    getMatchByNumber(number: number) {
+        return this.getMatchesByNumber(number).pop() || null;
+    }
+
     /** gets matches by team  */
     getMatchesByTeam(team: Team<any> | number) {
         const number = typeof team === 'number' ? team : team.number;

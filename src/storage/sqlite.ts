@@ -163,6 +163,11 @@ export class SQLBackend implements StorageBackend {
         return matches;
     }
 
+    /** gets one match */
+    getMatchByNumber(number: number) {
+        return this.getMatchesByNumber(number).pop() || null;
+    }
+
     /** gets matches */
     getMatchesByTeam(team: Team<Match> | number) {
         const value = typeof team === 'number' ? team : team.number;
