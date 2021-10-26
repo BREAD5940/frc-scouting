@@ -37,7 +37,7 @@ Represents the color wheel in Infinite Recharge
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `state` | ``null`` \| ``"SPECIFIC_COLOR"`` \| ``"ROTATED_X_TIMES"`` | - |
+| `state` | ``null`` \| `ColorWheelPosition` | - |
 | `cells?` | [`PowerCellTracker`](InfiniteRecharge.PowerCellTracker.md) | PowerCellTracker for validation |
 
 #### Overrides
@@ -66,7 +66,7 @@ ___
 
 ### state
 
-• **state**: ``null`` \| ``"SPECIFIC_COLOR"`` \| ``"ROTATED_X_TIMES"``
+• **state**: ``null`` \| `ColorWheelPosition`
 
 null = no special state
 

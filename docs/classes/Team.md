@@ -132,7 +132,7 @@ Gets the median of any match property
 
 | Name | Type |
 | :------ | :------ |
-| `property` | ``"number"`` \| ``"teamNumber"`` \| ``"type"`` \| ``"alliance"`` \| ``"pieceTrackers"`` \| ``"fouls"`` \| ``"cards"`` \| ``"emergencyStopped"`` \| ``"borked"`` \| ``"nonPieceTrackerRankingPoints"`` \| ``"pointsFromFouls"`` \| ``"bonusPoints"`` \| ``"crossedStartLineInAuto"`` \| ``"points"`` \| ``"rankingPoints"`` |
+| `property` | keyof [`Match`](Match.md) |
 
 #### Returns
 

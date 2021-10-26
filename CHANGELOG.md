@@ -1,5 +1,10 @@
 # Changelog
 
+### v0.2.0
+- Support TypeScript 4.4 and Node.js versions 16.x and 17.x
+- Add `StorageBackend#getMatchesByNumber` and support associating multiple `Match` objects with one match
+  - SQLite makes it difficult to drop constraints, so you'll need to migrate your data if you used the SQLite backend and want to store multiple scouted teams per match
+- Deprecate `StorageBackend#getMatchByNumber`
 ### v0.1.1
 - Fixed bugs with the JSON storage backend
 

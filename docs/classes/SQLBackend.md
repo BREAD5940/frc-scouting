@@ -23,6 +23,7 @@ Stores teams and matches from various games in SQL.
 - [deleteMatchByNumber](SQLBackend.md#deletematchbynumber)
 - [deleteMatchesByTeam](SQLBackend.md#deletematchesbyteam)
 - [deleteTeam](SQLBackend.md#deleteteam)
+- [getMatchByNumber](SQLBackend.md#getmatchbynumber)
 - [getMatchesByNumber](SQLBackend.md#getmatchesbynumber)
 - [getMatchesByTeam](SQLBackend.md#getmatchesbyteam)
 - [getTeam](SQLBackend.md#getteam)
@@ -83,7 +84,7 @@ deletes a match
 
 #### Defined in
 
-storage/sqlite.ts:178
+storage/sqlite.ts:183
 
 ___
 
@@ -109,7 +110,7 @@ deletes matches
 
 #### Defined in
 
-storage/sqlite.ts:185
+storage/sqlite.ts:190
 
 ___
 
@@ -137,6 +138,32 @@ deletes a team
 #### Defined in
 
 storage/sqlite.ts:136
+
+___
+
+### getMatchByNumber
+
+▸ **getMatchByNumber**(`number`): ``null`` \| [`Match`](Match.md)
+
+gets one match
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `number` | `number` |
+
+#### Returns
+
+``null`` \| [`Match`](Match.md)
+
+#### Implementation of
+
+[StorageBackend](../interfaces/StorageBackend.md).[getMatchByNumber](../interfaces/StorageBackend.md#getmatchbynumber)
+
+#### Defined in
+
+storage/sqlite.ts:167
 
 ___
 
@@ -188,7 +215,7 @@ gets matches
 
 #### Defined in
 
-storage/sqlite.ts:167
+storage/sqlite.ts:172
 
 ___
 
@@ -304,4 +331,4 @@ String representation
 
 #### Defined in
 
-storage/sqlite.ts:193
+storage/sqlite.ts:198

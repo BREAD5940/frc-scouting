@@ -42,8 +42,8 @@ construction owo
 
 | Name | Type |
 | :------ | :------ |
-| `hangingBots` | `HABLevel` |
-| `floorBots` | `HABLevel` |
+| `hangingBots` | `NumberOfBots` |
+| `floorBots` | `NumberOfBots` |
 | `isLevel` | `boolean` |
 
 #### Overrides
@@ -58,7 +58,7 @@ games/infinite-recharge.ts:115
 
 ### floorBots
 
-• **floorBots**: `HABLevel`
+• **floorBots**: `NumberOfBots`
 
 #### Defined in
 
@@ -68,7 +68,7 @@ ___
 
 ### hangingBots
 
-• **hangingBots**: `HABLevel`
+• **hangingBots**: `NumberOfBots`
 
 #### Defined in
 

@@ -14,6 +14,7 @@
 - [deleteMatchByNumber](StorageBackend.md#deletematchbynumber)
 - [deleteMatchesByTeam](StorageBackend.md#deletematchesbyteam)
 - [deleteTeam](StorageBackend.md#deleteteam)
+- [getMatchByNumber](StorageBackend.md#getmatchbynumber)
 - [getMatchesByNumber](StorageBackend.md#getmatchesbynumber)
 - [getMatchesByTeam](StorageBackend.md#getmatchesbyteam)
 - [getTeam](StorageBackend.md#getteam)
@@ -38,7 +39,7 @@
 
 #### Defined in
 
-storage/backend.ts:24
+storage/backend.ts:30
 
 ___
 
@@ -58,7 +59,7 @@ ___
 
 #### Defined in
 
-storage/backend.ts:25
+storage/backend.ts:31
 
 ___
 
@@ -80,6 +81,30 @@ ___
 #### Defined in
 
 storage/backend.ts:13
+
+___
+
+### getMatchByNumber
+
+▸ **getMatchByNumber**(`number`): ``null`` \| [`Match`](../classes/Match.md)
+
+Get only one match from a given match number.
+
+**`deprecated`** Use getMatchesByNumber instead.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `number` | `number` |
+
+#### Returns
+
+``null`` \| [`Match`](../classes/Match.md)
+
+#### Defined in
+
+storage/backend.ts:23
 
 ___
 
@@ -125,7 +150,7 @@ what we actually want.
 
 #### Defined in
 
-storage/backend.ts:23
+storage/backend.ts:29
 
 ___
 

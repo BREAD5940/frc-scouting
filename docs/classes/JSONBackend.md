@@ -33,6 +33,7 @@ The directory structure is as follows:
 - [deleteMatchByNumber](JSONBackend.md#deletematchbynumber)
 - [deleteMatchesByTeam](JSONBackend.md#deletematchesbyteam)
 - [deleteTeam](JSONBackend.md#deleteteam)
+- [getMatchByNumber](JSONBackend.md#getmatchbynumber)
 - [getMatchesByNumber](JSONBackend.md#getmatchesbynumber)
 - [getMatchesByTeam](JSONBackend.md#getmatchesbyteam)
 - [getTeam](JSONBackend.md#getteam)
@@ -104,7 +105,7 @@ deletes a match by number
 
 #### Defined in
 
-storage/json.ts:116
+storage/json.ts:121
 
 ___
 
@@ -130,7 +131,7 @@ deletes all matches associated with a given team
 
 #### Defined in
 
-storage/json.ts:124
+storage/json.ts:129
 
 ___
 
@@ -157,7 +158,33 @@ deletes a team
 
 #### Defined in
 
-storage/json.ts:109
+storage/json.ts:114
+
+___
+
+### getMatchByNumber
+
+▸ **getMatchByNumber**(`number`): ``null`` \| [`Match`](Match.md)
+
+gets one match
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `number` | `number` |
+
+#### Returns
+
+``null`` \| [`Match`](Match.md)
+
+#### Implementation of
+
+[StorageBackend](../interfaces/StorageBackend.md).[getMatchByNumber](../interfaces/StorageBackend.md#getmatchbynumber)
+
+#### Defined in
+
+storage/json.ts:94
 
 ___
 
@@ -209,7 +236,7 @@ gets matches by team
 
 #### Defined in
 
-storage/json.ts:94
+storage/json.ts:99
 
 ___
 
@@ -325,4 +352,4 @@ String representation
 
 #### Defined in
 
-storage/json.ts:168
+storage/json.ts:173
