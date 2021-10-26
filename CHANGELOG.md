@@ -1,9 +1,8 @@
 # Changelog
 
-### v0.1.2
-- Improved the exported types
 ### v0.1.1
 - Fixed bugs with the JSON storage backend
+
 ### v0.1.0
 - Fixed a bug in 0.0.5's dependencies
 - (v0.0.5 should've been 0.1.x per semver... oops!)
