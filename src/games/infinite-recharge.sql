@@ -1,12 +1,6 @@
 -- Schema for storing Infinite Recharge teams and matches
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE IF NOT EXISTS teams (
-    id INTEGER NOT NULL PRIMARY KEY,
-    number INTEGER NOT NULL,
-    CONSTRAINT unique_number UNIQUE (number)
-);
-
 CREATE TABLE IF NOT EXISTS matches (
     team_number INTEGER NOT NULL,
     type TEXT NOT NULL,
@@ -16,8 +10,6 @@ CREATE TABLE IF NOT EXISTS matches (
     power_cell_tracker_id INTEGER NOT NULL,
     color_wheel_id INTEGER NOT NULL,
     shield_generator_id INTEGER NOT NULL,
-    -- OK to be null since some matches won't have a team
-    associated_team INTEGER,
 
     tech_fouls INTEGER NOT NULL,
     fouls INTEGER NOT NULL,
@@ -31,8 +23,7 @@ CREATE TABLE IF NOT EXISTS matches (
 
     FOREIGN KEY (power_cell_tracker_id) REFERENCES power_cell_trackers (id),
     FOREIGN KEY (color_wheel_id) REFERENCES color_wheels (id),
-    FOREIGN KEY (shield_generator_id) REFERENCES shield_generators (id),
-    FOREIGN KEY (associated_team) REFERENCES teams (id) ON DELETE SET NULL
+    FOREIGN KEY (shield_generator_id) REFERENCES shield_generators (id)
 );
 
 CREATE TABLE IF NOT EXISTS power_cell_trackers (

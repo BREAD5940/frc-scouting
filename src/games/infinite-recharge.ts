@@ -185,14 +185,14 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
                 ` power_cell_tracker_id, color_wheel_id, shield_generator_id,` +
                 ` tech_fouls, fouls, yellow_card, red_card,` +
                 ` estopped, borked, ranking_points, foul_points,` +
-                ` bonus_points, associated_team) ` +
-                `VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                ` bonus_points) ` +
+                `VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             ).run(
                 m.teamNumber, m.type, m.number, (m.alliance === 'BLUE' ? 0 : 1),
                 powerCells, colorWheel, shieldGenerator,
                 m.fouls.technical, m.fouls.regular, Number(m.cards.yellow), Number(m.cards.red),
                 Number(m.emergencyStopped), Number(m.borked), m.rankingPoints, m.pointsFromFouls,
-                m.bonusPoints, (teamID || null),
+                m.bonusPoints,
             );
         });
     }
@@ -204,7 +204,7 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
 
     /** Converts data from the database into a team  */
     dbDataToTeam(data: any) {
-        const matches = this.getStatement(`SELECT * FROM matches WHERE associated_team = ?`)
+        const matches = this.getStatement(`SELECT * FROM matches WHERE team_number = ?`)
             .all(data.id)
             .map((matchData) => this.dbDataToMatch(matchData));
 
@@ -270,15 +270,6 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
         this.matchInsertionTransaction(match);
     }
 
-    /** Inserts a team */
-    insertTeam(team: Team<InfiniteRechargeMatch>) {
-        const id = this.getStatement(`INSERT OR REPLACE INTO teams (number) VALUES (?)`)
-            .run(team.number)
-            .lastInsertRowid;
-        for (const match of team.matches) {
-            this.matchInsertionTransaction(match, id);
-        }
-    }
 
     /** Inserts a power cell tracker */
     private insertPowerCellTracker(tracker: PowerCellTracker) {

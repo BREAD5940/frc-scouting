@@ -26,17 +26,17 @@ import {
 let curMatchNum = 0;
 
 /** generates a Deep Space match for testing */
-function makeDSMatch(points: number, number?: number) {
+function makeDSMatch(points: number, number?: number, team?: number) {
     const match = new DeepSpaceMatch(
-        5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points, initialHABLevel: 1},
+        team || 5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points, initialHABLevel: 1},
     );
     return match;
 }
 
 /** generates an Infinite Recharge match for testing */
-function makeIRMatch(points: number, number?: number) {
+function makeIRMatch(points: number, number?: number, team?: number) {
     const match = new InfiniteRechargeMatch(
-        5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points},
+        team || 5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points},
     );
     return match;
 }
@@ -97,22 +97,24 @@ describe.each(backends)('%s', (backend) => {
         // numbers and Team objects both need to work
         expect(backend.getMatchesByTeam(5940)).toEqual(backend.getMatchesByTeam(bread));
 
-        backend.deleteTeam(5940);
-        expect(backend.getTeam(5940)).toEqual(null);
+        backend.deleteTeam(matchA.number);
+        expect(backend.getTeam(matchA.number)).toEqual(null);
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
 
         backend.saveTeam(bread);
         backend.deleteTeam(bread, true);
-        expect(backend.getTeam(5940)).toEqual(null);
+        expect(backend.getTeam(matchA.number)).toEqual(null);
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([]);
     });
 
     it.each(matchGenerators)('should store matches', (makeMatch) => {
-        expect(backend.getMatchesByNumber(10)).toEqual([]);
-        expect(backend.getMatchesByNumber(11)).toEqual([]);
+        const matchANumber = curMatchNum++;
+        const matchBNumber = curMatchNum++;
+        expect(backend.getMatchesByNumber(matchANumber)).toEqual([]);
+        expect(backend.getMatchesByNumber(matchBNumber)).toEqual([]);
 
-        const matchA = makeMatch(0, 10);
-        const matchB = makeMatch(10, 11);
+        const matchA = makeMatch(0, matchANumber, 1);
+        const matchB = makeMatch(10, matchBNumber, 2);
 
         backend.saveMatch(matchA);
         backend.saveMatch(matchB);
@@ -120,29 +122,23 @@ describe.each(backends)('%s', (backend) => {
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
         expect(backend.getMatchesByNumber(matchB.number)).toEqual([matchB]);
 
-        // Matches should only be fetched here if they're associated with a team
-        // This is weird behavior - see src/storage/backend.ts:17
         let matches = backend.getMatchesByTeam(matchA.teamNumber);
-        expect(matches).not.toContainEqual(matchA);
+        expect(matches).toContainEqual(matchA);
         expect(matches).not.toContainEqual(matchB);
 
         // Deletion
-        // Deleting a match only deletes matches associated with a team
-        // not all matches scouted for the team. We can change this if desired
-        // see see src/storage/backend.ts:17
         const team = new Team(matchA.teamNumber, matchA, matchB);
         backend.saveTeam(team);
         backend.deleteMatchesByTeam(matchA.teamNumber);
 
         matches = backend.getMatchesByTeam(matchA.teamNumber);
         expect(matches).not.toContainEqual(matchA);
-        expect(matches).not.toContainEqual(matchB);
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([]);
-        expect(backend.getMatchesByNumber(matchB.number)).toEqual([]);
+        expect(backend.getMatchesByNumber(matchB.number)).toContainEqual(matchB);
 
         backend.saveMatch(matchA);
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
-        expect(backend.getMatchesByNumber(matchB.number)).toEqual([]);
+        expect(backend.getMatchesByNumber(matchB.number)).toContainEqual(matchB);
 
         backend.deleteMatchByNumber(matchA.number);
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([]);

@@ -1,12 +1,6 @@
 -- Schema for storing Deep Space teams and matches
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE IF NOT EXISTS teams (
-    id INTEGER NOT NULL PRIMARY KEY,
-    number INTEGER NOT NULL,
-    CONSTRAINT unique_number UNIQUE (number)
-);
-
 CREATE TABLE IF NOT EXISTS matches (
     team_number INTEGER NOT NULL,
     type TEXT NOT NULL,
@@ -15,8 +9,6 @@ CREATE TABLE IF NOT EXISTS matches (
     alliance TINYINT(1) NOT NULL,
     cargo_tracker_id INTEGER NOT NULL,
     hatch_tracker_id INTEGER NOT NULL,
-    -- OK to be null since some matches won't have a team
-    associated_team INTEGER,
 
     tech_fouls INTEGER NOT NULL,
     fouls INTEGER NOT NULL,
@@ -41,8 +33,7 @@ CREATE TABLE IF NOT EXISTS matches (
     rocket_ranking_point TINYINT(1) NOT NULL,
 
     FOREIGN KEY (cargo_tracker_id) REFERENCES cargo_trackers (id),
-    FOREIGN KEY (hatch_tracker_id) REFERENCES hatch_trackers (id),
-    FOREIGN KEY (associated_team) REFERENCES teams (id) ON DELETE SET NULL
+    FOREIGN KEY (hatch_tracker_id) REFERENCES hatch_trackers (id)
 );
 
 CREATE TABLE IF NOT EXISTS cargo_trackers (

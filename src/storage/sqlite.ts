@@ -66,23 +66,6 @@ export abstract class SQLStoragePlan<T extends Match> {
 
         statement.run(...args);
     }
-
-    /** Inserts team */
-    abstract insertTeam(team: Team<T>): void;
-    /** gets teams */
-    getTeams(conditions: {column: string, value: string | number}[]) {
-        const [args, where] = this.generateWhere(conditions);
-        const statement = this.getStatement(`SELECT * FROM teams ${where}`);
-
-        return statement.all(...args).map((data) => this.dbDataToTeam(data));
-    }
-    /** deletes teams */
-    deleteTeams(conditions: {column: string, value: string | number}[]) {
-        const [args, where] = this.generateWhere(conditions);
-        const statement = this.getStatement(`DELETE FROM teams ${where}`);
-
-        statement.run(...args);
-    }
 }
 
 /** Stores teams and matches from various games in SQL. */
@@ -109,7 +92,9 @@ export class SQLBackend implements StorageBackend {
 
         for (const plan of this.plans) {
             if (team.matches.every((match) => plan.applies(match))) {
-                plan.insertTeam(team);
+                for (const match of team.matches) {
+                    plan.insertMatch(match);
+                }
                 return;
             }
         }
@@ -122,22 +107,19 @@ export class SQLBackend implements StorageBackend {
     /** gets a team */
     getTeam(number: number) {
         for (const plan of this.plans) {
-            const teams = plan.getTeams([{column: 'number', value: number}]);
-            if (teams.length > 1) {
-                // Should never happen, afaik
-                throw new Error(`Somehow there are multiple teams in one storage plan with that number.`);
+            const matches = plan.getMatches([{column: 'team_number', value: number}]);
+            if (matches.length) {
+                return new Team<typeof matches[0]>(number, ...matches);
             }
-            if (teams[0]) return teams[0];
         }
         return null;
     }
 
-    /** deletes a team */
-    deleteTeam(team: Team<Match> | number, deleteMatches?: boolean) {
+    /** deletes all matches involving a team */
+    deleteTeam(team: Team<Match> | number) {
         const value = typeof team === 'number' ? team : team.number;
         for (const plan of this.plans) {
-            plan.deleteTeams([{column: 'number', value}]);
-            if (deleteMatches) plan.deleteMatches([{column: 'team_number', value}]);
+            plan.deleteMatches([{column: 'team_number', value}]);
         }
     }
 
@@ -173,8 +155,7 @@ export class SQLBackend implements StorageBackend {
         const value = typeof team === 'number' ? team : team.number;
         const results = [];
         for (const plan of this.plans) {
-            const teamID = plan.getStatement(`SELECT id FROM teams WHERE number = ?`).get(value)?.id;
-            if (teamID) results.push(...plan.getMatches([{column: 'associated_team', value: teamID}]));
+            results.push(...plan.getMatches([{column: 'team_number', value}]));
         }
         return results;
     }
