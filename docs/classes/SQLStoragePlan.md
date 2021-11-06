@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / SQLStoragePlan
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / SQLStoragePlan
 
 # Class: SQLStoragePlan<T\>
 
@@ -36,12 +36,9 @@ Each game (Deep Space, Infinite Recharge, etc.) should implement this.
 - [dbDataToMatch](SQLStoragePlan.md#dbdatatomatch)
 - [dbDataToTeam](SQLStoragePlan.md#dbdatatoteam)
 - [deleteMatches](SQLStoragePlan.md#deletematches)
-- [deleteTeams](SQLStoragePlan.md#deleteteams)
 - [getMatches](SQLStoragePlan.md#getmatches)
 - [getStatement](SQLStoragePlan.md#getstatement)
-- [getTeams](SQLStoragePlan.md#getteams)
 - [insertMatch](SQLStoragePlan.md#insertmatch)
-- [insertTeam](SQLStoragePlan.md#insertteam)
 
 ## Constructors
 
@@ -173,28 +170,6 @@ storage/sqlite.ts:63
 
 ___
 
-### deleteTeams
-
-▸ **deleteTeams**(`conditions`): `void`
-
-deletes teams
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `conditions` | { `column`: `string` ; `value`: `string` \| `number`  }[] |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-storage/sqlite.ts:80
-
-___
-
 ### getMatches
 
 ▸ **getMatches**(`conditions`): `T`[]
@@ -239,28 +214,6 @@ storage/sqlite.ts:38
 
 ___
 
-### getTeams
-
-▸ **getTeams**(`conditions`): [`Team`](Team.md)<`T`\>[]
-
-gets teams
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `conditions` | { `column`: `string` ; `value`: `string` \| `number`  }[] |
-
-#### Returns
-
-[`Team`](Team.md)<`T`\>[]
-
-#### Defined in
-
-storage/sqlite.ts:73
-
-___
-
 ### insertMatch
 
 ▸ `Abstract` **insertMatch**(`match`): `void`
@@ -280,25 +233,3 @@ Inserts match
 #### Defined in
 
 storage/sqlite.ts:54
-
-___
-
-### insertTeam
-
-▸ `Abstract` **insertTeam**(`team`): `void`
-
-Inserts team
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `team` | [`Team`](Team.md)<`T`\> |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-storage/sqlite.ts:71

@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / StorageBackend
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / StorageBackend
 
 # Interface: StorageBackend
 
@@ -39,7 +39,7 @@
 
 #### Defined in
 
-storage/backend.ts:30
+storage/backend.ts:20
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-storage/backend.ts:31
+storage/backend.ts:21
 
 ___
 
@@ -88,10 +88,6 @@ ___
 
 ▸ **getMatchByNumber**(`number`): ``null`` \| [`Match`](../classes/Match.md)
 
-Get only one match from a given match number.
-
-**`deprecated`** Use getMatchesByNumber instead.
-
 #### Parameters
 
 | Name | Type |
@@ -104,7 +100,7 @@ Get only one match from a given match number.
 
 #### Defined in
 
-storage/backend.ts:23
+storage/backend.ts:18
 
 ___
 
@@ -134,10 +130,6 @@ ___
 
 ▸ **getMatchesByTeam**(`team`): [`Match`](../classes/Match.md)[]
 
-Gets matches ASSOCIATED with the team (i.e. as part of the team, not just any match scouted for that team)
-I don't know what the desired behavior is here, and if we deprecate JSON crap it'd be easier to make it do
-what we actually want.
-
 #### Parameters
 
 | Name | Type |
@@ -150,7 +142,7 @@ what we actually want.
 
 #### Defined in
 
-storage/backend.ts:29
+storage/backend.ts:19
 
 ___
 

@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / JSONStoragePlan
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / JSONStoragePlan
 
 # Interface: JSONStoragePlan<T\>
 

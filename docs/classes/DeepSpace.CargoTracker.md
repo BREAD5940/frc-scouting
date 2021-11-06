@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / CargoTracker
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / CargoTracker
 
 # Class: CargoTracker
 

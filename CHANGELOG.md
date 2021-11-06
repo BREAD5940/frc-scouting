@@ -1,5 +1,12 @@
 # Changelog
 
+### v0.3.0
+- Teams no longer have their own SQL table; you will need to `DROP COLUMN associated_team` on your `matches` tables if you use SQLite as a backend.
+  - Many methods that work with teams have been removed; instead, manipulate matches.
+- The JSON backend is no longer supported; it may work but should not be relied upon in production. SQLite is simple enough to install and set up that it should not present a barrier to usage
+- As per the [semver specification](https://semver.org/), "[the] major version zero (0.y.z) is for initial development ... [t]he public API SHOULD NOT be considered stable." Thus, this **breaking change** does not necessitate a v1 release.
+- `StorageBackend#getMatchByNumber` has been removed.
+
 ### v0.2.0
 - Support TypeScript 4.4 and Node.js versions 16.x and 17.x
 - Add `StorageBackend#getMatchesByNumber` and support associating multiple `Match` objects with one match

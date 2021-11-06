@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / Match
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / Match
 
 # Class: Match
 

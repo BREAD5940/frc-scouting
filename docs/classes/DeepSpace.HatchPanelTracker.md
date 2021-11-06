@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / HatchPanelTracker
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / HatchPanelTracker
 
 # Class: HatchPanelTracker
 

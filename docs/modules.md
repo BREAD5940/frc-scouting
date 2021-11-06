@@ -1,6 +1,6 @@
-[frc-scouting](README.md) / Exports
+[@bread5940/frc-scouting](README.md) / Exports
 
-# frc-scouting
+# @bread5940/frc-scouting
 
 ## Table of contents
 

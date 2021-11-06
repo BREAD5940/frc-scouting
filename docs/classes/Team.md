@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / Team
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / Team
 
 # Class: Team<T\>
 

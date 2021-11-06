@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / ShieldGenerator
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / ShieldGenerator
 
 # Class: ShieldGenerator
 

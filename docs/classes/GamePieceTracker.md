@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / GamePieceTracker
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / GamePieceTracker
 
 # Class: GamePieceTracker
 

@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / InfiniteRechargeJSON
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / InfiniteRechargeJSON
 
 # Class: InfiniteRechargeJSON
 
@@ -51,7 +51,7 @@ Checks if it applies
 
 #### Defined in
 
-games/infinite-recharge.ts:328
+games/infinite-recharge.ts:319
 
 ___
 
@@ -77,4 +77,4 @@ JSON => match
 
 #### Defined in
 
-games/infinite-recharge.ts:337
+games/infinite-recharge.ts:328

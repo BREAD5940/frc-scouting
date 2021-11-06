@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / MatchData
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / MatchData
 
 # Interface: MatchData
 

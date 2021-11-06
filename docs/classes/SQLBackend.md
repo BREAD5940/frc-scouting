@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / SQLBackend
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / SQLBackend
 
 # Class: SQLBackend
 
@@ -48,7 +48,7 @@ Creates a new SQL backend
 
 #### Defined in
 
-storage/sqlite.ts:93
+storage/sqlite.ts:76
 
 ## Properties
 
@@ -58,7 +58,7 @@ storage/sqlite.ts:93
 
 #### Defined in
 
-storage/sqlite.ts:90
+storage/sqlite.ts:73
 
 ## Methods
 
@@ -84,7 +84,7 @@ deletes a match
 
 #### Defined in
 
-storage/sqlite.ts:183
+storage/sqlite.ts:164
 
 ___
 
@@ -110,22 +110,21 @@ deletes matches
 
 #### Defined in
 
-storage/sqlite.ts:190
+storage/sqlite.ts:171
 
 ___
 
 ### deleteTeam
 
-▸ **deleteTeam**(`team`, `deleteMatches?`): `void`
+▸ **deleteTeam**(`team`): `void`
 
-deletes a team
+deletes all matches involving a team
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `team` | `number` \| [`Team`](Team.md)<[`Match`](Match.md)\> |
-| `deleteMatches?` | `boolean` |
 
 #### Returns
 
@@ -137,7 +136,7 @@ deletes a team
 
 #### Defined in
 
-storage/sqlite.ts:136
+storage/sqlite.ts:119
 
 ___
 
@@ -163,7 +162,7 @@ gets one match
 
 #### Defined in
 
-storage/sqlite.ts:167
+storage/sqlite.ts:149
 
 ___
 
@@ -189,7 +188,7 @@ gets matches
 
 #### Defined in
 
-storage/sqlite.ts:158
+storage/sqlite.ts:140
 
 ___
 
@@ -215,7 +214,7 @@ gets matches
 
 #### Defined in
 
-storage/sqlite.ts:172
+storage/sqlite.ts:154
 
 ___
 
@@ -241,7 +240,7 @@ gets a team
 
 #### Defined in
 
-storage/sqlite.ts:123
+storage/sqlite.ts:108
 
 ___
 
@@ -263,7 +262,7 @@ Registers a new storage plan
 
 #### Defined in
 
-storage/sqlite.ts:98
+storage/sqlite.ts:81
 
 ___
 
@@ -289,7 +288,7 @@ saves a match
 
 #### Defined in
 
-storage/sqlite.ts:145
+storage/sqlite.ts:127
 
 ___
 
@@ -315,7 +314,7 @@ Saves a team
 
 #### Defined in
 
-storage/sqlite.ts:103
+storage/sqlite.ts:86
 
 ___
 
@@ -331,4 +330,4 @@ String representation
 
 #### Defined in
 
-storage/sqlite.ts:198
+storage/sqlite.ts:179

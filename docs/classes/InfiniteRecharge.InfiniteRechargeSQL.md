@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / InfiniteRechargeSQL
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / InfiniteRechargeSQL
 
 # Class: InfiniteRechargeSQL
 
@@ -30,12 +30,9 @@ Stores Infinite Recharge teams/matches in SQL
 - [dbDataToMatch](InfiniteRecharge.InfiniteRechargeSQL.md#dbdatatomatch)
 - [dbDataToTeam](InfiniteRecharge.InfiniteRechargeSQL.md#dbdatatoteam)
 - [deleteMatches](InfiniteRecharge.InfiniteRechargeSQL.md#deletematches)
-- [deleteTeams](InfiniteRecharge.InfiniteRechargeSQL.md#deleteteams)
 - [getMatches](InfiniteRecharge.InfiniteRechargeSQL.md#getmatches)
 - [getStatement](InfiniteRecharge.InfiniteRechargeSQL.md#getstatement)
-- [getTeams](InfiniteRecharge.InfiniteRechargeSQL.md#getteams)
 - [insertMatch](InfiniteRecharge.InfiniteRechargeSQL.md#insertmatch)
-- [insertTeam](InfiniteRecharge.InfiniteRechargeSQL.md#insertteam)
 
 ## Constructors
 
@@ -203,32 +200,6 @@ storage/sqlite.ts:63
 
 ___
 
-### deleteTeams
-
-▸ **deleteTeams**(`conditions`): `void`
-
-deletes teams
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `conditions` | { `column`: `string` ; `value`: `string` \| `number`  }[] |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[SQLStoragePlan](SQLStoragePlan.md).[deleteTeams](SQLStoragePlan.md#deleteteams)
-
-#### Defined in
-
-storage/sqlite.ts:80
-
-___
-
 ### getMatches
 
 ▸ **getMatches**(`conditions`): [`InfiniteRechargeMatch`](InfiniteRecharge.InfiniteRechargeMatch.md)[]
@@ -281,32 +252,6 @@ storage/sqlite.ts:38
 
 ___
 
-### getTeams
-
-▸ **getTeams**(`conditions`): [`Team`](Team.md)<[`InfiniteRechargeMatch`](InfiniteRecharge.InfiniteRechargeMatch.md)\>[]
-
-gets teams
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `conditions` | { `column`: `string` ; `value`: `string` \| `number`  }[] |
-
-#### Returns
-
-[`Team`](Team.md)<[`InfiniteRechargeMatch`](InfiniteRecharge.InfiniteRechargeMatch.md)\>[]
-
-#### Inherited from
-
-[SQLStoragePlan](SQLStoragePlan.md).[getTeams](SQLStoragePlan.md#getteams)
-
-#### Defined in
-
-storage/sqlite.ts:73
-
-___
-
 ### insertMatch
 
 ▸ **insertMatch**(`match`): `void`
@@ -330,29 +275,3 @@ Inserts a match
 #### Defined in
 
 games/infinite-recharge.ts:269
-
-___
-
-### insertTeam
-
-▸ **insertTeam**(`team`): `void`
-
-Inserts a team
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `team` | [`Team`](Team.md)<[`InfiniteRechargeMatch`](InfiniteRecharge.InfiniteRechargeMatch.md)\> |
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[SQLStoragePlan](SQLStoragePlan.md).[insertTeam](SQLStoragePlan.md#insertteam)
-
-#### Defined in
-
-games/infinite-recharge.ts:274

@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / DeepSpaceJSON
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / DeepSpaceJSON
 
 # Class: DeepSpaceJSON
 
@@ -51,7 +51,7 @@ Checks if this storage plan applies
 
 #### Defined in
 
-games/deep-space.ts:288
+games/deep-space.ts:278
 
 ___
 
@@ -77,4 +77,4 @@ JSON => Match
 
 #### Defined in
 
-games/deep-space.ts:295
+games/deep-space.ts:285

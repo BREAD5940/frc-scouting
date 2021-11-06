@@ -1,4 +1,4 @@
-[frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / DeepSpaceSQL
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / DeepSpaceSQL
 
 # Class: DeepSpaceSQL
 
@@ -30,12 +30,9 @@ Stores Deep Space teams/matches in SQLite
 - [dbDataToMatch](DeepSpace.DeepSpaceSQL.md#dbdatatomatch)
 - [dbDataToTeam](DeepSpace.DeepSpaceSQL.md#dbdatatoteam)
 - [deleteMatches](DeepSpace.DeepSpaceSQL.md#deletematches)
-- [deleteTeams](DeepSpace.DeepSpaceSQL.md#deleteteams)
 - [getMatches](DeepSpace.DeepSpaceSQL.md#getmatches)
 - [getStatement](DeepSpace.DeepSpaceSQL.md#getstatement)
-- [getTeams](DeepSpace.DeepSpaceSQL.md#getteams)
 - [insertMatch](DeepSpace.DeepSpaceSQL.md#insertmatch)
-- [insertTeam](DeepSpace.DeepSpaceSQL.md#insertteam)
 
 ## Constructors
 
@@ -203,32 +200,6 @@ storage/sqlite.ts:63
 
 ___
 
-### deleteTeams
-
-▸ **deleteTeams**(`conditions`): `void`
-
-deletes teams
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `conditions` | { `column`: `string` ; `value`: `string` \| `number`  }[] |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[SQLStoragePlan](SQLStoragePlan.md).[deleteTeams](SQLStoragePlan.md#deleteteams)
-
-#### Defined in
-
-storage/sqlite.ts:80
-
-___
-
 ### getMatches
 
 ▸ **getMatches**(`conditions`): [`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)[]
@@ -281,32 +252,6 @@ storage/sqlite.ts:38
 
 ___
 
-### getTeams
-
-▸ **getTeams**(`conditions`): [`Team`](Team.md)<[`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)\>[]
-
-gets teams
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `conditions` | { `column`: `string` ; `value`: `string` \| `number`  }[] |
-
-#### Returns
-
-[`Team`](Team.md)<[`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)\>[]
-
-#### Inherited from
-
-[SQLStoragePlan](SQLStoragePlan.md).[getTeams](SQLStoragePlan.md#getteams)
-
-#### Defined in
-
-storage/sqlite.ts:73
-
-___
-
 ### insertMatch
 
 ▸ **insertMatch**(`match`): `void`
@@ -330,29 +275,3 @@ Inserts a match
 #### Defined in
 
 games/deep-space.ts:270
-
-___
-
-### insertTeam
-
-▸ **insertTeam**(`team`): `void`
-
-Inserts a team
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `team` | [`Team`](Team.md)<[`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)\> |
-
-#### Returns
-
-`void`
-
-#### Overrides
-
-[SQLStoragePlan](SQLStoragePlan.md).[insertTeam](SQLStoragePlan.md#insertteam)
-
-#### Defined in
-
-games/deep-space.ts:275
