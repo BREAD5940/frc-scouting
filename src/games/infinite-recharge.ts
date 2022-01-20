@@ -166,7 +166,7 @@ export class InfiniteRechargeMatch extends Match {
 export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
     matchInsertionTransaction: Transaction;
 
-    /** it's a constructor, you absolutely incompetent dingus of a linter, shut up about JSDoc already */
+    /** constructs the storage plan */
     constructor(absolutePath: string) {
         super(absolutePath);
 
