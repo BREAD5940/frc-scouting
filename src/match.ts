@@ -24,6 +24,8 @@ export abstract class GamePieceTracker {
     abstract get rankingPoints(): number;
 }
 
+
+// TODO: add more categories for failure
 export interface MatchData {
     fouls: Fouls;
     cards: Cards;
