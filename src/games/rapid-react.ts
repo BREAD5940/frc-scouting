@@ -9,7 +9,7 @@
 import {Alliance, GamePieceTracker, Match, MatchData} from '..';
 
 /** Tracks the highest RUNG the robot reached */
-enum MonkeyBarState {
+export enum MonkeyBarState {
     /** No attempt was made to climb */
     DidNotAttempt = 0,
     /** An attempt was made to climb, but no RUNG was successfully reached */
@@ -35,13 +35,13 @@ export class MonkeyBarTracker implements GamePieceTracker {
         case MonkeyBarState.None: case MonkeyBarState.DidNotAttempt:
             return 0;
         case MonkeyBarState.Low:
-            return 1;
-        case MonkeyBarState.Mid:
-            return 2;
-        case MonkeyBarState.High:
-            return 3;
-        case MonkeyBarState.Traversal:
             return 4;
+        case MonkeyBarState.Mid:
+            return 6;
+        case MonkeyBarState.High:
+            return 10;
+        case MonkeyBarState.Traversal:
+            return 15;
         default:
             throw new Error(`Unexpected value for MonkeyBarState: ${this.state}`);
         }
@@ -53,12 +53,11 @@ export class MonkeyBarTracker implements GamePieceTracker {
     }
 }
 
-interface Shots {
+export interface Shots {
     high: {made: number, missed: number};
     low: {made: number, missed: number};
 }
 
-// TODO: should this/monkey bars be GamePieceTrackers?
 /** Tracks the robot's shots */
 class ShotTracker implements GamePieceTracker {
     auto: Shots;
@@ -98,8 +97,8 @@ class ShotTracker implements GamePieceTracker {
 }
 
 interface RapidReactMatchData extends Partial<MatchData> {
-    highShots: Shots;
-    lowShots: Shots;
+    autoShots: Shots;
+    teleopShots: Shots;
     climbing: MonkeyBarState;
 }
 
@@ -113,7 +112,7 @@ export class RapidReactMatch extends Match {
     ) {
         super(teamNumber, type, number, alliance, [], data);
         this.pieceTrackers = [
-            new ShotTracker(data.highShots, data.lowShots),
+            new ShotTracker(data.autoShots, data.teleopShots),
             new MonkeyBarTracker(data.climbing),
         ];
     }
