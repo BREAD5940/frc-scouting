@@ -4,7 +4,7 @@
  * @author Annika
  */
 
-import {PowerCellTracker, ColorWheel, ShieldGenerator, InfiniteRechargeMatch} from './infinite-recharge';
+import {PowerCellTracker, ColorWheel, ShieldGenerator, InfiniteRechargeMatch} from '.';
 
 describe('power cells', () => {
     const tracker = new PowerCellTracker({

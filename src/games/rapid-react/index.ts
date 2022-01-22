@@ -6,7 +6,7 @@
 
 // TODO: storage implementation (SQLite and possibly JSON) and point/RP calculation
 
-import {Alliance, GamePieceTracker, Match, MatchData} from '..';
+import {Alliance, GamePieceTracker, Match, MatchData} from '../..';
 
 /** Tracks the highest RUNG the robot reached */
 export enum MonkeyBarState {

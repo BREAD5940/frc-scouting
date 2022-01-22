@@ -8,10 +8,10 @@ import type {Transaction} from 'better-sqlite3';
 
 import {readFileSync} from 'fs';
 
-import {Alliance, GamePieceTracker, Match, MatchData} from '../match';
-import {JSONStoragePlan} from '../storage/json';
-import {SQLStoragePlan} from '../storage/sqlite';
-import {Team} from '../team';
+import {Alliance, GamePieceTracker, Match, MatchData} from '../../match';
+import {JSONStoragePlan} from '../../storage/json';
+import {SQLStoragePlan} from '../../storage/sqlite';
+import {Team} from '../../team';
 
 type PowerCellLocation = 'LOW' | 'OUTER' | 'INNER';
 type ColorWheelPosition = 'SPECIFIC_COLOR' | 'ROTATED_X_TIMES';
@@ -170,7 +170,7 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
     constructor(absolutePath: string) {
         super(absolutePath);
 
-        const schema = readFileSync(`${__dirname}/infinite-recharge.sql`).toString();
+        const schema = readFileSync(`${__dirname}/schema.sql`).toString();
         this.database.exec(schema);
 
         // hahaha I am evil

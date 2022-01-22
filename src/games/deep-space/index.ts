@@ -7,10 +7,10 @@
 import {readFileSync} from 'fs';
 import type {Transaction} from 'better-sqlite3';
 
-import {GamePieceTracker, Match, Alliance, MatchData} from '../match';
-import {Team} from '../team';
-import {SQLStoragePlan} from '../storage/sqlite';
-import {JSONStoragePlan} from '../storage/json';
+import {GamePieceTracker, Match, Alliance, MatchData} from '../../match';
+import {Team} from '../../team';
+import {SQLStoragePlan} from '../../storage/sqlite';
+import {JSONStoragePlan} from '../../storage/json';
 
 type GamePieceStatus = 'DROPPED' | 'SHIP' | 'ROCKET';
 type HABLevel = 0 | 1 | 2 | 3;
@@ -159,7 +159,7 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
     /** constructor */
     constructor(absolutePath: string) {
         super(absolutePath);
-        const schema = readFileSync(`${__dirname}/deep-space.sql`).toString();
+        const schema = readFileSync(`${__dirname}/schema.sql`).toString();
         this.database.exec(schema);
 
         this.matchInsertionTransaction = this.database.transaction((m: DeepSpaceMatch, associatedTeamID?: number) => {

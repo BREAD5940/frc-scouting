@@ -1,4 +1,4 @@
-import {DeepSpaceMatch, HatchPanelTracker, CargoTracker} from './deep-space';
+import {DeepSpaceMatch, HatchPanelTracker, CargoTracker} from '.';
 
 describe('input data validation', () => {
     test('HAB ranking point', () => {

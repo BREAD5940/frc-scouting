@@ -5,7 +5,7 @@
   "main": "built/index.js",
   "types": "built/index.d.ts",
   "scripts": {
-    "build": "tsc && cp src/games/*.sql built/games/",
+    "build": "tsc && cp src/games/*/schema.sql built/games/",
     "lint": "eslint",
     "test": "npm run build && npm run lint && jest"
   },

@@ -4,7 +4,7 @@
  * TODO: test the storage backends (in backend.test.ts)
  */
 
-import {allianceRapidReactRP, MonkeyBarState, RapidReactMatch, Shots} from './rapid-react';
+import {allianceRapidReactRP, MonkeyBarState, RapidReactMatch, Shots} from '.';
 
 describe('alliance Ranking Point calculation', () => {
     test('cargo RP', () => {
