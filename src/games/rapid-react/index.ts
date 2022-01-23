@@ -6,7 +6,9 @@
 
 // TODO: storage implementation (SQLite and possibly JSON) and point/RP calculation
 
-import {Alliance, GamePieceTracker, Match, MatchData} from '../..';
+import {Alliance, GamePieceTracker, Match, MatchData, Team} from '../..';
+import {SQLStoragePlan} from '../../storage/sqlite';
+import * as fs from 'fs';
 
 /** Tracks the highest RUNG the robot reached */
 export enum MonkeyBarState {
@@ -144,4 +146,47 @@ export function allianceRapidReactRP(teams: RapidReactMatch[]) {
     if (totalClimbPoints >= 16) rankingPoints++;
 
     return rankingPoints;
+}
+
+/**
+ * Stores data about Rapid React matches in a SQLite database.
+ */
+export class RapidReactSQL extends SQLStoragePlan<RapidReactMatch> {
+    /** constructs the storage plan */
+    constructor(absolutePath: string) {
+        super(absolutePath);
+        const schema = fs.readFileSync(`${__dirname}/schema.sql`).toString();
+        this.database.exec(schema);
+    }
+
+    /**
+     * @returns `true` if this storage plan can store the given `match`, and `false` otherwise.
+     */
+    applies(match: Match): boolean {
+        return match instanceof RapidReactMatch;
+    }
+
+    /**
+     * Converts raw data from the SQLite database into a Match object.
+     */
+    dbDataToMatch(data: any): RapidReactMatch {
+        // TODO
+        throw new Error('unimplemented');
+    }
+
+    /**
+     * Converts raw data from the SQLite database into a Team object.
+     */
+    dbDataToTeam(data: any): Team<RapidReactMatch> {
+        // TODO
+        throw new Error('unimplemented');
+    }
+
+    /**
+     * Stores the given match into the SQLite database.
+     */
+    insertMatch(match: RapidReactMatch): void {
+        // TODO
+        throw new Error('unimplemented');
+    }
 }

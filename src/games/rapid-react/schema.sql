@@ -29,5 +29,5 @@ CREATE TABLE IF NOT EXISTS matches (
     borked TINYINT(1) NOT NULL,
     ranking_points INTEGER NOT NULL,
     foul_points INTEGER NOT NULL,
-    bonus_points INTEGER NOT NULL,
+    bonus_points INTEGER NOT NULL
 );

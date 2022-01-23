@@ -22,6 +22,7 @@ import {
     InfiniteRechargeSQL,
     InfiniteRechargeJSON,
 } from '../games/infinite-recharge';
+import {MonkeyBarState, RapidReactMatch, RapidReactSQL} from '../games/rapid-react';
 
 let curMatchNum = 0;
 
@@ -41,6 +42,15 @@ function makeIRMatch(points: number, number?: number, team?: number) {
     return match;
 }
 
+/** generates a Rapid React match for testing */
+function makeRRMatch(points: number, number?: number, team?: number) {
+    return new RapidReactMatch(team || 5940, 'test', number || curMatchNum++, 'BLUE', {
+        autoShots: {high: {made: 2, missed: 0}, low: {made: 2, missed: 0}},
+        teleopShots: {high: {made: 2, missed: 0}, low: {made: 2, missed: 0}},
+        climbing: MonkeyBarState.Mid,
+    });
+}
+
 /** recursively removes a directory */
 async function deleteDirectory(path: string) {
     await new Promise<void>((resolve, reject) => {
@@ -54,11 +64,16 @@ async function deleteDirectory(path: string) {
     });
 }
 
-const matchGenerators = [makeDSMatch, makeIRMatch];
+const matchGenerators = [
+    {generator: makeDSMatch, game: 'Deep Space'},
+    {generator: makeIRMatch, game: 'Infinite Recharge'},
+    {generator: makeRRMatch, game: 'Rapid React'},
+];
 
 const sql = new SQLBackend();
 sql.registerPlan(new DeepSpaceSQL(':memory:'));
 sql.registerPlan(new InfiniteRechargeSQL(':memory:'));
+sql.registerPlan(new RapidReactSQL(':memory:'));
 
 const backends: StorageBackend[] = [sql];
 
@@ -77,11 +92,11 @@ if (platform() !== 'win32') {
 }
 
 describe.each(backends)('%s', (backend) => {
-    it.each(matchGenerators)('should store teams', (makeMatch) => {
+    it.each(matchGenerators)('should store $game teams', ({generator}) => {
         expect(backend.getTeam(5940)).toEqual(null);
 
-        const matchA = makeMatch(0);
-        const matchB = makeMatch(42);
+        const matchA = generator(0);
+        const matchB = generator(42);
 
         const bread = new Team(5940, matchA, matchB);
         backend.saveTeam(bread);
@@ -107,14 +122,14 @@ describe.each(backends)('%s', (backend) => {
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([]);
     });
 
-    it.each(matchGenerators)('should store matches', (makeMatch) => {
+    it.each(matchGenerators)('should store $game matches', ({generator}) => {
         const matchANumber = curMatchNum++;
         const matchBNumber = curMatchNum++;
         expect(backend.getMatchesByNumber(matchANumber)).toEqual([]);
         expect(backend.getMatchesByNumber(matchBNumber)).toEqual([]);
 
-        const matchA = makeMatch(0, matchANumber, 1);
-        const matchB = makeMatch(10, matchBNumber, 2);
+        const matchA = generator(0, matchANumber, 1);
+        const matchB = generator(10, matchBNumber, 2);
 
         backend.saveMatch(matchA);
         backend.saveMatch(matchB);
@@ -200,6 +215,33 @@ describe.each(backends)('%s', (backend) => {
         expect(loaded).toEqual(match);
         expect(loaded?.points).toEqual(match.points);
     });
+
+    it('should properly store Rapid React monkey bar state', () => {
+        for (const climbing of [
+            MonkeyBarState.DidNotAttempt,
+            MonkeyBarState.None,
+            MonkeyBarState.Low,
+            MonkeyBarState.Mid,
+            MonkeyBarState.High,
+            MonkeyBarState.Traversal,
+        ]) {
+            const matchNumber = curMatchNum++;
+            expect(backend.getMatchesByNumber(matchNumber)).toEqual([]);
+            const match = new RapidReactMatch(5940, 'test', matchNumber, 'RED', {
+                autoShots: {high: {made: 10, missed: 2}, low: {made: 5, missed: 3}},
+                teleopShots: {high: {made: 4, missed: 8}, low: {made: 3, missed: 9}},
+                climbing,
+            });
+
+            backend.saveMatch(match);
+
+            const loaded = backend.getMatchesByNumber(matchNumber).pop();
+            expect(loaded instanceof RapidReactMatch).toEqual(match instanceof RapidReactMatch);
+            expect(loaded).toEqual(match);
+            expect(loaded?.points).toEqual(match.points);
+        }
+    });
+
 
     it('should support storing multiple Match objects with the same match number', () => {
         expect(backend.getMatchesByNumber(17)).toEqual([]);
