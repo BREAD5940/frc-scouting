@@ -97,6 +97,7 @@ describe('alliance Ranking Point calculation', () => {
 
 describe('point calculation', () => {
     test.todo('general test cases');
+
     test.todo('doubles Auto cargo points');
     test.todo('climbing points');
     test.todo('crossing the start line');
