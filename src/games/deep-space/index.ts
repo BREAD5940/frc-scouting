@@ -257,15 +257,6 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
         );
     }
 
-    /** Converts data from the database into a team  */
-    dbDataToTeam(data: any) {
-        const matches = this.getStatement(`SELECT * FROM matches WHERE team_number = ?`)
-            .all(data.id)
-            .map((matchData) => this.dbDataToMatch(matchData));
-
-        return new Team(data.number, ...matches);
-    }
-
     /** Inserts a match */
     insertMatch(match: DeepSpaceMatch) {
         this.matchInsertionTransaction(match);

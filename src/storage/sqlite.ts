@@ -45,7 +45,16 @@ export abstract class SQLStoragePlan<T extends Match> {
     }
 
     abstract dbDataToMatch(data: any): T;
-    abstract dbDataToTeam(data: any): Team<T>;
+    /**
+     * @deprecated as of 0.3.0, this shouldn't be necessary for anything
+     */
+    dbDataToTeam(data: {id: number, number: number}): Team<T> {
+        const matches = this.getStatement(`SELECT * FROM matches WHERE team_number = ?`)
+            .all(data.id)
+            .map((matchData) => this.dbDataToMatch(matchData));
+
+        return new Team(data.number, ...matches);
+    }
 
     /** Returns true if the match can be stored with this interface and false otherwise. */
     abstract applies(match: Match): boolean;

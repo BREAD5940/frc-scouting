@@ -202,15 +202,6 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
         return match instanceof InfiniteRechargeMatch;
     }
 
-    /** Converts data from the database into a team  */
-    dbDataToTeam(data: any) {
-        const matches = this.getStatement(`SELECT * FROM matches WHERE team_number = ?`)
-            .all(data.id)
-            .map((matchData) => this.dbDataToMatch(matchData));
-
-        return new Team(data.number, ...matches);
-    }
-
     /** Converts match data from the db into a match */
     dbDataToMatch(data: any): InfiniteRechargeMatch {
         const colorWheelData = this.getStatement(`SELECT * FROM color_wheels WHERE id = ?`).get(data.color_wheel_id);
