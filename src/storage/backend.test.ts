@@ -24,7 +24,8 @@ import {
 } from '../games/infinite-recharge';
 import {MonkeyBarState, RapidReactMatch, RapidReactSQL} from '../games/rapid-react';
 
-let curMatchNum = 0;
+// Matches <50 are reserved for individual tests
+let curMatchNum = 50;
 
 /** generates a Deep Space match for testing */
 function makeDSMatch(points: number, number?: number, team?: number) {

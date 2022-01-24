@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS matches (
 
     -- 0 = didn't attempt, 1 = attempted but unsuccessful, 2 = low, 3 = mid, 4 = high, 5 = traversal
     monkey_bar_state INTEGER NOT NULL,
+    crossed_start_line_in_auto TINYINT(1) NOT NULL,
 
     tech_fouls INTEGER NOT NULL,
     fouls INTEGER NOT NULL,
@@ -27,7 +28,6 @@ CREATE TABLE IF NOT EXISTS matches (
     red_card TINYINT(1) NOT NULL,
     estopped TINYINT(1) NOT NULL,
     borked TINYINT(1) NOT NULL,
-    ranking_points INTEGER NOT NULL,
     foul_points INTEGER NOT NULL,
     bonus_points INTEGER NOT NULL
 );

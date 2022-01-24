@@ -170,23 +170,84 @@ export class RapidReactSQL extends SQLStoragePlan<RapidReactMatch> {
      * Converts raw data from the SQLite database into a Match object.
      */
     dbDataToMatch(data: any): RapidReactMatch {
-        // TODO
-        throw new Error('unimplemented');
-    }
+        return new RapidReactMatch(
+            data.team_number,
+            data.type, data.match_number,
+            data.alliance === 0 ? 'BLUE' : 'RED', {
+                fouls: {regular: data.fouls, technical: data.tech_fouls},
+                cards: {yellow: Boolean(data.yellow_card), red: Boolean(data.red_cards)},
+                emergencyStopped: Boolean(data.disabled),
 
-    /**
-     * Converts raw data from the SQLite database into a Team object.
-     */
-    dbDataToTeam(data: any): Team<RapidReactMatch> {
-        // TODO
-        throw new Error('unimplemented');
+                bonusPoints: data.bonus_points,
+                crossedStartLineInAuto: Boolean(data.crossed_start_line),
+
+                autoShots: {
+                    high: {made: data.shots_made_highgoal_auto, missed: data.shots_missed_highgoal_auto},
+                    low: {made: data.shots_made_lowgoal_auto, missed: data.shots_missed_lowgoal_auto},
+                },
+                teleopShots: {
+                    high: {made: data.shots_made_highgoal_teleop, missed: data.shots_missed_highgoal_teleop},
+                    low: {made: data.shots_made_lowgoal_teleop, missed: data.shots_missed_lowgoal_teleop},
+                },
+                climbing: data.monkey_bar_state as MonkeyBarState,
+            },
+        );
     }
 
     /**
      * Stores the given match into the SQLite database.
      */
     insertMatch(match: RapidReactMatch): void {
-        // TODO
-        throw new Error('unimplemented');
+        const insertion = this.getStatement(
+            `INSERT INTO matches (` +
+                `team_number, type, match_number, alliance, ` +
+                `shots_made_highgoal_auto, shots_made_highgoal_teleop, ` +
+                `shots_made_lowgoal_auto, shots_made_lowgoal_teleop, ` +
+                `shots_missed_highgoal_auto, shots_missed_highgoal_teleop, ` +
+                `shots_missed_lowgoal_auto, shots_missed_lowgoal_teleop, ` +
+                `monkey_bar_state, crossed_start_line_in_auto, ` +
+                `tech_fouls, fouls, yellow_card, red_card, estopped, borked, ` +
+                `foul_points, bonus_points` +
+            `) VALUES (` +
+                `$teamNumber, $type, $number, $alliance, ` +
+                `$shotsMadeHighAuto, $shotsMadeHighTeleop, ` +
+                `$shotsMadeLowAuto, $shotsMadeLowTeleop, ` +
+                `$shotsMissedHighAuto, $shotsMissedHighTeleop, ` +
+                `$shotsMissedLowAuto, $shotsMissedLowTeleop, ` +
+                `$climbing, $crossedStartInAuto, ` +
+                `$techFouls, $fouls, $yellowCard, $redCard, $disabled, $borked, ` +
+                `$foulPoints, $bonusPoints` +
+            `)`,
+        );
+
+        insertion.run({
+            teamNumber: match.teamNumber,
+            type: match.type,
+            number: match.number,
+            alliance: match.alliance === 'BLUE' ? 0 : 1,
+
+            shotsMadeHighAuto: match.pieceTrackers[0].auto.high.made,
+            shotsMadeHighTeleop: match.pieceTrackers[0].teleop.high.made,
+            shotsMadeLowAuto: match.pieceTrackers[0].auto.low.made,
+            shotsMadeLowTeleop: match.pieceTrackers[0].teleop.low.made,
+
+            shotsMissedHighAuto: match.pieceTrackers[0].auto.high.missed,
+            shotsMissedHighTeleop: match.pieceTrackers[0].teleop.high.missed,
+            shotsMissedLowAuto: match.pieceTrackers[0].auto.low.missed,
+            shotsMissedLowTeleop: match.pieceTrackers[0].teleop.low.missed,
+
+            climbing: match.pieceTrackers[1].state,
+            crossedStartInAuto: Number(match.crossedStartLineInAuto),
+
+            techFouls: match.fouls.technical,
+            fouls: match.fouls.regular,
+            yellowCard: Number(match.cards.yellow),
+            redCard: Number(match.cards.red),
+            disabled: Number(match.emergencyStopped),
+            borked: Number(match.borked),
+
+            foulPoints: match.pointsFromFouls,
+            bonusPoints: match.bonusPoints,
+        });
     }
 }
