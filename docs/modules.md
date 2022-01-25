@@ -8,6 +8,7 @@
 
 - [DeepSpace](modules/DeepSpace.md)
 - [InfiniteRecharge](modules/InfiniteRecharge.md)
+- [RapidReact](modules/RapidReact.md)
 
 ### Classes
 
@@ -40,4 +41,4 @@ Contains code for handling FRC matches
 
 #### Defined in
 
-[match.ts:7](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L7)
+[match.ts:7](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L7)

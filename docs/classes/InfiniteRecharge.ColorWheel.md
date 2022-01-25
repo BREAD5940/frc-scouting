@@ -46,7 +46,7 @@ Represents the color wheel in Infinite Recharge
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:75](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L75)
+[games/infinite-recharge/index.ts:75](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L75)
 
 ## Properties
 
@@ -60,7 +60,7 @@ Represents the color wheel in Infinite Recharge
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:70](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L70)
+[games/infinite-recharge/index.ts:70](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L70)
 
 ___
 
@@ -72,7 +72,7 @@ null = no special state
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:69](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L69)
+[games/infinite-recharge/index.ts:69](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L69)
 
 ## Accessors
 
@@ -92,4 +92,4 @@ GamePieceTracker.totalPoints
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:92](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L92)
+[games/infinite-recharge/index.ts:92](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L92)

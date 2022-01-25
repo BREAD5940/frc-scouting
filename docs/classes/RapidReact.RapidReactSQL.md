@@ -1,46 +1,45 @@
-[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / DeepSpaceSQL
+[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [RapidReact](../modules/RapidReact.md) / RapidReactSQL
 
-# Class: DeepSpaceSQL
+# Class: RapidReactSQL
 
-[DeepSpace](../modules/DeepSpace.md).DeepSpaceSQL
+[RapidReact](../modules/RapidReact.md).RapidReactSQL
 
-Stores Deep Space teams/matches in SQLite
+Stores data about Rapid React matches in a SQLite database.
 
 ## Hierarchy
 
-- [`SQLStoragePlan`](SQLStoragePlan.md)<[`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)\>
+- [`SQLStoragePlan`](SQLStoragePlan.md)<[`RapidReactMatch`](RapidReact.RapidReactMatch.md)\>
 
-  ↳ **`DeepSpaceSQL`**
+  ↳ **`RapidReactSQL`**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](DeepSpace.DeepSpaceSQL.md#constructor)
+- [constructor](RapidReact.RapidReactSQL.md#constructor)
 
 ### Properties
 
-- [database](DeepSpace.DeepSpaceSQL.md#database)
-- [matchInsertionTransaction](DeepSpace.DeepSpaceSQL.md#matchinsertiontransaction)
-- [statementCache](DeepSpace.DeepSpaceSQL.md#statementcache)
+- [database](RapidReact.RapidReactSQL.md#database)
+- [statementCache](RapidReact.RapidReactSQL.md#statementcache)
 
 ### Methods
 
-- [applies](DeepSpace.DeepSpaceSQL.md#applies)
-- [dbDataToMatch](DeepSpace.DeepSpaceSQL.md#dbdatatomatch)
-- [dbDataToTeam](DeepSpace.DeepSpaceSQL.md#dbdatatoteam)
-- [deleteMatches](DeepSpace.DeepSpaceSQL.md#deletematches)
-- [getMatches](DeepSpace.DeepSpaceSQL.md#getmatches)
-- [getStatement](DeepSpace.DeepSpaceSQL.md#getstatement)
-- [insertMatch](DeepSpace.DeepSpaceSQL.md#insertmatch)
+- [applies](RapidReact.RapidReactSQL.md#applies)
+- [dbDataToMatch](RapidReact.RapidReactSQL.md#dbdatatomatch)
+- [dbDataToTeam](RapidReact.RapidReactSQL.md#dbdatatoteam)
+- [deleteMatches](RapidReact.RapidReactSQL.md#deletematches)
+- [getMatches](RapidReact.RapidReactSQL.md#getmatches)
+- [getStatement](RapidReact.RapidReactSQL.md#getstatement)
+- [insertMatch](RapidReact.RapidReactSQL.md#insertmatch)
 
 ## Constructors
 
 ### constructor
 
-• **new DeepSpaceSQL**(`absolutePath`)
+• **new RapidReactSQL**(`absolutePath`)
 
-constructor
+constructs the storage plan
 
 #### Parameters
 
@@ -54,7 +53,7 @@ constructor
 
 #### Defined in
 
-[games/deep-space/index.ts:160](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L160)
+[games/rapid-react/index.ts:156](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/rapid-react/index.ts#L156)
 
 ## Properties
 
@@ -69,16 +68,6 @@ constructor
 #### Defined in
 
 [storage/sqlite.ts:18](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L18)
-
-___
-
-### matchInsertionTransaction
-
-• **matchInsertionTransaction**: `Transaction`
-
-#### Defined in
-
-[games/deep-space/index.ts:158](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L158)
 
 ___
 
@@ -100,8 +89,6 @@ ___
 
 ▸ **applies**(`match`): `boolean`
 
-Determines whether a match can be stored by this storage plan.
-
 #### Parameters
 
 | Name | Type |
@@ -112,21 +99,23 @@ Determines whether a match can be stored by this storage plan.
 
 `boolean`
 
+`true` if this storage plan can store the given `match`, and `false` otherwise.
+
 #### Overrides
 
 [SQLStoragePlan](SQLStoragePlan.md).[applies](SQLStoragePlan.md#applies)
 
 #### Defined in
 
-[games/deep-space/index.ts:205](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L205)
+[games/rapid-react/index.ts:165](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/rapid-react/index.ts#L165)
 
 ___
 
 ### dbDataToMatch
 
-▸ **dbDataToMatch**(`data`): [`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)
+▸ **dbDataToMatch**(`data`): [`RapidReactMatch`](RapidReact.RapidReactMatch.md)
 
-Converts data from the database to a Match
+Converts raw data from the SQLite database into a Match object.
 
 #### Parameters
 
@@ -136,7 +125,7 @@ Converts data from the database to a Match
 
 #### Returns
 
-[`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)
+[`RapidReactMatch`](RapidReact.RapidReactMatch.md)
 
 #### Overrides
 
@@ -144,13 +133,13 @@ Converts data from the database to a Match
 
 #### Defined in
 
-[games/deep-space/index.ts:210](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L210)
+[games/rapid-react/index.ts:172](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/rapid-react/index.ts#L172)
 
 ___
 
 ### dbDataToTeam
 
-▸ **dbDataToTeam**(`data`): [`Team`](Team.md)<[`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)\>
+▸ **dbDataToTeam**(`data`): [`Team`](Team.md)<[`RapidReactMatch`](RapidReact.RapidReactMatch.md)\>
 
 **`deprecated`** as of 0.3.0, this shouldn't be necessary for anything
 
@@ -164,7 +153,7 @@ ___
 
 #### Returns
 
-[`Team`](Team.md)<[`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)\>
+[`Team`](Team.md)<[`RapidReactMatch`](RapidReact.RapidReactMatch.md)\>
 
 #### Inherited from
 
@@ -204,7 +193,7 @@ ___
 
 ### getMatches
 
-▸ **getMatches**(`conditions`): [`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)[]
+▸ **getMatches**(`conditions`): [`RapidReactMatch`](RapidReact.RapidReactMatch.md)[]
 
 gets matches
 
@@ -216,7 +205,7 @@ gets matches
 
 #### Returns
 
-[`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md)[]
+[`RapidReactMatch`](RapidReact.RapidReactMatch.md)[]
 
 #### Inherited from
 
@@ -258,13 +247,13 @@ ___
 
 ▸ **insertMatch**(`match`): `void`
 
-Inserts a match
+Stores the given match into the SQLite database.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `match` | [`DeepSpaceMatch`](DeepSpace.DeepSpaceMatch.md) |
+| `match` | [`RapidReactMatch`](RapidReact.RapidReactMatch.md) |
 
 #### Returns
 
@@ -276,4 +265,4 @@ Inserts a match
 
 #### Defined in
 
-[games/deep-space/index.ts:261](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L261)
+[games/rapid-react/index.ts:200](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/rapid-react/index.ts#L200)

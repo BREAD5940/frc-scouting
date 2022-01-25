@@ -52,7 +52,7 @@ construction owo
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:115](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L115)
+[games/infinite-recharge/index.ts:115](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L115)
 
 ## Properties
 
@@ -62,7 +62,7 @@ construction owo
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:110](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L110)
+[games/infinite-recharge/index.ts:110](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L110)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:109](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L109)
+[games/infinite-recharge/index.ts:109](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L109)
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:112](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L112)
+[games/infinite-recharge/index.ts:112](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L112)
 
 ## Accessors
 
@@ -102,7 +102,7 @@ GamePieceTracker.rankingPoints
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:130](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L130)
+[games/infinite-recharge/index.ts:130](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L130)
 
 ___
 
@@ -122,4 +122,4 @@ GamePieceTracker.totalPoints
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:125](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L125)
+[games/infinite-recharge/index.ts:125](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L125)

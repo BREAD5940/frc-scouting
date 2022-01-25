@@ -14,6 +14,10 @@ Abstract class to track game pieces
 
   ↳ [`ShieldGenerator`](InfiniteRecharge.ShieldGenerator.md)
 
+## Implemented by
+
+- [`MonkeyBarTracker`](RapidReact.MonkeyBarTracker.md)
+
 ## Table of contents
 
 ### Constructors
@@ -45,7 +49,7 @@ Returns the total number of ranking points scored by the game piece
 
 #### Defined in
 
-[match.ts:24](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L24)
+[match.ts:24](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L24)
 
 ___
 
@@ -61,4 +65,4 @@ Returns the total number of points scored
 
 #### Defined in
 
-[match.ts:22](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L22)
+[match.ts:22](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L22)

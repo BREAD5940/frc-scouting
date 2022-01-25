@@ -42,4 +42,4 @@ console.log(myTeamLoaded?.getMean('points')); // 48
 ```
 
 ## Documentation
-More detailed documentation can found [here](https://github.com/TheAnnalyst/frc-scouting/blob/main/docs/modules/_index_.md).
+More detailed documentation can found [here](https://github.com/BREAD5940/frc-scouting/blob/main/docs/modules/_index_.md).

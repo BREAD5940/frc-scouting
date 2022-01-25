@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[match.ts:37](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L37)
+[match.ts:37](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L37)
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 #### Defined in
 
-[match.ts:33](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L33)
+[match.ts:33](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L33)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[match.ts:31](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L31)
+[match.ts:31](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L31)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[match.ts:38](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L38)
+[match.ts:38](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L38)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[match.ts:32](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L32)
+[match.ts:32](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L32)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-[match.ts:30](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L30)
+[match.ts:30](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L30)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[match.ts:35](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L35)
+[match.ts:35](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L35)
 
 ___
 
@@ -93,4 +93,4 @@ ___
 
 #### Defined in
 
-[match.ts:36](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L36)
+[match.ts:36](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L36)

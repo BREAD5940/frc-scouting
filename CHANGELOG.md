@@ -1,5 +1,12 @@
 # Changelog
 
+### v0.4.1
+- Rapid React is exported properly at the top level.
+
+### v0.4.0
+- Basic support for Rapid React has been added; see the documentation for more information.
+- Rapid React is supported only on the SQLite backend.
+
 ### v0.3.0
 - Teams no longer have their own SQL table; you will need to `DROP COLUMN associated_team` on your `matches` tables if you use SQLite as a backend.
   - Many methods that work with teams have been removed; instead, manipulate matches.
