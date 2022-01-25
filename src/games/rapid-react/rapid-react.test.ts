@@ -96,10 +96,76 @@ describe('alliance Ranking Point calculation', () => {
 });
 
 describe('point calculation', () => {
-    test.todo('general test cases');
+    test('general test cases', () => {
+        const reallyGoodAuto = new RapidReactMatch(0, '', 0, 'RED', {
+            autoShots: {low: {made: 1, missed: 0}, high: {made: 4, missed: 0}}, // 18
+            teleopShots: {low: {made: 2, missed: 3}, high: {made: 10, missed: 0}}, // 22
+            climbing: MonkeyBarState.High, // 10
+            crossedStartLineInAuto: true, // 5
+            pointsFromFouls: 4, // 4
+        });
+        expect(reallyGoodAuto.points).toBe(59);
 
-    test.todo('doubles Auto cargo points');
-    test.todo('climbing points');
-    test.todo('crossing the start line');
-    test.todo('fouls assessed against the robot');
+        const helpICannotShoot = new RapidReactMatch(0, '', 0, 'RED', {
+            autoShots: {low: {made: 0, missed: 2}, high: {made: 0, missed: 1}},
+            teleopShots: {low: {made: 0, missed: 5}, high: {made: 0, missed: 9}},
+            climbing: MonkeyBarState.Traversal,
+            crossedStartLineInAuto: true,
+        });
+        expect(helpICannotShoot.points).toBe(20);
+    });
+
+    test('doubles Auto cargo points', () => {
+        const sixCargoPoints = {low: {made: 2, missed: 3}, high: {made: 2, missed: 2}};
+        const zeroCargoPoints = {low: {made: 0, missed: 0}, high: {made: 0, missed: 0}};
+
+        const auto = new RapidReactMatch(0, '', 0, 'RED', {
+            autoShots: sixCargoPoints,
+            teleopShots: zeroCargoPoints,
+            climbing: MonkeyBarState.None,
+        });
+        const teleop = new RapidReactMatch(0, '', 0, 'RED', {
+            autoShots: zeroCargoPoints,
+            teleopShots: sixCargoPoints,
+            climbing: MonkeyBarState.None,
+        });
+
+        expect(auto.points).toBe(12);
+        expect(teleop.points).toBe(6);
+    });
+
+    describe('climbing points', () => {
+        it.each([
+            {state: MonkeyBarState.DidNotAttempt, desc: 'not attempting to climb', expected: 0},
+            {state: MonkeyBarState.None, desc: 'failing to climb', expected: 0},
+            {state: MonkeyBarState.Low, desc: 'climbing to the low RUNG', expected: 4},
+            {state: MonkeyBarState.Mid, desc: 'climbing to the middle RUNG', expected: 6},
+            {state: MonkeyBarState.High, desc: 'climbing to the high RUNG', expected: 10},
+            {state: MonkeyBarState.Traversal, desc: 'climbing to the highest (traversal) RUNG', expected: 15},
+        ])('$desc should grant $expected points', ({state, expected}) => {
+            const match = new RapidReactMatch(0, '', 0, 'RED', {
+                autoShots: {low: {made: 0, missed: 0}, high: {made: 0, missed: 0}},
+                teleopShots: {low: {made: 0, missed: 0}, high: {made: 0, missed: 0}},
+                climbing: state,
+            });
+            expect(match.points).toBe(expected);
+        });
+    });
+
+    test('crossing the start line in Auto should grant 5 points', () => {
+        const matchNoCross = new RapidReactMatch(0, '', 0, 'RED', {
+            autoShots: {low: {made: 0, missed: 0}, high: {made: 0, missed: 0}},
+            teleopShots: {low: {made: 0, missed: 0}, high: {made: 0, missed: 0}},
+            climbing: MonkeyBarState.None,
+        });
+        const matchCross = new RapidReactMatch(0, '', 0, 'RED', {
+            autoShots: {low: {made: 0, missed: 0}, high: {made: 0, missed: 0}},
+            teleopShots: {low: {made: 0, missed: 0}, high: {made: 0, missed: 0}},
+            climbing: MonkeyBarState.None,
+            crossedStartLineInAuto: true,
+        });
+
+        expect(matchNoCross.points).toBe(0);
+        expect(matchCross.points).toBe(5);
+    });
 });
