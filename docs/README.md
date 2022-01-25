@@ -5,7 +5,7 @@
 
 A TypeScript library for handling FRC scouting data from robotics tournaments.
 
-Currently, it supports both Deep Space and Infinite Recharge.
+Currently, it supports Deep Space, Infinite Recharge, and Rapid React (only on the SQLite backend).
 
 ## Example
 ```ts

@@ -51,7 +51,7 @@ Checks if this storage plan applies
 
 #### Defined in
 
-games/deep-space.ts:278
+[games/deep-space/index.ts:269](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L269)
 
 ___
 
@@ -77,4 +77,4 @@ JSON => Match
 
 #### Defined in
 
-games/deep-space.ts:285
+[games/deep-space/index.ts:276](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L276)

@@ -40,7 +40,7 @@ Stores Infinite Recharge teams/matches in SQL
 
 • **new InfiniteRechargeSQL**(`absolutePath`)
 
-it's a constructor, you absolutely incompetent dingus of a linter, shut up about JSDoc already
+constructs the storage plan
 
 #### Parameters
 
@@ -54,7 +54,7 @@ it's a constructor, you absolutely incompetent dingus of a linter, shut up about
 
 #### Defined in
 
-games/infinite-recharge.ts:170
+[games/infinite-recharge/index.ts:170](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L170)
 
 ## Properties
 
@@ -68,7 +68,7 @@ games/infinite-recharge.ts:170
 
 #### Defined in
 
-storage/sqlite.ts:18
+[storage/sqlite.ts:18](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L18)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-games/infinite-recharge.ts:167
+[games/infinite-recharge/index.ts:167](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L167)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-storage/sqlite.ts:19
+[storage/sqlite.ts:19](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L19)
 
 ## Methods
 
@@ -118,7 +118,7 @@ Determines whether a match can be stored by this storage plan.
 
 #### Defined in
 
-games/infinite-recharge.ts:201
+[games/infinite-recharge/index.ts:201](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L201)
 
 ___
 
@@ -144,7 +144,7 @@ Converts match data from the db into a match
 
 #### Defined in
 
-games/infinite-recharge.ts:215
+[games/infinite-recharge/index.ts:206](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L206)
 
 ___
 
@@ -152,25 +152,27 @@ ___
 
 ▸ **dbDataToTeam**(`data`): [`Team`](Team.md)<[`InfiniteRechargeMatch`](InfiniteRecharge.InfiniteRechargeMatch.md)\>
 
-Converts data from the database into a team
+**`deprecated`** as of 0.3.0, this shouldn't be necessary for anything
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `data` | `any` |
+| `data` | `Object` |
+| `data.id` | `number` |
+| `data.number` | `number` |
 
 #### Returns
 
 [`Team`](Team.md)<[`InfiniteRechargeMatch`](InfiniteRecharge.InfiniteRechargeMatch.md)\>
 
-#### Overrides
+#### Inherited from
 
 [SQLStoragePlan](SQLStoragePlan.md).[dbDataToTeam](SQLStoragePlan.md#dbdatatoteam)
 
 #### Defined in
 
-games/infinite-recharge.ts:206
+[storage/sqlite.ts:51](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L51)
 
 ___
 
@@ -196,7 +198,7 @@ deletes matches
 
 #### Defined in
 
-storage/sqlite.ts:63
+[storage/sqlite.ts:72](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L72)
 
 ___
 
@@ -222,7 +224,7 @@ gets matches
 
 #### Defined in
 
-storage/sqlite.ts:56
+[storage/sqlite.ts:65](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L65)
 
 ___
 
@@ -248,7 +250,7 @@ Gets the cached prepared statement, or generates it and adds it to the cache.
 
 #### Defined in
 
-storage/sqlite.ts:38
+[storage/sqlite.ts:38](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L38)
 
 ___
 
@@ -274,4 +276,4 @@ Inserts a match
 
 #### Defined in
 
-games/infinite-recharge.ts:269
+[games/infinite-recharge/index.ts:260](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L260)

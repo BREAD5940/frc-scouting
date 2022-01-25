@@ -62,7 +62,7 @@ Creates a new storage plan
 
 #### Defined in
 
-storage/sqlite.ts:22
+[storage/sqlite.ts:22](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L22)
 
 ## Properties
 
@@ -72,7 +72,7 @@ storage/sqlite.ts:22
 
 #### Defined in
 
-storage/sqlite.ts:18
+[storage/sqlite.ts:18](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L18)
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 #### Defined in
 
-storage/sqlite.ts:19
+[storage/sqlite.ts:19](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L19)
 
 ## Methods
 
@@ -104,7 +104,7 @@ Returns true if the match can be stored with this interface and false otherwise.
 
 #### Defined in
 
-storage/sqlite.ts:51
+[storage/sqlite.ts:60](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L60)
 
 ___
 
@@ -124,19 +124,23 @@ ___
 
 #### Defined in
 
-storage/sqlite.ts:47
+[storage/sqlite.ts:47](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L47)
 
 ___
 
 ### dbDataToTeam
 
-▸ `Abstract` **dbDataToTeam**(`data`): [`Team`](Team.md)<`T`\>
+▸ **dbDataToTeam**(`data`): [`Team`](Team.md)<`T`\>
+
+**`deprecated`** as of 0.3.0, this shouldn't be necessary for anything
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `data` | `any` |
+| `data` | `Object` |
+| `data.id` | `number` |
+| `data.number` | `number` |
 
 #### Returns
 
@@ -144,7 +148,7 @@ ___
 
 #### Defined in
 
-storage/sqlite.ts:48
+[storage/sqlite.ts:51](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L51)
 
 ___
 
@@ -166,7 +170,7 @@ deletes matches
 
 #### Defined in
 
-storage/sqlite.ts:63
+[storage/sqlite.ts:72](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L72)
 
 ___
 
@@ -188,7 +192,7 @@ gets matches
 
 #### Defined in
 
-storage/sqlite.ts:56
+[storage/sqlite.ts:65](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L65)
 
 ___
 
@@ -210,7 +214,7 @@ Gets the cached prepared statement, or generates it and adds it to the cache.
 
 #### Defined in
 
-storage/sqlite.ts:38
+[storage/sqlite.ts:38](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L38)
 
 ___
 
@@ -232,4 +236,4 @@ Inserts match
 
 #### Defined in
 
-storage/sqlite.ts:54
+[storage/sqlite.ts:63](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/sqlite.ts#L63)

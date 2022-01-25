@@ -3,7 +3,7 @@
 
 A TypeScript library for handling FRC scouting data from robotics tournaments.
 
-Currently, it supports both Deep Space and Infinite Recharge.
+Currently, it supports Deep Space, Infinite Recharge, and Rapid React (only on the SQLite backend).
 
 ## Example
 ```ts
@@ -40,4 +40,4 @@ console.log(myTeamLoaded?.getMean('points')); // 48
 ```
 
 ## Documentation
-More detailed documentation can found [here](https://github.com/TheAnnalyst/frc-scouting/blob/main/docs/modules/_index_.md).
+More detailed documentation can found [here](https://github.com/BREAD5940/frc-scouting/blob/main/docs/modules/_index_.md).

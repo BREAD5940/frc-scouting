@@ -40,7 +40,7 @@ Plans out how to store a match of a given game as JSON.
 
 #### Defined in
 
-storage/json.ts:18
+[storage/json.ts:18](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/json.ts#L18)
 
 ___
 
@@ -60,4 +60,4 @@ ___
 
 #### Defined in
 
-storage/json.ts:19
+[storage/json.ts:19](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/storage/json.ts#L19)

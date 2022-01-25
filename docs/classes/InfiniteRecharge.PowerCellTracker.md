@@ -41,7 +41,7 @@ creates a new PowerCellTracker
 
 | Name | Type |
 | :------ | :------ |
-| `results` | `Record`<`PowerCellLocation`, `Object`\> |
+| `results` | `Record`<`PowerCellLocation`, { `auto`: `number` ; `teleop`: `number`  }\> |
 | `colorWheelSpun` | `boolean` |
 
 #### Overrides
@@ -50,7 +50,7 @@ creates a new PowerCellTracker
 
 #### Defined in
 
-games/infinite-recharge.ts:35
+[games/infinite-recharge/index.ts:35](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L35)
 
 ## Properties
 
@@ -60,17 +60,17 @@ games/infinite-recharge.ts:35
 
 #### Defined in
 
-games/infinite-recharge.ts:32
+[games/infinite-recharge/index.ts:32](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L32)
 
 ___
 
 ### results
 
-• **results**: `Record`<`PowerCellLocation`, `Object`\>
+• **results**: `Record`<`PowerCellLocation`, { `auto`: `number` ; `teleop`: `number`  }\>
 
 #### Defined in
 
-games/infinite-recharge.ts:31
+[games/infinite-recharge/index.ts:31](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L31)
 
 ## Accessors
 
@@ -90,7 +90,7 @@ GamePieceTracker.rankingPoints
 
 #### Defined in
 
-games/infinite-recharge.ts:59
+[games/infinite-recharge/index.ts:59](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L59)
 
 ___
 
@@ -106,7 +106,7 @@ the number of power cells scored
 
 #### Defined in
 
-games/infinite-recharge.ts:54
+[games/infinite-recharge/index.ts:54](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L54)
 
 ___
 
@@ -126,4 +126,4 @@ GamePieceTracker.totalPoints
 
 #### Defined in
 
-games/infinite-recharge.ts:42
+[games/infinite-recharge/index.ts:42](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L42)

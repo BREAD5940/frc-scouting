@@ -45,7 +45,7 @@ Returns the total number of ranking points scored by the game piece
 
 #### Defined in
 
-match.ts:24
+[match.ts:24](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L24)
 
 ___
 
@@ -61,4 +61,4 @@ Returns the total number of points scored
 
 #### Defined in
 
-match.ts:22
+[match.ts:22](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L22)

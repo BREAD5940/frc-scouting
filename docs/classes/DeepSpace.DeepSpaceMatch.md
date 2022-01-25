@@ -69,7 +69,7 @@ Creates a new DeepSpaceMatch
 
 #### Defined in
 
-games/deep-space.ts:107
+[games/deep-space/index.ts:107](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L107)
 
 ## Properties
 
@@ -83,7 +83,7 @@ games/deep-space.ts:107
 
 #### Defined in
 
-match.ts:47
+[match.ts:49](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L49)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-match.ts:58
+[match.ts:60](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L60)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-match.ts:54
+[match.ts:56](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L56)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-match.ts:52
+[match.ts:54](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L54)
 
 ___
 
@@ -139,7 +139,7 @@ ___
 
 #### Defined in
 
-match.ts:59
+[match.ts:61](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L61)
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 #### Defined in
 
-games/deep-space.ts:98
+[games/deep-space/index.ts:98](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L98)
 
 ___
 
@@ -163,7 +163,7 @@ ___
 
 #### Defined in
 
-match.ts:53
+[match.ts:55](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L55)
 
 ___
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-games/deep-space.ts:97
+[games/deep-space/index.ts:97](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L97)
 
 ___
 
@@ -187,7 +187,7 @@ ___
 
 #### Defined in
 
-match.ts:51
+[match.ts:53](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L53)
 
 ___
 
@@ -197,7 +197,7 @@ ___
 
 #### Defined in
 
-games/deep-space.ts:95
+[games/deep-space/index.ts:95](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L95)
 
 ___
 
@@ -207,7 +207,7 @@ ___
 
 #### Defined in
 
-games/deep-space.ts:96
+[games/deep-space/index.ts:96](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L96)
 
 ___
 
@@ -221,7 +221,7 @@ ___
 
 #### Defined in
 
-games/deep-space.ts:105
+[games/deep-space/index.ts:105](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L105)
 
 ___
 
@@ -235,7 +235,7 @@ ___
 
 #### Defined in
 
-match.ts:46
+[match.ts:48](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L48)
 
 ___
 
@@ -249,7 +249,7 @@ ___
 
 #### Defined in
 
-games/deep-space.ts:93
+[games/deep-space/index.ts:93](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L93)
 
 ___
 
@@ -263,7 +263,7 @@ ___
 
 #### Defined in
 
-match.ts:57
+[match.ts:59](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L59)
 
 ___
 
@@ -275,7 +275,7 @@ point:isGained
 
 #### Defined in
 
-games/deep-space.ts:103
+[games/deep-space/index.ts:103](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L103)
 
 ___
 
@@ -287,7 +287,7 @@ rocket:isAssembled
 
 #### Defined in
 
-games/deep-space.ts:101
+[games/deep-space/index.ts:101](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L101)
 
 ___
 
@@ -301,7 +301,7 @@ ___
 
 #### Defined in
 
-match.ts:43
+[match.ts:45](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L45)
 
 ___
 
@@ -315,7 +315,7 @@ ___
 
 #### Defined in
 
-match.ts:45
+[match.ts:47](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L47)
 
 ## Accessors
 
@@ -335,7 +335,7 @@ Match.points
 
 #### Defined in
 
-match.ts:84
+[match.ts:86](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L86)
 
 ___
 
@@ -355,4 +355,4 @@ Match.rankingPoints
 
 #### Defined in
 
-match.ts:94
+[match.ts:96](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/match.ts#L96)

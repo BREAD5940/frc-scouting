@@ -41,7 +41,7 @@ Creates a new CargoTracker
 
 | Name | Type |
 | :------ | :------ |
-| `results` | `Record`<`GamePieceStatus`, `Object`\> |
+| `results` | `Record`<`GamePieceStatus`, { `auto`: `number` ; `teleop`: `number`  }\> |
 
 #### Overrides
 
@@ -49,7 +49,7 @@ DeepSpaceTracker.constructor
 
 #### Defined in
 
-games/deep-space.ts:63
+[games/deep-space/index.ts:63](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L63)
 
 ## Properties
 
@@ -65,7 +65,7 @@ DeepSpaceTracker.baseValue
 
 #### Defined in
 
-games/deep-space.ts:30
+[games/deep-space/index.ts:30](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L30)
 
 ___
 
@@ -79,13 +79,13 @@ DeepSpaceTracker.rankingPoints
 
 #### Defined in
 
-games/deep-space.ts:31
+[games/deep-space/index.ts:31](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L31)
 
 ___
 
 ### results
 
-• **results**: `Record`<`GamePieceStatus`, `Object`\>
+• **results**: `Record`<`GamePieceStatus`, { `auto`: `number` ; `teleop`: `number`  }\>
 
 status:number of pieces
 
@@ -95,7 +95,7 @@ DeepSpaceTracker.results
 
 #### Defined in
 
-games/deep-space.ts:28
+[games/deep-space/index.ts:28](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L28)
 
 ___
 
@@ -109,7 +109,7 @@ DeepSpaceTracker.type
 
 #### Defined in
 
-games/deep-space.ts:26
+[games/deep-space/index.ts:26](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L26)
 
 ## Accessors
 
@@ -129,4 +129,4 @@ DeepSpaceTracker.totalPoints
 
 #### Defined in
 
-games/deep-space.ts:48
+[games/deep-space/index.ts:48](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/deep-space/index.ts#L48)

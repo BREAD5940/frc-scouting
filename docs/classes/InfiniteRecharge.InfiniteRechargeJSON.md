@@ -51,7 +51,7 @@ Checks if it applies
 
 #### Defined in
 
-games/infinite-recharge.ts:319
+[games/infinite-recharge/index.ts:310](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L310)
 
 ___
 
@@ -77,4 +77,4 @@ JSON => match
 
 #### Defined in
 
-games/infinite-recharge.ts:328
+[games/infinite-recharge/index.ts:319](https://github.com/BREAD5940/frc-scouting/blob/4bb8602/src/games/infinite-recharge/index.ts#L319)
