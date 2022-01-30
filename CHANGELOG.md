@@ -1,5 +1,9 @@
 # Changelog
 
+### v0.4.3
+- SQL schemas are properly included in the distributed package.
+- Information about crossing the starting line in auto in Rapid React is properly stored.
+
 ### v0.4.1
 - Rapid React is exported properly at the top level.
 

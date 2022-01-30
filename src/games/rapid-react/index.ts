@@ -179,7 +179,7 @@ export class RapidReactSQL extends SQLStoragePlan<RapidReactMatch> {
                 emergencyStopped: Boolean(data.disabled),
 
                 bonusPoints: data.bonus_points,
-                crossedStartLineInAuto: Boolean(data.crossed_start_line),
+                crossedStartLineInAuto: Boolean(data.crossed_start_line_in_auto),
 
                 autoShots: {
                     high: {made: data.shots_made_highgoal_auto, missed: data.shots_missed_highgoal_auto},

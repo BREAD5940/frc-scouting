@@ -232,6 +232,7 @@ describe.each(backends)('%s', (backend) => {
                 autoShots: {high: {made: 10, missed: 2}, low: {made: 5, missed: 3}},
                 teleopShots: {high: {made: 4, missed: 8}, low: {made: 3, missed: 9}},
                 climbing,
+                crossedStartLineInAuto: true,
             });
 
             backend.saveMatch(match);
