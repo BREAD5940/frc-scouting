@@ -5,7 +5,7 @@
   "main": "built/index.js",
   "types": "built/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp src/games/rapid-react/schema.sql built/games/rapid-react/ && cp src/games/infinite-recharge/schema.sql built/games/infinite-recharge/ && cp src/games/deep-space/schema.sql built/games/deep-space/",
     "lint": "eslint",
     "test": "npm run build && npm run lint && jest"
   },
