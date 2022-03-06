@@ -11,7 +11,7 @@
 import {platform} from 'os';
 import * as fs from 'fs';
 
-import type {StorageBackend} from './backend';
+import type {StorageBackend, StorageHooks} from './backend';
 import {Team} from '../team';
 import {SQLBackend} from './sqlite';
 import {CargoTracker, DeepSpaceJSON, DeepSpaceMatch, DeepSpaceSQL, HatchPanelTracker} from '../games/deep-space';
@@ -71,7 +71,13 @@ const matchGenerators = [
     {generator: makeRRMatch, game: 'Rapid React'},
 ];
 
-const sql = new SQLBackend();
+const hooks: StorageHooks = {
+    onSaveMatch: jest.fn(),
+    onDeleteMatch: jest.fn(),
+    onGetMatch: jest.fn(),
+};
+
+const sql = new SQLBackend(hooks);
 sql.registerPlan(new DeepSpaceSQL(':memory:'));
 sql.registerPlan(new InfiniteRechargeSQL(':memory:'));
 sql.registerPlan(new RapidReactSQL(':memory:'));
@@ -88,11 +94,13 @@ if (platform() !== 'win32') {
         } catch (e) {
             // ignore (directory probably doesn't exist)
         }
-        backends.push(new JSONBackend(path, new InfiniteRechargeJSON(), new DeepSpaceJSON()));
+        backends.push(new JSONBackend(path, {}, new InfiniteRechargeJSON(), new DeepSpaceJSON()));
     });
 }
 
 describe.each(backends)('%s', (backend) => {
+    beforeEach(() => jest.clearAllMocks());
+
     it.each(matchGenerators)('should store $game teams', ({generator}) => {
         expect(backend.getTeam(5940)).toEqual(null);
 
@@ -100,12 +108,17 @@ describe.each(backends)('%s', (backend) => {
         const matchB = generator(42);
 
         const bread = new Team(5940, matchA, matchB);
+        expect(hooks.onSaveMatch).not.toBeCalled();
         backend.saveTeam(bread);
+        expect(hooks.onSaveMatch).toBeCalledTimes(2);
 
         expect(backend.getTeam(5940)).toEqual(bread);
         // Storing a team should store all its matches
+        expect(hooks.onGetMatch).not.toBeCalled();
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
+        expect(hooks.onGetMatch).toBeCalledTimes(1);
         expect(backend.getMatchesByNumber(matchB.number)).toEqual([matchB]);
+        expect(hooks.onGetMatch).toBeCalledTimes(2);
 
         expect(backend.getMatchesByTeam(5940)).toContainEqual(matchA);
         expect(backend.getMatchesByTeam(5940)).toContainEqual(matchB);
@@ -114,6 +127,8 @@ describe.each(backends)('%s', (backend) => {
         expect(backend.getMatchesByTeam(5940)).toEqual(backend.getMatchesByTeam(bread));
 
         backend.deleteTeam(matchA.number);
+        expect(hooks.onDeleteMatch).not.toBeCalled();
+
         expect(backend.getTeam(matchA.number)).toEqual(null);
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
 
@@ -126,17 +141,28 @@ describe.each(backends)('%s', (backend) => {
     it.each(matchGenerators)('should store $game matches', ({generator}) => {
         const matchANumber = curMatchNum++;
         const matchBNumber = curMatchNum++;
+
+        expect(hooks.onGetMatch).not.toBeCalled();
         expect(backend.getMatchesByNumber(matchANumber)).toEqual([]);
         expect(backend.getMatchesByNumber(matchBNumber)).toEqual([]);
+        expect(hooks.onGetMatch).not.toBeCalled();
 
         const matchA = generator(0, matchANumber, 1);
         const matchB = generator(10, matchBNumber, 2);
 
+        expect(hooks.onSaveMatch).not.toBeCalled();
         backend.saveMatch(matchA);
+        expect(hooks.onSaveMatch).toBeCalledTimes(1);
         backend.saveMatch(matchB);
+        expect(hooks.onSaveMatch).toBeCalledTimes(2);
+
+        expect(hooks.onGetMatch).not.toBeCalled();
 
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
+        expect(hooks.onGetMatch).toBeCalledTimes(1);
+
         expect(backend.getMatchesByNumber(matchB.number)).toEqual([matchB]);
+        expect(hooks.onGetMatch).toBeCalledTimes(2);
 
         let matches = backend.getMatchesByTeam(matchA.teamNumber);
         expect(matches).toContainEqual(matchA);
@@ -156,7 +182,10 @@ describe.each(backends)('%s', (backend) => {
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([matchA]);
         expect(backend.getMatchesByNumber(matchB.number)).toContainEqual(matchB);
 
+        expect(hooks.onDeleteMatch).not.toBeCalled();
         backend.deleteMatchByNumber(matchA.number);
+        expect(hooks.onDeleteMatch).toBeCalledTimes(1);
+
         expect(backend.getMatchesByNumber(matchA.number)).toEqual([]);
         expect(backend.getMatchesByTeam(matchA.teamNumber)).not.toContainEqual(matchA);
     });

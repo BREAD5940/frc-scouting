@@ -6,7 +6,7 @@
 
 import {Match} from '../match';
 import {Team} from '../team';
-import {StorageBackend} from './backend';
+import {StorageBackend, StorageHooks} from './backend';
 
 import Database from 'better-sqlite3';
 
@@ -80,10 +80,12 @@ export abstract class SQLStoragePlan<T extends Match> {
 /** Stores teams and matches from various games in SQL. */
 export class SQLBackend implements StorageBackend {
     plans: SQLStoragePlan<Match>[];
+    hooks: Partial<StorageHooks>;
 
     /** Creates a new SQL backend */
-    constructor(...plans: SQLStoragePlan<Match>[]) {
+    constructor(hooks: Partial<StorageHooks>, ...plans: SQLStoragePlan<Match>[]) {
         this.plans = plans;
+        this.hooks = hooks;
     }
 
     /** Registers a new storage plan */
@@ -102,6 +104,7 @@ export class SQLBackend implements StorageBackend {
         for (const plan of this.plans) {
             if (team.matches.every((match) => plan.applies(match))) {
                 for (const match of team.matches) {
+                    this.hooks.onSaveMatch?.(match);
                     plan.insertMatch(match);
                 }
                 return;
@@ -137,6 +140,7 @@ export class SQLBackend implements StorageBackend {
         for (const plan of this.plans) {
             if (plan.applies(match)) {
                 plan.insertMatch(match);
+                this.hooks.onSaveMatch?.(match);
                 return;
             }
         }
@@ -151,6 +155,7 @@ export class SQLBackend implements StorageBackend {
         for (const plan of this.plans) {
             matches.push(...plan.getMatches([{column: 'match_number', value: number}]));
         }
+        if (this.hooks.onGetMatch) matches.every((m) => this.hooks.onGetMatch!(m));
         return matches;
     }
 
@@ -166,11 +171,13 @@ export class SQLBackend implements StorageBackend {
         for (const plan of this.plans) {
             results.push(...plan.getMatches([{column: 'team_number', value}]));
         }
+        if (this.hooks.onGetMatch) results.every((m) => this.hooks.onGetMatch!(m));
         return results;
     }
 
     /** deletes a match */
     deleteMatchByNumber(number: number) {
+        this.hooks.onDeleteMatch?.(number);
         for (const plan of this.plans) {
             plan.deleteMatches([{column: 'match_number', value: number}]);
         }

@@ -7,7 +7,29 @@
 import type {Match} from '../match';
 import type {Team} from '../team';
 
+/**
+ * Hooks executed on various storage-related events.
+ */
+export interface StorageHooks {
+    /**
+     * Runs when a match is stored.
+     */
+    onSaveMatch(match: Match): void;
+
+    /**
+     * Runs when a match is deleted, unless it is deleted by team number.
+     */
+    onDeleteMatch(number: number): void;
+
+    /**
+     * Runs when a match is retrieved.
+     */
+    onGetMatch(match: Match): void;
+}
+
 export interface StorageBackend {
+    hooks: Partial<StorageHooks>;
+
     saveTeam(team: Team<Match>): void;
     getTeam(number: number): Team<Match> | null;
     deleteTeam(team: Team<Match> | number, deleteMatches?: boolean): void;

@@ -8,7 +8,7 @@ import * as fs from 'fs';
 import {resolve as resolvePath} from 'path';
 import {Match} from '../match';
 import {Team} from '../team';
-import {StorageBackend} from './backend';
+import {StorageBackend, StorageHooks} from './backend';
 
 
 /**
@@ -34,11 +34,13 @@ export interface JSONStoragePlan<T extends Match> {
 export class JSONBackend implements StorageBackend {
     storageDir: string;
     plans: JSONStoragePlan<Match>[];
+    hooks: Partial<StorageHooks>;
 
     /** constructor */
-    constructor(path: string, ...plans: JSONStoragePlan<Match>[]) {
+    constructor(path: string, hooks: Partial<StorageHooks>, ...plans: JSONStoragePlan<Match>[]) {
         this.storageDir = resolvePath(path);
         this.plans = plans;
+        this.hooks = hooks;
 
         fs.mkdirSync(resolvePath(this.storageDir, 'matches/'), {recursive: true});
         fs.mkdirSync(resolvePath(this.storageDir, 'teams/'), {recursive: true});
@@ -87,6 +89,7 @@ export class JSONBackend implements StorageBackend {
         for (const file of fs.readdirSync(path)) {
             if (file.startsWith(prefix)) matches.push(this.pathToMatch(resolvePath(path, file)));
         }
+        if (this.hooks.onGetMatch) matches.every((m) => this.hooks.onGetMatch!(m));
         return matches;
     }
 
@@ -119,6 +122,7 @@ export class JSONBackend implements StorageBackend {
 
     /** deletes a match by number */
     deleteMatchByNumber(number: number) {
+        this.hooks.onDeleteMatch?.(number);
         const path = resolvePath(this.storageDir, 'matches');
         for (const possibleMatch of fs.readdirSync(path)) {
             if (possibleMatch.startsWith(`match${number}`)) fs.unlinkSync(resolvePath(path, possibleMatch));
@@ -130,7 +134,9 @@ export class JSONBackend implements StorageBackend {
         const number = typeof team === 'number' ? team : team.number;
         const path = resolvePath(this.storageDir, 'matches');
         for (const possibleMatch of fs.readdirSync(path)) {
-            if (possibleMatch.endsWith(`-team${number}.json`)) fs.unlinkSync(resolvePath(path, possibleMatch));
+            if (possibleMatch.endsWith(`-team${number}.json`)) {
+                fs.unlinkSync(resolvePath(path, possibleMatch));
+            }
         }
     }
 
@@ -146,6 +152,7 @@ export class JSONBackend implements StorageBackend {
 
     /** saves a match, with optional associated team number */
     private saveMatchInner(match: Match, associatedTeamNumber?: number) {
+        this.hooks.onSaveMatch?.(match);
         if (associatedTeamNumber) {
             // Remove non-associated
             try {
