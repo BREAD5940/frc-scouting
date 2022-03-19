@@ -1,4 +1,4 @@
-[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / DeepSpaceSQL
+[frc-scouting](../README.md) / [Exports](../modules.md) / [DeepSpace](../modules/DeepSpace.md) / DeepSpaceSQL
 
 # Class: DeepSpaceSQL
 
@@ -54,7 +54,7 @@ constructor
 
 #### Defined in
 
-[games/deep-space/index.ts:160](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L160)
+[games/deep-space/index.ts:160](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/deep-space/index.ts#L160)
 
 ## Properties
 
@@ -68,7 +68,7 @@ constructor
 
 #### Defined in
 
-[storage/sqlite.ts:18](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L18)
+[storage/sqlite.ts:18](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L18)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[games/deep-space/index.ts:158](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L158)
+[games/deep-space/index.ts:158](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/deep-space/index.ts#L158)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 #### Defined in
 
-[storage/sqlite.ts:19](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L19)
+[storage/sqlite.ts:19](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L19)
 
 ## Methods
 
@@ -118,7 +118,7 @@ Determines whether a match can be stored by this storage plan.
 
 #### Defined in
 
-[games/deep-space/index.ts:205](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L205)
+[games/deep-space/index.ts:205](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/deep-space/index.ts#L205)
 
 ___
 
@@ -144,7 +144,7 @@ Converts data from the database to a Match
 
 #### Defined in
 
-[games/deep-space/index.ts:210](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L210)
+[games/deep-space/index.ts:210](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/deep-space/index.ts#L210)
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-[storage/sqlite.ts:51](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L51)
+[storage/sqlite.ts:51](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L51)
 
 ___
 
@@ -198,7 +198,7 @@ deletes matches
 
 #### Defined in
 
-[storage/sqlite.ts:72](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L72)
+[storage/sqlite.ts:72](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L72)
 
 ___
 
@@ -224,7 +224,7 @@ gets matches
 
 #### Defined in
 
-[storage/sqlite.ts:65](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L65)
+[storage/sqlite.ts:65](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L65)
 
 ___
 
@@ -250,7 +250,7 @@ Gets the cached prepared statement, or generates it and adds it to the cache.
 
 #### Defined in
 
-[storage/sqlite.ts:38](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L38)
+[storage/sqlite.ts:38](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L38)
 
 ___
 
@@ -276,4 +276,4 @@ Inserts a match
 
 #### Defined in
 
-[games/deep-space/index.ts:261](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/deep-space/index.ts#L261)
+[games/deep-space/index.ts:261](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/deep-space/index.ts#L261)

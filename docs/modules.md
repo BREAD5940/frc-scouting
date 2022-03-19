@@ -1,6 +1,6 @@
-[@bread5940/frc-scouting](README.md) / Exports
+[frc-scouting](README.md) / Exports
 
-# @bread5940/frc-scouting
+# frc-scouting
 
 ## Table of contents
 
@@ -41,4 +41,4 @@ Contains code for handling FRC matches
 
 #### Defined in
 
-[match.ts:7](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L7)
+[match.ts:7](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L7)

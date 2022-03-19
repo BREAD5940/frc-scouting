@@ -1,4 +1,4 @@
-[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / InfiniteRechargeMatch
+[frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / InfiniteRechargeMatch
 
 # Class: InfiniteRechargeMatch
 
@@ -63,7 +63,7 @@ creates a new InfiniteRechargeMatch
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:149](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L149)
+[games/infinite-recharge/index.ts:149](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/infinite-recharge/index.ts#L149)
 
 ## Properties
 
@@ -77,7 +77,7 @@ creates a new InfiniteRechargeMatch
 
 #### Defined in
 
-[match.ts:49](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L49)
+[match.ts:49](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L49)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[match.ts:60](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L60)
+[match.ts:60](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L60)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[match.ts:56](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L56)
+[match.ts:56](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L56)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[match.ts:54](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L54)
+[match.ts:54](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L54)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[match.ts:61](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L61)
+[match.ts:61](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L61)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[match.ts:55](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L55)
+[match.ts:55](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L55)
 
 ___
 
@@ -161,7 +161,7 @@ ___
 
 #### Defined in
 
-[match.ts:53](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L53)
+[match.ts:53](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L53)
 
 ___
 
@@ -175,7 +175,7 @@ ___
 
 #### Defined in
 
-[match.ts:58](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L58)
+[match.ts:58](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L58)
 
 ___
 
@@ -189,7 +189,7 @@ ___
 
 #### Defined in
 
-[match.ts:48](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L48)
+[match.ts:48](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L48)
 
 ___
 
@@ -203,7 +203,7 @@ ___
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:146](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L146)
+[games/infinite-recharge/index.ts:146](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/infinite-recharge/index.ts#L146)
 
 ___
 
@@ -217,7 +217,7 @@ ___
 
 #### Defined in
 
-[match.ts:59](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L59)
+[match.ts:59](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L59)
 
 ___
 
@@ -231,7 +231,7 @@ ___
 
 #### Defined in
 
-[match.ts:45](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L45)
+[match.ts:45](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L45)
 
 ___
 
@@ -245,7 +245,7 @@ ___
 
 #### Defined in
 
-[match.ts:47](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L47)
+[match.ts:47](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L47)
 
 ## Accessors
 
@@ -265,7 +265,7 @@ Match.points
 
 #### Defined in
 
-[match.ts:86](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L86)
+[match.ts:86](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L86)
 
 ___
 
@@ -285,4 +285,4 @@ Match.rankingPoints
 
 #### Defined in
 
-[match.ts:96](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/match.ts#L96)
+[match.ts:96](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L96)

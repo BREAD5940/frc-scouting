@@ -1,4 +1,4 @@
-[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / JSONStoragePlan
+[frc-scouting](../README.md) / [Exports](../modules.md) / JSONStoragePlan
 
 # Interface: JSONStoragePlan<T\>
 
@@ -40,7 +40,7 @@ Plans out how to store a match of a given game as JSON.
 
 #### Defined in
 
-[storage/json.ts:18](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/json.ts#L18)
+[storage/json.ts:18](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L18)
 
 ___
 
@@ -60,4 +60,4 @@ ___
 
 #### Defined in
 
-[storage/json.ts:19](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/json.ts#L19)
+[storage/json.ts:19](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L19)

@@ -1,4 +1,4 @@
-[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / DeepSpace
+[frc-scouting](../README.md) / [Exports](../modules.md) / DeepSpace
 
 # Namespace: DeepSpace
 

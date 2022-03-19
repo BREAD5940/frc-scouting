@@ -1,4 +1,4 @@
-[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / PowerCellTracker
+[frc-scouting](../README.md) / [Exports](../modules.md) / [InfiniteRecharge](../modules/InfiniteRecharge.md) / PowerCellTracker
 
 # Class: PowerCellTracker
 
@@ -50,7 +50,7 @@ creates a new PowerCellTracker
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:35](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L35)
+[games/infinite-recharge/index.ts:35](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/infinite-recharge/index.ts#L35)
 
 ## Properties
 
@@ -60,7 +60,7 @@ creates a new PowerCellTracker
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:32](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L32)
+[games/infinite-recharge/index.ts:32](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/infinite-recharge/index.ts#L32)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:31](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L31)
+[games/infinite-recharge/index.ts:31](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/infinite-recharge/index.ts#L31)
 
 ## Accessors
 
@@ -90,7 +90,7 @@ GamePieceTracker.rankingPoints
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:59](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L59)
+[games/infinite-recharge/index.ts:59](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/infinite-recharge/index.ts#L59)
 
 ___
 
@@ -106,7 +106,7 @@ the number of power cells scored
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:54](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L54)
+[games/infinite-recharge/index.ts:54](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/infinite-recharge/index.ts#L54)
 
 ___
 
@@ -126,4 +126,4 @@ GamePieceTracker.totalPoints
 
 #### Defined in
 
-[games/infinite-recharge/index.ts:42](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/games/infinite-recharge/index.ts#L42)
+[games/infinite-recharge/index.ts:42](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/infinite-recharge/index.ts#L42)

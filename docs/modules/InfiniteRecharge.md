@@ -1,4 +1,4 @@
-[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / InfiniteRecharge
+[frc-scouting](../README.md) / [Exports](../modules.md) / InfiniteRecharge
 
 # Namespace: InfiniteRecharge
 

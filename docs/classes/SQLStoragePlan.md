@@ -1,4 +1,4 @@
-[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / SQLStoragePlan
+[frc-scouting](../README.md) / [Exports](../modules.md) / SQLStoragePlan
 
 # Class: SQLStoragePlan<T\>
 
@@ -64,7 +64,7 @@ Creates a new storage plan
 
 #### Defined in
 
-[storage/sqlite.ts:22](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L22)
+[storage/sqlite.ts:22](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L22)
 
 ## Properties
 
@@ -74,7 +74,7 @@ Creates a new storage plan
 
 #### Defined in
 
-[storage/sqlite.ts:18](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L18)
+[storage/sqlite.ts:18](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L18)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[storage/sqlite.ts:19](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L19)
+[storage/sqlite.ts:19](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L19)
 
 ## Methods
 
@@ -106,7 +106,7 @@ Returns true if the match can be stored with this interface and false otherwise.
 
 #### Defined in
 
-[storage/sqlite.ts:60](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L60)
+[storage/sqlite.ts:60](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L60)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 #### Defined in
 
-[storage/sqlite.ts:47](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L47)
+[storage/sqlite.ts:47](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L47)
 
 ___
 
@@ -150,7 +150,7 @@ ___
 
 #### Defined in
 
-[storage/sqlite.ts:51](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L51)
+[storage/sqlite.ts:51](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L51)
 
 ___
 
@@ -172,7 +172,7 @@ deletes matches
 
 #### Defined in
 
-[storage/sqlite.ts:72](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L72)
+[storage/sqlite.ts:72](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L72)
 
 ___
 
@@ -194,7 +194,7 @@ gets matches
 
 #### Defined in
 
-[storage/sqlite.ts:65](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L65)
+[storage/sqlite.ts:65](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L65)
 
 ___
 
@@ -216,7 +216,7 @@ Gets the cached prepared statement, or generates it and adds it to the cache.
 
 #### Defined in
 
-[storage/sqlite.ts:38](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L38)
+[storage/sqlite.ts:38](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L38)
 
 ___
 
@@ -238,4 +238,4 @@ Inserts match
 
 #### Defined in
 
-[storage/sqlite.ts:63](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/sqlite.ts#L63)
+[storage/sqlite.ts:63](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L63)

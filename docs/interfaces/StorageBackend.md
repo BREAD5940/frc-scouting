@@ -1,4 +1,4 @@
-[@bread5940/frc-scouting](../README.md) / [Exports](../modules.md) / StorageBackend
+[frc-scouting](../README.md) / [Exports](../modules.md) / StorageBackend
 
 # Interface: StorageBackend
 
@@ -8,6 +8,10 @@
 - [`SQLBackend`](../classes/SQLBackend.md)
 
 ## Table of contents
+
+### Properties
+
+- [hooks](StorageBackend.md#hooks)
 
 ### Methods
 
@@ -20,6 +24,16 @@
 - [getTeam](StorageBackend.md#getteam)
 - [saveMatch](StorageBackend.md#savematch)
 - [saveTeam](StorageBackend.md#saveteam)
+
+## Properties
+
+### hooks
+
+• **hooks**: `Partial`<`StorageHooks`\>
+
+#### Defined in
+
+[storage/backend.ts:31](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L31)
 
 ## Methods
 
@@ -39,7 +53,7 @@
 
 #### Defined in
 
-[storage/backend.ts:20](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/backend.ts#L20)
+[storage/backend.ts:42](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L42)
 
 ___
 
@@ -59,7 +73,7 @@ ___
 
 #### Defined in
 
-[storage/backend.ts:21](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/backend.ts#L21)
+[storage/backend.ts:43](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L43)
 
 ___
 
@@ -80,7 +94,7 @@ ___
 
 #### Defined in
 
-[storage/backend.ts:13](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/backend.ts#L13)
+[storage/backend.ts:35](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L35)
 
 ___
 
@@ -100,7 +114,7 @@ ___
 
 #### Defined in
 
-[storage/backend.ts:18](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/backend.ts#L18)
+[storage/backend.ts:40](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L40)
 
 ___
 
@@ -122,7 +136,7 @@ Get all match data for a given match number
 
 #### Defined in
 
-[storage/backend.ts:17](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/backend.ts#L17)
+[storage/backend.ts:39](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L39)
 
 ___
 
@@ -142,7 +156,7 @@ ___
 
 #### Defined in
 
-[storage/backend.ts:19](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/backend.ts#L19)
+[storage/backend.ts:41](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L41)
 
 ___
 
@@ -162,7 +176,7 @@ ___
 
 #### Defined in
 
-[storage/backend.ts:12](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/backend.ts#L12)
+[storage/backend.ts:34](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L34)
 
 ___
 
@@ -182,7 +196,7 @@ ___
 
 #### Defined in
 
-[storage/backend.ts:15](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/backend.ts#L15)
+[storage/backend.ts:37](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L37)
 
 ___
 
@@ -202,4 +216,4 @@ ___
 
 #### Defined in
 
-[storage/backend.ts:11](https://github.com/BREAD5940/frc-scouting/blob/5ba52e8/src/storage/backend.ts#L11)
+[storage/backend.ts:33](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/backend.ts#L33)

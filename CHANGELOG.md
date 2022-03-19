@@ -1,5 +1,8 @@
 # Changelog
 
+### v0.5.0
+- Hooks can be registered when initialized a storage backend; these can be used to run additional code when matches are retrieved/stored/deleted.
+
 ### v0.4.3
 - SQL schemas are properly included in the distributed package.
 - Information about crossing the starting line in auto in Rapid React is properly stored.

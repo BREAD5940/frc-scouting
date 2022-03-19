@@ -13,6 +13,7 @@ npm test
 echo "Publishing to NPM..."
 npm publish
 echo "Building documentation..."
+cp package.json package.json.old
 npm install typedoc-plugin-markdown --force
 npx typedoc
 mv package.json.old package.json
