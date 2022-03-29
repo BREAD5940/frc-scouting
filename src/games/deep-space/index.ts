@@ -161,6 +161,15 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
         super(absolutePath);
         const schema = readFileSync(`${__dirname}/schema.sql`).toString();
         this.database.exec(schema);
+        
+        // Add fields to old schemas
+        try {
+            this.database.exec(`ALTER TABLE matches ADD COLUMN comments TEXT NOT NULL DEFAULT ''`);
+            this.database.exec(`ALTER TABLE matches ADD COLUMN defended TINYINT(1) NOT NULL DEFAULT 0`);
+            this.database.exec(`ALTER TABLE matches ADD COLUMN noshow TINYINT(1) NOT NULL DEFAULT 0`);
+        } catch (e: any) {
+            if (!e.message.includes('duplicate column name')) throw e;
+        }
 
         this.matchInsertionTransaction = this.database.transaction((m: DeepSpaceMatch, associatedTeamID?: number) => {
             const cargoTrackerID = this.insertTracker(m.pieceTrackers[0], true);
@@ -171,17 +180,17 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
                 `(team_number, type, match_number, alliance, cargo_tracker_id, hatch_tracker_id,` +
                 ` tech_fouls, fouls, yellow_card, red_card,` +
                 ` estopped, borked, ranking_points, foul_points,` +
-                ` bonus_points,` +
+                ` bonus_points, comments, defended, noshow, ` +
                 ` helps_hab_climb, start_hab_level, end_hab_level,` +
                 ` crosses_start_line, left_rocket_assembled, right_rocket_assembled,` +
                 ` hab_ranking_point, rocket_ranking_point) VALUES ` +
-                `(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                `(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             );
             statement.run(
                 m.teamNumber, m.type, m.number, (m.alliance === 'BLUE' ? 0 : 1), cargoTrackerID, hatchTrackerID,
                 m.fouls.technical, m.fouls.regular, Number(m.cards.yellow), Number(m.cards.red),
                 Number(m.emergencyStopped), Number(m.borked), m.rankingPoints, m.pointsFromFouls,
-                m.bonusPoints,
+                m.bonusPoints, m.comments, Number(m.defended), Number(m.noShow),
                 Number(m.helpsOthersHABClimb), m.initialHABLevel, m.finalHABLevel,
                 Number(m.crossesStartLine), Number(m.rocketsAssembled.LEFT), Number(m.rocketsAssembled.RIGHT),
                 Number(m.rankingPointRecord.HAB), Number(m.rankingPointRecord.ROCKET),
@@ -242,6 +251,10 @@ export class DeepSpaceSQL extends SQLStoragePlan<DeepSpaceMatch> {
                 nonPieceTrackerRankingPoints: data.ranking_points,
                 pointsFromFouls: data.foul_points,
                 bonusPoints: data.bonus_points,
+                comments: data.comments,
+                defended: !!data.defended,
+                noShow: !!data.noshow,
+                
                 helpsOthersHABClimb: !!data.helps_hab_climb,
                 finalHABLevel: data.end_hab_level,
                 crossesStartLine: !!data.crosses_start_line,

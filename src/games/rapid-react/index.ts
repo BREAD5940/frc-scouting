@@ -157,6 +157,15 @@ export class RapidReactSQL extends SQLStoragePlan<RapidReactMatch> {
         super(absolutePath);
         const schema = fs.readFileSync(`${__dirname}/schema.sql`).toString();
         this.database.exec(schema);
+
+        // Add fields to old schemas
+        try {
+            this.database.exec(`ALTER TABLE matches ADD COLUMN comments TEXT NOT NULL DEFAULT ''`);
+            this.database.exec(`ALTER TABLE matches ADD COLUMN defended TINYINT(1) NOT NULL DEFAULT 0`);
+            this.database.exec(`ALTER TABLE matches ADD COLUMN noshow TINYINT(1) NOT NULL DEFAULT 0`);
+        } catch (e: any) {
+            if (!e.message.includes('duplicate column name')) throw e;
+        }
     }
 
     /**
@@ -179,6 +188,9 @@ export class RapidReactSQL extends SQLStoragePlan<RapidReactMatch> {
                 emergencyStopped: Boolean(data.disabled),
 
                 bonusPoints: data.bonus_points,
+                comments: data.comments,
+                defended: !!data.defended,
+                noShow: !!data.noshow,
                 crossedStartLineInAuto: Boolean(data.crossed_start_line_in_auto),
 
                 autoShots: {
@@ -207,7 +219,7 @@ export class RapidReactSQL extends SQLStoragePlan<RapidReactMatch> {
                 `shots_missed_lowgoal_auto, shots_missed_lowgoal_teleop, ` +
                 `monkey_bar_state, crossed_start_line_in_auto, ` +
                 `tech_fouls, fouls, yellow_card, red_card, estopped, borked, ` +
-                `foul_points, bonus_points` +
+                `foul_points, bonus_points, comments, defended, noshow` +
             `) VALUES (` +
                 `$teamNumber, $type, $number, $alliance, ` +
                 `$shotsMadeHighAuto, $shotsMadeHighTeleop, ` +
@@ -216,7 +228,7 @@ export class RapidReactSQL extends SQLStoragePlan<RapidReactMatch> {
                 `$shotsMissedLowAuto, $shotsMissedLowTeleop, ` +
                 `$climbing, $crossedStartInAuto, ` +
                 `$techFouls, $fouls, $yellowCard, $redCard, $disabled, $borked, ` +
-                `$foulPoints, $bonusPoints` +
+                `$foulPoints, $bonusPoints, $comments, $defended, $noShow` +
             `)`,
         );
 
@@ -248,6 +260,10 @@ export class RapidReactSQL extends SQLStoragePlan<RapidReactMatch> {
 
             foulPoints: match.pointsFromFouls,
             bonusPoints: match.bonusPoints,
+
+            comments: match.comments,
+            defended: Number(match.defended),
+            noShow: Number(match.noShow),
         });
     }
 }

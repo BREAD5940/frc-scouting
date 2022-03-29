@@ -21,6 +21,10 @@ CREATE TABLE IF NOT EXISTS matches (
     foul_points INTEGER NOT NULL,
     bonus_points INTEGER NOT NULL,
 
+    comments TEXT NOT NULL,
+    defended TINYINT(1) NOT NULL,
+    noshow TINYINT(1) NOT NULL,
+
     FOREIGN KEY (power_cell_tracker_id) REFERENCES power_cell_trackers (id),
     FOREIGN KEY (color_wheel_id) REFERENCES color_wheels (id),
     FOREIGN KEY (shield_generator_id) REFERENCES shield_generators (id)

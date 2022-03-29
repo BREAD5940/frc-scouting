@@ -30,7 +30,13 @@ let curMatchNum = 50;
 /** generates a Deep Space match for testing */
 function makeDSMatch(points: number, number?: number, team?: number) {
     const match = new DeepSpaceMatch(
-        team || 5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points, initialHABLevel: 1},
+        team || 5940, 'test', number || curMatchNum++, 'BLUE', {
+            bonusPoints: points,
+            initialHABLevel: 1,
+            comments: 'foobar',
+            defended: false,
+            noShow: true,
+        },
     );
     return match;
 }
@@ -38,7 +44,7 @@ function makeDSMatch(points: number, number?: number, team?: number) {
 /** generates an Infinite Recharge match for testing */
 function makeIRMatch(points: number, number?: number, team?: number) {
     const match = new InfiniteRechargeMatch(
-        team || 5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points},
+        team || 5940, 'test', number || curMatchNum++, 'BLUE', {bonusPoints: points, comments: "I'm an IR match!", defended: true, noShow: false},
     );
     return match;
 }
@@ -49,6 +55,9 @@ function makeRRMatch(points: number, number?: number, team?: number) {
         autoShots: {high: {made: 2, missed: 0}, low: {made: 2, missed: 0}},
         teleopShots: {high: {made: 2, missed: 0}, low: {made: 2, missed: 0}},
         climbing: MonkeyBarState.Mid,
+        defended: true,
+        comments: "ooo, defense!",
+        noShow: true,
     });
 }
 

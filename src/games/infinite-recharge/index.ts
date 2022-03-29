@@ -172,6 +172,16 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
 
         const schema = readFileSync(`${__dirname}/schema.sql`).toString();
         this.database.exec(schema);
+        
+        // Add fields to old schemas
+        try {
+            this.database.exec(`ALTER TABLE matches ADD COLUMN comments TEXT NOT NULL DEFAULT ''`);
+            this.database.exec(`ALTER TABLE matches ADD COLUMN defended TINYINT(1) NOT NULL DEFAULT 0`);
+            this.database.exec(`ALTER TABLE matches ADD COLUMN noshow TINYINT(1) NOT NULL DEFAULT 0`);
+        } catch (e: any) {
+            if (!e.message.includes('duplicate column name')) throw e;
+        }
+        
 
         // hahaha I am evil
         this.matchInsertionTransaction = this.database.transaction((m: InfiniteRechargeMatch, teamID?: number) => {
@@ -185,14 +195,14 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
                 ` power_cell_tracker_id, color_wheel_id, shield_generator_id,` +
                 ` tech_fouls, fouls, yellow_card, red_card,` +
                 ` estopped, borked, ranking_points, foul_points,` +
-                ` bonus_points) ` +
-                `VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                ` bonus_points, comments, defended, noshow) ` +
+                `VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             ).run(
                 m.teamNumber, m.type, m.number, (m.alliance === 'BLUE' ? 0 : 1),
                 powerCells, colorWheel, shieldGenerator,
                 m.fouls.technical, m.fouls.regular, Number(m.cards.yellow), Number(m.cards.red),
                 Number(m.emergencyStopped), Number(m.borked), m.rankingPoints, m.pointsFromFouls,
-                m.bonusPoints,
+                m.bonusPoints, m.comments, Number(m.defended), Number(m.noShow)
             );
         });
     }
@@ -252,6 +262,9 @@ export class InfiniteRechargeSQL extends SQLStoragePlan<InfiniteRechargeMatch> {
                 nonPieceTrackerRankingPoints: data.ranking_points,
                 pointsFromFouls: data.foul_points,
                 bonusPoints: data.bonus_points,
+                comments: data.comments,
+                defended: !!data.defended,
+                noShow: !!data.noshow,
             },
         );
     }

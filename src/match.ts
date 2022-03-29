@@ -36,6 +36,10 @@ export interface MatchData {
     pointsFromFouls: number;
     bonusPoints: number;
     crossedStartLineInAuto: boolean;
+
+    comments: string,
+    defended: boolean,
+    noShow: boolean,
 }
 
 /**
@@ -60,6 +64,10 @@ export abstract class Match {
     readonly bonusPoints: number;
     readonly crossedStartLineInAuto: boolean;
 
+    readonly comments: string;
+    readonly defended: boolean;
+    readonly noShow: boolean;
+
     /** Creates a new Match */
     constructor(
         teamNumber: number, type: string, number: number, alliance: Alliance, trackers: GamePieceTracker[],
@@ -80,6 +88,10 @@ export abstract class Match {
         this.pointsFromFouls = data.pointsFromFouls || 0;
         this.bonusPoints = data.bonusPoints || 0;
         this.crossedStartLineInAuto = data.crossedStartLineInAuto || false;
+
+        this.comments = data.comments || '';
+        this.defended = data.defended || false;
+        this.noShow = data.noShow || false;
     }
 
     /** Gets the total number of points scored in a match */

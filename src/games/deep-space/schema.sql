@@ -20,6 +20,10 @@ CREATE TABLE IF NOT EXISTS matches (
     foul_points INTEGER NOT NULL,
     bonus_points INTEGER NOT NULL,
 
+    comments TEXT NOT NULL,
+    defended TINYINT(1) NOT NULL,
+    noshow TINYINT(1) NOT NULL,
+
     -- Deep Space specific
     helps_hab_climb TINYINT(1) NOT NULL,
     start_hab_level SMALLINT(4) NOT NULL,

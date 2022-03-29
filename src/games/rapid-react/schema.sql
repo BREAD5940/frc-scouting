@@ -29,5 +29,9 @@ CREATE TABLE IF NOT EXISTS matches (
     estopped TINYINT(1) NOT NULL,
     borked TINYINT(1) NOT NULL,
     foul_points INTEGER NOT NULL,
-    bonus_points INTEGER NOT NULL
+    bonus_points INTEGER NOT NULL,
+
+    comments TEXT NOT NULL,
+    defended TINYINT(1) NOT NULL,
+    noshow TINYINT(1) NOT NULL
 );
