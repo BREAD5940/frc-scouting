@@ -50,7 +50,7 @@ Creates a new SQL backend
 
 #### Defined in
 
-[storage/sqlite.ts:86](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L86)
+[storage/sqlite.ts:86](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L86)
 
 ## Properties
 
@@ -64,7 +64,7 @@ Creates a new SQL backend
 
 #### Defined in
 
-[storage/sqlite.ts:83](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L83)
+[storage/sqlite.ts:83](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L83)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[storage/sqlite.ts:82](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L82)
+[storage/sqlite.ts:82](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L82)
 
 ## Methods
 
@@ -100,7 +100,7 @@ deletes a match
 
 #### Defined in
 
-[storage/sqlite.ts:179](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L179)
+[storage/sqlite.ts:179](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L179)
 
 ___
 
@@ -126,7 +126,7 @@ deletes matches
 
 #### Defined in
 
-[storage/sqlite.ts:187](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L187)
+[storage/sqlite.ts:187](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L187)
 
 ___
 
@@ -152,7 +152,7 @@ deletes all matches involving a team
 
 #### Defined in
 
-[storage/sqlite.ts:131](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L131)
+[storage/sqlite.ts:131](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L131)
 
 ___
 
@@ -178,7 +178,7 @@ gets one match
 
 #### Defined in
 
-[storage/sqlite.ts:163](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L163)
+[storage/sqlite.ts:163](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L163)
 
 ___
 
@@ -204,7 +204,7 @@ gets matches
 
 #### Defined in
 
-[storage/sqlite.ts:153](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L153)
+[storage/sqlite.ts:153](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L153)
 
 ___
 
@@ -230,7 +230,7 @@ gets matches
 
 #### Defined in
 
-[storage/sqlite.ts:168](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L168)
+[storage/sqlite.ts:168](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L168)
 
 ___
 
@@ -256,7 +256,7 @@ gets a team
 
 #### Defined in
 
-[storage/sqlite.ts:120](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L120)
+[storage/sqlite.ts:120](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L120)
 
 ___
 
@@ -278,7 +278,7 @@ Registers a new storage plan
 
 #### Defined in
 
-[storage/sqlite.ts:92](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L92)
+[storage/sqlite.ts:92](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L92)
 
 ___
 
@@ -304,7 +304,7 @@ saves a match
 
 #### Defined in
 
-[storage/sqlite.ts:139](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L139)
+[storage/sqlite.ts:139](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L139)
 
 ___
 
@@ -330,7 +330,7 @@ Saves a team
 
 #### Defined in
 
-[storage/sqlite.ts:97](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L97)
+[storage/sqlite.ts:97](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L97)
 
 ___
 
@@ -346,4 +346,4 @@ String representation
 
 #### Defined in
 
-[storage/sqlite.ts:195](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/sqlite.ts#L195)
+[storage/sqlite.ts:195](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/sqlite.ts#L195)

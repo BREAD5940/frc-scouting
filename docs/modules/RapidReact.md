@@ -45,4 +45,4 @@ rather than any individual robot, this function calculates an *alliance's* ranki
 
 #### Defined in
 
-[games/rapid-react/index.ts:129](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/rapid-react/index.ts#L129)
+[games/rapid-react/index.ts:129](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/games/rapid-react/index.ts#L129)

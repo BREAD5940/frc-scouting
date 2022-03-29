@@ -41,7 +41,7 @@ Creates a MonkeyBarTracker
 
 #### Defined in
 
-[games/rapid-react/index.ts:30](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/rapid-react/index.ts#L30)
+[games/rapid-react/index.ts:30](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/games/rapid-react/index.ts#L30)
 
 ## Properties
 
@@ -51,7 +51,7 @@ Creates a MonkeyBarTracker
 
 #### Defined in
 
-[games/rapid-react/index.ts:27](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/rapid-react/index.ts#L27)
+[games/rapid-react/index.ts:27](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/games/rapid-react/index.ts#L27)
 
 ## Accessors
 
@@ -71,7 +71,7 @@ GamePieceTracker.rankingPoints
 
 #### Defined in
 
-[games/rapid-react/index.ts:53](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/rapid-react/index.ts#L53)
+[games/rapid-react/index.ts:53](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/games/rapid-react/index.ts#L53)
 
 ___
 
@@ -91,4 +91,4 @@ GamePieceTracker.totalPoints
 
 #### Defined in
 
-[games/rapid-react/index.ts:35](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/rapid-react/index.ts#L35)
+[games/rapid-react/index.ts:35](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/games/rapid-react/index.ts#L35)

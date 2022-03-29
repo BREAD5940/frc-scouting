@@ -41,4 +41,4 @@ Contains code for handling FRC matches
 
 #### Defined in
 
-[match.ts:7](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L7)
+[match.ts:7](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L7)

@@ -1,5 +1,11 @@
 # Changelog
 
+### v0.6.0
+- New data can be stored about matches, represented by the following new fields on `MatchData`:
+  - `comments` allows for text comments about a match--perfect for qualitative scouting data!
+  - `noShow` allows you to record teams that don't show up to their matches
+  - `defended` can be used to track whether a robot was defended against in the match (which can affect their performance)
+
 ### v0.5.0
 - Hooks can be registered when initialized a storage backend; these can be used to run additional code when matches are retrieved/stored/deleted.
 

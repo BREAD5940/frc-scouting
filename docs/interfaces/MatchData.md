@@ -9,9 +9,12 @@
 - [bonusPoints](MatchData.md#bonuspoints)
 - [borked](MatchData.md#borked)
 - [cards](MatchData.md#cards)
+- [comments](MatchData.md#comments)
 - [crossedStartLineInAuto](MatchData.md#crossedstartlineinauto)
+- [defended](MatchData.md#defended)
 - [emergencyStopped](MatchData.md#emergencystopped)
 - [fouls](MatchData.md#fouls)
+- [noShow](MatchData.md#noshow)
 - [nonPieceTrackerRankingPoints](MatchData.md#nonpiecetrackerrankingpoints)
 - [pointsFromFouls](MatchData.md#pointsfromfouls)
 
@@ -23,7 +26,7 @@
 
 #### Defined in
 
-[match.ts:37](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L37)
+[match.ts:37](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L37)
 
 ___
 
@@ -33,7 +36,7 @@ ___
 
 #### Defined in
 
-[match.ts:33](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L33)
+[match.ts:33](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L33)
 
 ___
 
@@ -43,7 +46,17 @@ ___
 
 #### Defined in
 
-[match.ts:31](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L31)
+[match.ts:31](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L31)
+
+___
+
+### comments
+
+• **comments**: `string`
+
+#### Defined in
+
+[match.ts:40](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L40)
 
 ___
 
@@ -53,7 +66,17 @@ ___
 
 #### Defined in
 
-[match.ts:38](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L38)
+[match.ts:38](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L38)
+
+___
+
+### defended
+
+• **defended**: `boolean`
+
+#### Defined in
+
+[match.ts:41](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L41)
 
 ___
 
@@ -63,7 +86,7 @@ ___
 
 #### Defined in
 
-[match.ts:32](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L32)
+[match.ts:32](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L32)
 
 ___
 
@@ -73,7 +96,17 @@ ___
 
 #### Defined in
 
-[match.ts:30](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L30)
+[match.ts:30](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L30)
+
+___
+
+### noShow
+
+• **noShow**: `boolean`
+
+#### Defined in
+
+[match.ts:42](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L42)
 
 ___
 
@@ -83,7 +116,7 @@ ___
 
 #### Defined in
 
-[match.ts:35](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L35)
+[match.ts:35](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L35)
 
 ___
 
@@ -93,4 +126,4 @@ ___
 
 #### Defined in
 
-[match.ts:36](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/match.ts#L36)
+[match.ts:36](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/match.ts#L36)

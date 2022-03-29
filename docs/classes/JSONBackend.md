@@ -61,7 +61,7 @@ constructor
 
 #### Defined in
 
-[storage/json.ts:40](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L40)
+[storage/json.ts:40](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L40)
 
 ## Properties
 
@@ -75,7 +75,7 @@ constructor
 
 #### Defined in
 
-[storage/json.ts:37](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L37)
+[storage/json.ts:37](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L37)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[storage/json.ts:36](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L36)
+[storage/json.ts:36](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L36)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[storage/json.ts:35](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L35)
+[storage/json.ts:35](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L35)
 
 ## Methods
 
@@ -121,7 +121,7 @@ deletes a match by number
 
 #### Defined in
 
-[storage/json.ts:124](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L124)
+[storage/json.ts:124](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L124)
 
 ___
 
@@ -147,7 +147,7 @@ deletes all matches associated with a given team
 
 #### Defined in
 
-[storage/json.ts:133](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L133)
+[storage/json.ts:133](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L133)
 
 ___
 
@@ -174,7 +174,7 @@ deletes a team
 
 #### Defined in
 
-[storage/json.ts:117](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L117)
+[storage/json.ts:117](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L117)
 
 ___
 
@@ -200,7 +200,7 @@ gets one match
 
 #### Defined in
 
-[storage/json.ts:97](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L97)
+[storage/json.ts:97](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L97)
 
 ___
 
@@ -226,7 +226,7 @@ gets matches
 
 #### Defined in
 
-[storage/json.ts:85](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L85)
+[storage/json.ts:85](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L85)
 
 ___
 
@@ -252,7 +252,7 @@ gets matches by team
 
 #### Defined in
 
-[storage/json.ts:102](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L102)
+[storage/json.ts:102](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L102)
 
 ___
 
@@ -278,7 +278,7 @@ gets a team
 
 #### Defined in
 
-[storage/json.ts:72](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L72)
+[storage/json.ts:72](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L72)
 
 ___
 
@@ -300,7 +300,7 @@ register a plan
 
 #### Defined in
 
-[storage/json.ts:50](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L50)
+[storage/json.ts:50](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L50)
 
 ___
 
@@ -326,7 +326,7 @@ saves a match
 
 #### Defined in
 
-[storage/json.ts:67](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L67)
+[storage/json.ts:67](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L67)
 
 ___
 
@@ -352,7 +352,7 @@ saves a team
 
 #### Defined in
 
-[storage/json.ts:55](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L55)
+[storage/json.ts:55](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L55)
 
 ___
 
@@ -368,4 +368,4 @@ String representation
 
 #### Defined in
 
-[storage/json.ts:180](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/storage/json.ts#L180)
+[storage/json.ts:180](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/storage/json.ts#L180)

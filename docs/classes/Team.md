@@ -52,7 +52,7 @@ TODO: support passing in match numbers and looking them up from the DB
 
 #### Defined in
 
-[team.ts:19](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/team.ts#L19)
+[team.ts:19](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/team.ts#L19)
 
 ## Properties
 
@@ -64,7 +64,7 @@ the matches that the team played in
 
 #### Defined in
 
-[team.ts:13](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/team.ts#L13)
+[team.ts:13](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/team.ts#L13)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[team.ts:11](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/team.ts#L11)
+[team.ts:11](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/team.ts#L11)
 
 ## Methods
 
@@ -96,7 +96,7 @@ Adds a match to the team
 
 #### Defined in
 
-[team.ts:73](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/team.ts#L73)
+[team.ts:73](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/team.ts#L73)
 
 ___
 
@@ -118,7 +118,7 @@ Gets the mean of any match property
 
 #### Defined in
 
-[team.ts:25](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/team.ts#L25)
+[team.ts:25](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/team.ts#L25)
 
 ___
 
@@ -140,7 +140,7 @@ Gets the median of any match property
 
 #### Defined in
 
-[team.ts:53](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/team.ts#L53)
+[team.ts:53](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/team.ts#L53)
 
 ___
 
@@ -162,4 +162,4 @@ Gets the mode of any match property
 
 #### Defined in
 
-[team.ts:35](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/team.ts#L35)
+[team.ts:35](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/team.ts#L35)

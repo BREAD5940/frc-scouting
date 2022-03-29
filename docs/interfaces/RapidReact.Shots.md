@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[games/rapid-react/index.ts:59](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/rapid-react/index.ts#L59)
+[games/rapid-react/index.ts:59](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/games/rapid-react/index.ts#L59)
 
 ___
 
@@ -43,4 +43,4 @@ ___
 
 #### Defined in
 
-[games/rapid-react/index.ts:60](https://github.com/BREAD5940/frc-scouting/blob/a48c676/src/games/rapid-react/index.ts#L60)
+[games/rapid-react/index.ts:60](https://github.com/BREAD5940/frc-scouting/blob/c1beda6/src/games/rapid-react/index.ts#L60)
